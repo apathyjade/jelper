@@ -20,3 +20,5 @@
 #
 registry=https://registry.npmjs.org/
 always-auth=true
+access=public
+force=true

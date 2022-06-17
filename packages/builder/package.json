@@ -1,6 +1,6 @@
 {
   "name": "@jelper/builder",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "helper builder",
   "main": "./src/index.js",
   "bin": {
@@ -16,6 +16,7 @@
     "lib/**"
   ],
   "author": "apathyjade@outlook.com",
+  "private": false,
   "license": "ISC",
   "devDependencies": {
     "rollup":"~2.75.6",

@@ -1,6 +1,7 @@
 {
   "name": "@jelper/enum",
   "version": "0.0.1",
+  "private": false,
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,10 +22,10 @@
   "author": "apathyjade@outlook.com",
   "license": "ISC",
   "devDependencies": {
-    "@babel/runtime":"~7.18.3",
-    "@jelper/builder":"workspace:*",
-    "@types/node":"~18.0.0",
-    "@types/lodash":"~4.14.182"
+    "@babel/runtime": "~7.18.3",
+    "@jelper/builder": "workspace:*",
+    "@types/lodash": "~4.14.182",
+    "@types/node": "~18.0.0"
   },
   "dependencies": {
     "lodash": "~4.17.21"
