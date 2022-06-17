@@ -290,7 +290,7 @@
      * your PR branch, and in this situation "rush change" will also automatically invoke "git fetch"
      * to retrieve the latest activity for the remote main branch.
      */
-    // "url": "https://github.com/microsoft/rush-example",
+    "url": "https://github.com/apathyjade/jelper.git",
 
     /**
      * The default branch name. This tells "rush change" which remote branch to compare against.
@@ -474,14 +474,16 @@
     //   "tags": ["tools"]
     // }
     {
-      packageName: "@jelper/builder",
-      projectFolder: "packages/builder",
-      "tags": ["tools", "helper", "builder"]
+      "packageName": "@jelper/builder",
+      "projectFolder": "packages/builder",
+      "tags": ["tools", "helper", "builder"],
+      "shouldPublish": true,
     },
-    {
-      packageName: "@jelper/enum",
-      projectFolder: "packages/enum",
-      "tags": ["tools", "helper", "enum"]
-    }
+    // {
+    //   "packageName": "@jelper/enum",
+    //   "projectFolder": "packages/enum",
+    //   "tags": ["tools", "helper", "enum"],
+    //   "shouldPublish": true,
+    // }
   ]
 }

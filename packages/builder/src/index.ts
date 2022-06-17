@@ -25,7 +25,6 @@ const opts = {
 console.log(opts);
 
 async function build() {
-  // create a bundle
   const bundle = await rollup(opts);
   ([
     {
