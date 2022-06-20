@@ -2,7 +2,7 @@
   "name": "@jelper/builder",
   "version": "0.0.5",
   "description": "helper builder",
-  "main": "./src/index.js",
+  "main": "./lib/index.js",
   "bin": {
     "hbuild": "./bin/index.js"
   },
