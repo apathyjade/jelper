@@ -6,5 +6,5 @@
  * @Last Modified Time: 2022-06-17 12:53:21
  */
 
-export { default as babelrc } from './babelrc';
-export { default as tsconfig } from './tsconfig';
+export { default as babelrc } from './babelrc.js';
+export { default as tsconfig } from './tsconfig.js';

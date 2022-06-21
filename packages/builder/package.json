@@ -1,6 +1,7 @@
 {
   "name": "@jelper/builder",
   "version": "0.0.5",
+  "type": "module",
   "description": "helper builder",
   "main": "./lib/index.js",
   "bin": {
@@ -13,7 +14,8 @@
   "files": [
     "package.json",
     "README.md",
-    "lib/**"
+    "lib/**",
+    "tpl/**"
   ],
   "author": "apathyjade@outlook.com",
   "private": false,
@@ -29,6 +31,14 @@
     "@babel/preset-typescript":"~7.17.12",
     "@babel/preset-env":"~7.18.2",
     "@babel/plugin-transform-runtime":"~7.18.5",
-    "@types/babel__core":"~7.1.19"
+    "@types/babel__core":"~7.1.19",
+    "@types/inquirer":"~8.2.1"
+  },
+  "dependencies": {
+    "gulp": "~4.0.2",
+    "commander": "~9.3.0",
+    "chalk": "~5.0.1",
+    "ora": "~6.1.0",
+    "inquirer": "~9.0.0"
   }
 }

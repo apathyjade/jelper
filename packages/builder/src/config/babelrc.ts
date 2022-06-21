@@ -8,7 +8,7 @@
 
 
 import { RollupBabelInputPluginOptions } from '@rollup/plugin-babel';
-import { getModulePath } from '../common';
+import { getModulePath } from '../common/index.js';
 const opts: RollupBabelInputPluginOptions = {
   extensions: ['.js', '.jsx', 'ts', 'tsx', '.es6', '.es', '.mjs'],
   babelHelpers: 'runtime',

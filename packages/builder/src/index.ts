@@ -1,44 +1,31 @@
-import { rollup, OutputOptions } from 'rollup';
-import path from 'path';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import { babel } from '@rollup/plugin-babel';
+/*
+ * @Author: jade <apathyjade@outlook.com>
+ * @Version: 0.0.1
+ * @Date: 2022-06-21 12:20:40
+ * @Last Modified by:   jade
+ * @Last Modified Time: 2022-06-21 12:20:40
+ */
 
-import { babelrc } from './config'
-import { basePath } from './common';
+import { Command } from 'commander';
+import init from './init.js';
+const program = new Command();
 
-const opts = {
-  input: path.resolve(basePath, './src/index.ts'),
-  
-  plugins: [
-    resolve(),
-    commonjs(),
-    babel(babelrc)
-  ],
+program
+  .name('@jelper/builder')
+  .description('CLI to build JavaScript helper package')
+  .version('0.8.0');
 
-  external: [
-    /^lodash\/.*/,
-    /^@babel\/.*/
-  ]
-}
-
-console.log(opts);
-
-async function build() {
-  const bundle = await rollup(opts);
-  ([
-    {
-      file: "lib/index.js",
-      format: "cjs",
-      exports: "auto",
-    },
-    {
-      file: "es/index.js",
-      format: "esm",
-      exports: "auto",
-    },
-  ] as OutputOptions[]).forEach((opt) =>{
-    bundle.write(opt)
-  })
-}
-build();
+program.command('build')
+  .description('Split a string into substrings and display as an array')
+  .argument('<string>', 'string to split')
+  .option('-f, --first', 'display just the first substring')
+  .option('-s, --separator <char>', 'separator character', ',')
+  .action((str, options) => {
+    console.log('str:', str)
+    console.log('options:', options)
+    console.log(program.opts())
+  });
+program.command('init')
+  .description('创建新仓库，初始化仓库模版内容')
+  .action(init);
+program.parse();

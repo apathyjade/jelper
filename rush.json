@@ -486,6 +486,13 @@
       "tags": ["tools", "helper", "enum"],
       "reviewCategory": "production",
       "shouldPublish": true,
+    },
+    {
+      "packageName": "@jelper/store",
+      "projectFolder": "packages/store",
+      "tags": ["tools", "helper", "store"],
+      "reviewCategory": "production",
+      "shouldPublish": true,
     }
   ]
 }
