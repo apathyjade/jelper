@@ -7,28 +7,54 @@
  */
 
 import inquirer, { Question } from 'inquirer';
+import gulp from 'gulp';
+import fs from 'fs';
+import { basePath, resolveByRootPath, rootPath } from './common/index.js';
 // import chalk from 'chalk';
 // import ora from 'ora';
 
-const questions: Question[] = [
+interface Answer {
+  packageName: string;
+  ready: boolean;
+}
+
+const init = (answer: Answer) => {
+  console.log(answer);
+  console.log(rootPath);
+  console.log(resolveByRootPath('./tpl/**'));
+  gulp.src(resolveByRootPath('./tpl/**'))
+  .pipe(gulp.dest(`${basePath}/`))
+}
+
+const questions: Question<Answer>[] = [
   {
     type: 'input',
     name: 'packageName',
     message: '请输入包名',
   }, {
     type: 'confirm',
-    name: 'packageName',
+    name: 'ready',
     message: '请输入包名',
   }
 ]
 
-export default () => {
-  inquirer
-  .prompt(questions)
-  .then((answers: any) => {
-    console.log(answers)
+export default async() => new Promise((resolve, reject) => {
+  if (!fs.readdirSync(basePath)?.length) {
+    resolve(null);
+    return;
+  }
+  inquirer.prompt([{
+    type: 'confirm',
+    name: 'value',
+    message: '当前目录存在文件,该操作可能会覆盖存在文件，是否继续？',
+  }]).then((answers) => {
+    answers.value ? resolve(null) : reject();
   })
-  .catch((error: any) => {
-    console.log(error)
+}).then(() => {
+  inquirer.prompt(questions)
+  .then((answers) => {
+    if (answers.ready) {
+      init(answers)
+    }
   });
-}
+})

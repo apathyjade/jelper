@@ -4,7 +4,7 @@
   "description": "store helper",
   "main": "lib/index.js",
   "scripts": {
-    "build": "hbuild build asd asad -f aaa --separator=asds",
+    "build": "hbuild build",
     "init": "hbuild init",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

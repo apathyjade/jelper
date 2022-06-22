@@ -17,9 +17,9 @@ program
 
 program.command('build')
   .description('Split a string into substrings and display as an array')
-  .argument('<string>', 'string to split')
-  .option('-f, --first', 'display just the first substring')
-  .option('-s, --separator <char>', 'separator character', ',')
+  // .argument('<string>', 'string to split')
+  // .option('-f, --first', 'display just the first substring')
+  // .option('-s, --separator <char>', 'separator character', ',')
   .action((str, options) => {
     console.log('str:', str)
     console.log('options:', options)
@@ -28,4 +28,5 @@ program.command('build')
 program.command('init')
   .description('创建新仓库，初始化仓库模版内容')
   .action(init);
+  
 program.parse();

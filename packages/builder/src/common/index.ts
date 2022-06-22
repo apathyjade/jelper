@@ -7,9 +7,11 @@
  */
 import path from 'path';
 import { cwd } from 'process';
-
+import { fileURLToPath } from 'url';
+export const rootPath = path.resolve( path.dirname(fileURLToPath(import.meta.url)), '../..');
 export const basePath = cwd();
-export const nodeModules = path.resolve(__dirname, '../../node_modules');
+export const nodeModules = path.resolve(rootPath, './node_modules');
 export const getModulePath = (moduleName: string) => {
   return `${nodeModules}/${moduleName}`;
 }
+export const resolveByRootPath = (s: string) => path.resolve(rootPath, s);
