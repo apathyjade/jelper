@@ -10,10 +10,10 @@
 import { RollupBabelInputPluginOptions } from '@rollup/plugin-babel';
 import { getModulePath } from '../common/index.js';
 const opts: RollupBabelInputPluginOptions = {
-  extensions: ['.js', '.jsx', 'ts', 'tsx', '.es6', '.es', '.mjs'],
+  extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts', '.es6', '.es', '.mjs'],
   babelHelpers: 'runtime',
   presets: [
-    [getModulePath('@babel/preset-typescript')],
+    // [getModulePath('@babel/preset-typescript')],
     [getModulePath('@babel/preset-env')]
   ],
   plugins: [

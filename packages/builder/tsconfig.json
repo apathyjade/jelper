@@ -31,6 +31,6 @@
 		"skipLibCheck": true,
     "outDir": "./lib"
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "lib"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+  "exclude": ["node_modules", "lib", "es"]
 }

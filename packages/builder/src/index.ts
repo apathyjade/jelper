@@ -8,6 +8,8 @@
 
 import { Command } from 'commander';
 import init from './init.js';
+import build from './build.js';
+
 const program = new Command();
 
 program
@@ -16,15 +18,8 @@ program
   .version('0.8.0');
 
 program.command('build')
-  .description('Split a string into substrings and display as an array')
-  // .argument('<string>', 'string to split')
-  // .option('-f, --first', 'display just the first substring')
-  // .option('-s, --separator <char>', 'separator character', ',')
-  .action((str, options) => {
-    console.log('str:', str)
-    console.log('options:', options)
-    console.log(program.opts())
-  });
+  .description('构建仓库')
+  .action(build);
 program.command('init')
   .description('创建新仓库，初始化仓库模版内容')
   .action(init);
