@@ -8,22 +8,22 @@
 
 import inquirer, { Question } from 'inquirer';
 import gulp from 'gulp';
+import template from 'gulp-template';
 import fs from 'fs';
-import { basePath, resolveByRootPath, rootPath } from './common/index.js';
+import { basePath, resolveByRootPath } from './common/index.js';
 // import chalk from 'chalk';
 // import ora from 'ora';
 
 interface Answer {
   packageName: string;
+  description: string,
   ready: boolean;
 }
 
-const init = (answer: Answer) => {
-  console.log(answer);
-  console.log(rootPath);
-  console.log(resolveByRootPath('./tpl/**'));
+const init = (answer: Omit<Answer, 'ready'> ) => {
   gulp.src(resolveByRootPath('./tpl/**'))
-  .pipe(gulp.dest(`${basePath}/`))
+    .pipe(template(answer, {}))
+    .pipe(gulp.dest(`${basePath}/`))
 }
 
 const questions: Question<Answer>[] = [
@@ -31,6 +31,10 @@ const questions: Question<Answer>[] = [
     type: 'input',
     name: 'packageName',
     message: '请输入包名',
+  }, {
+    type: 'input',
+    name: 'description',
+    message: '请输入包描述',
   }, {
     type: 'confirm',
     name: 'ready',

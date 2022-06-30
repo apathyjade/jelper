@@ -1,7 +1,7 @@
 {
-  "name": "@jelper/store",
-  "version": "0.0.2",
-  "description": "store helper",
+  "name": "@jelper/promise",
+  "version": "0.0.1",
+  "description": "promise 帮助类",
   "main": "lib/index.js",
   "scripts": {
     "build": "jelper build",
@@ -12,8 +12,5 @@
     "helper"
   ],
   "author": "apathyjade@outlook.com",
-  "license": "ISC",
-  "devDependencies": {
-    "@jelper/builder": "workspace:*"
-  }
+  "license": "ISC"
 }

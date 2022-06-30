@@ -494,5 +494,13 @@
       "reviewCategory": "production",
       "shouldPublish": true,
     }
+    ,
+    {
+      "packageName": "@jelper/promise",
+      "projectFolder": "packages/promise",
+      "tags": ["tools", "helper", "promise"],
+      "reviewCategory": "production",
+      "shouldPublish": true,
+    }
   ]
 }
