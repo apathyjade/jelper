@@ -1,6 +1,6 @@
 {
   "name": "@jelper/promise",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "promise 帮助类",
   "main": "lib/index.js",
   "scripts": {
@@ -12,5 +12,14 @@
     "helper"
   ],
   "author": "apathyjade@outlook.com",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/runtime": "~7.18.3",
+    "@jelper/builder": "workspace:*",
+    "@types/lodash": "~4.14.182",
+    "@types/node": "~18.0.0"
+  },
+  "dependencies": {
+    "lodash": "~4.17.21"
+  }
 }

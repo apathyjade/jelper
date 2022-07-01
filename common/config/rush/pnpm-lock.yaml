@@ -69,6 +69,21 @@ importers:
       '@types/lodash': 4.14.182
       '@types/node': 18.0.0
 
+  ../../packages/promise:
+    specifiers:
+      '@babel/runtime': ~7.18.3
+      '@jelper/builder': workspace:*
+      '@types/lodash': ~4.14.182
+      '@types/node': ~18.0.0
+      lodash: ~4.17.21
+    dependencies:
+      lodash: 4.17.21
+    devDependencies:
+      '@babel/runtime': 7.18.3
+      '@jelper/builder': link:../builder
+      '@types/lodash': 4.14.182
+      '@types/node': 18.0.0
+
   ../../packages/store:
     specifiers:
       '@jelper/builder': workspace:*
