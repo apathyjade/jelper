@@ -1,0 +1,13 @@
+{
+  "name": "rush-lint",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "commitlint": "commitlint --config ./commitlint.config.js --cwd ../../"
+  },
+  "dependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@microsoft/rush-lib": "^5.75.0"
+  }
+}
