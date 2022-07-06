@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "commitlint": "commitlint --config ./commitlint.config.js --cwd ../../"
+    "commitlint": "commitlint --config ./commitlint.config.js"
   },
   "dependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
-    "@microsoft/rush-lib": "^5.75.0"
+    "@microsoft/rush-lib": "^5.75.0",
+    "commander": "^9.3.0",
+    "execa": "^6.1.0"
   }
 }

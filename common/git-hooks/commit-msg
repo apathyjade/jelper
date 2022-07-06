@@ -18,5 +18,5 @@
 
 # This example enforces that commit message should contain a minimum amount of
 # description text.
-cd ../autoinstallers/rush-lint/
-ls
+
+node common/autoinstallers/rush-lint/scripts.mjs
