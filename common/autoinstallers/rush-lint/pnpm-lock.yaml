@@ -1,4 +1,4 @@
-lockfileVersion: 5.4
+lockfileVersion: 5.3
 
 specifiers:
   '@commitlint/cli': ^17.0.3
@@ -251,7 +251,7 @@ packages:
       '@types/node': 18.0.3
       chalk: 4.1.2
       cosmiconfig: 7.0.1
-      cosmiconfig-typescript-loader: 2.0.2_fxk5i3xm3ivo7fjwhcizcinpla
+      cosmiconfig-typescript-loader: 2.0.2_2dd5d46eecda2aef953638919121af58
       lodash: 4.17.21
       resolve-from: 5.0.0
       typescript: 4.7.4
@@ -1003,7 +1003,7 @@ packages:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
     dev: false
 
-  /cosmiconfig-typescript-loader/2.0.2_fxk5i3xm3ivo7fjwhcizcinpla:
+  /cosmiconfig-typescript-loader/2.0.2_2dd5d46eecda2aef953638919121af58:
     resolution: {integrity: sha512-KmE+bMjWMXJbkWCeY4FJX/npHuZPNr9XF9q9CIQ/bpFwi1qHfCmSiKarrCcRa0LO4fWjk93pVoeRtJAkTGcYNw==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
@@ -1012,7 +1012,7 @@ packages:
     dependencies:
       '@types/node': 18.0.3
       cosmiconfig: 7.0.1
-      ts-node: 10.8.2_fxk5i3xm3ivo7fjwhcizcinpla
+      ts-node: 10.8.2_2dd5d46eecda2aef953638919121af58
       typescript: 4.7.4
     transitivePeerDependencies:
       - '@swc/core'
@@ -2548,7 +2548,7 @@ packages:
     resolution: {integrity: sha512-0z3j8R7MCjy10kc/g+qg7Ln3alJTodw9aDuVWZa3uiWqfuBMKeAeP2ocWcxoyM3D73yz3Jt/Pu4qPr4wHSdB/Q==}
     dev: false
 
-  /ts-node/10.8.2_fxk5i3xm3ivo7fjwhcizcinpla:
+  /ts-node/10.8.2_2dd5d46eecda2aef953638919121af58:
     resolution: {integrity: sha512-LYdGnoGddf1D6v8REPtIH+5iq/gTDuZqv2/UJUU7tKjuEU8xVZorBM+buCGNjj+pGEud+sOoM4CX3/YzINpENA==}
     hasBin: true
     peerDependencies:
