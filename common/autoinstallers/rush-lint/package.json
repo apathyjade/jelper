@@ -2,9 +2,7 @@
   "name": "rush-lint",
   "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "commitlint": "commitlint --config ./commitlint.config.js"
-  },
+  "scripts": {},
   "dependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
