@@ -7,7 +7,8 @@
   "module": "es/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "jelper build"
+    "build": "jelper build",
+    "serve": "jelper serve"
   },
   "files": [
     "package.json",
@@ -28,6 +29,7 @@
     "@types/node": "~18.0.0"
   },
   "dependencies": {
-    "lodash": "~4.17.21"
+    "lodash": "~4.17.21",
+    "react": "~18.2.0"
   }
 }

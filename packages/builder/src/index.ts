@@ -9,6 +9,7 @@
 import { Command } from 'commander';
 import init from './init.js';
 import build from './build.js';
+import serve from './serve.js'
 
 const program = new Command();
 
@@ -23,5 +24,9 @@ program.command('build')
 program.command('init')
   .description('创建新仓库，初始化仓库模版内容')
   .action(init);
-  
+
+program.command('serve')
+  .description('启动服务')
+  .action(serve);
+
 program.parse();

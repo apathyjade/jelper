@@ -11,7 +11,8 @@ export default {
     strict: true,
     target: 'es6',
     outDir: './lib',
+    jsx: 'react',
   },
-  include: ['src/**/*.ts', 'src/**/*.d.ts'],
-  exclude: ['node_modules', 'lib']
+  include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.d.ts'],
+  // exclude: ['node_modules', 'lib']
 }

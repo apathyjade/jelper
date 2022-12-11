@@ -5,6 +5,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import { babel } from '@rollup/plugin-babel';
 
+
 import { babelrc, tsconfig } from './config/index.js'
 import { basePath } from './common/index.js';
 
@@ -24,8 +25,6 @@ const opts = {
     /^@babel\/.*/
   ]
 }
-
-console.log(opts);
 
 export default async function build() {
   const baseOutCfg: OutputOptions = {
