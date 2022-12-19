@@ -9,7 +9,7 @@ export default {
     pretty: true,
     sourceMap: true,
     strict: true,
-    target: 'es6',
+    target: 'es5',
     outDir: './lib',
     jsx: 'react',
   },

@@ -3,8 +3,8 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import HtmlPlugin from 'html-webpack-plugin';
 
-import { babelrc } from './config/index.js';
-import { resolveByRootPath, resolveByBasePath, getModulePath, basePath } from './common/index.js';
+import { babelrc } from '../config/index.js';
+import { resolveByRootPath, resolveByBasePath, getModulePath, basePath } from '../common/index.js';
 
 const getOpts = () => ({
   mode: 'development' as 'development',

@@ -8,25 +8,33 @@
 
 import { Command } from 'commander';
 import init from './init.js';
-import build from './build.js';
-import serve from './serve.js'
+// import build from './build.js';
+// import serve from './serve.js'
+
+import { serve, build } from './commands/index.js';
 
 const program = new Command();
 
 program
   .name('@jelper/builder')
   .description('CLI to build JavaScript helper package')
-  .version('0.8.0');
+  .version('0.0.9');
 
 program.command('build')
   .description('构建仓库')
-  .action(build);
+  .action(() => {
+    process.env['NODE_ENV'] = 'production'
+    build()
+  });
 program.command('init')
   .description('创建新仓库，初始化仓库模版内容')
   .action(init);
 
 program.command('serve')
   .description('启动服务')
-  .action(serve);
+  .action(() => {
+    process.env['NODE_ENV'] = 'development'
+    serve()
+  });
 
 program.parse();

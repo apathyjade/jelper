@@ -6,15 +6,19 @@
  * @Last Modified Time: 2022-06-17 12:55:08
  */
 
-
-import { RollupBabelInputPluginOptions } from '@rollup/plugin-babel';
 import { getModulePath } from '../common/index.js';
-const opts: RollupBabelInputPluginOptions = {
-  extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts', '.es6', '.es', '.mjs', '.mdx'],
-  babelHelpers: 'runtime',
+import tsconfig from './tsconfig.js';
+
+const opts = {
   presets: [
+    [getModulePath('@babel/preset-env'), {
+      'targets': {
+        'chrome': '58',
+        'ie': '11',
+      }
+    }],
     [getModulePath('@babel/preset-react')],
-    [getModulePath('@babel/preset-env')],
+    [getModulePath('@babel/preset-typescript'), tsconfig],
   ],
   plugins: [
     [

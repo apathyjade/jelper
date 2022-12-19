@@ -15,3 +15,4 @@ export const getModulePath = (moduleName: string) => {
   return `${nodeModules}/${moduleName}`;
 }
 export const resolveByRootPath = (s: string) => path.resolve(rootPath, s);
+export const resolveByBasePath = (s: string) => path.resolve(basePath, s);
