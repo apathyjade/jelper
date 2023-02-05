@@ -1,21 +1,45 @@
 
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { MDXProvider } from '@mdx-js/react';
+import 'prism-themes/themes/prism-vsc-dark-plus.css';
+import {
+  LiveProvider,
+  LiveEditor,
+  LiveError,
+  LivePreview
+} from 'react-live'
+const scope = {
 
-console.log('---', process.env.Project_Path)
+}
+
+// @ts-ignore
 const requireComponent = require.context(
-    process.env.Project_Path + '/demo',
+    process.env.Project_Path + '/docs',
     true,
     /\.mdx/
   )
 const Contents = requireComponent.keys().map((path: string) => requireComponent(path).default)
 
+const components = {
+  em: props => <i {...props } />,
+  code: props => (
+    <LiveProvider code={props.children} scope={scope}>
+      <div>
+        <LiveEditor />
+      </div>
+      <LiveError />
+      <LivePreview />
+    </LiveProvider>
+  )
+}
+
 const App = () => {
-  return <div>
+  return <MDXProvider components={components}>
     {
       Contents.map((It, index) => <It key={index} />)
     }
-  </div>
+  </MDXProvider>
 }
 
 // @ts-ignore

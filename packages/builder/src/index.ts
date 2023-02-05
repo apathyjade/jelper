@@ -7,11 +7,7 @@
  */
 
 import { Command } from 'commander';
-import init from './init.js';
-// import build from './build.js';
-// import serve from './serve.js'
-
-import { serve, build } from './commands/index.js';
+import { serve, build, init } from './commands/index.js';
 
 const program = new Command();
 

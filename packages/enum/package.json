@@ -31,6 +31,8 @@
   "dependencies": {
     "lodash": "~4.17.21",
     "react": "~18.2.0",
-    "tslib": "~2.4.1"
+    "tslib": "~2.4.1",
+    "@mdx-js/react": "1.x",
+    "@mdx-js/mdx": "1.x"
   }
 }

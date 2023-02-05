@@ -5,10 +5,11 @@ import { babelrc } from '../config/index.js';
 import { resolveByBasePath, getModulePath } from '../common/index.js';
 
 const getOpts = () => ({
-  mode: 'production' as 'production',
+  mode: 'none' as 'none',
   entry: resolveByBasePath('./src/index.tsx'),
   output: {
     filename: 'index.js',  // 输出文件名
+    iife: false,
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', 'jsx', 'json', 'css', 'less', 'scss'],
@@ -48,7 +49,7 @@ const outputs = [
   }, {
     path: resolveByBasePath('./lib'),
     library: {
-      type: 'commonjs',
+      type: 'commonjs2',
     }
   }
 ]

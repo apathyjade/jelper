@@ -10,7 +10,7 @@ import inquirer, { Question } from 'inquirer';
 import gulp from 'gulp';
 import template from 'gulp-template';
 import fs from 'fs';
-import { basePath, resolveByRootPath } from './common/index.js';
+import { basePath, resolveByRootPath } from '../common/index.js';
 // import chalk from 'chalk';
 // import ora from 'ora';
 
