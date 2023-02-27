@@ -1,6 +1,6 @@
 {
   "name": "@jelper/builder",
-  "version": "1.0.0",
+  "version": "0.1.0-8",
   "type": "module",
   "description": "'CLI to build JavaScript helper package'",
   "main": "./lib/index.js",
@@ -14,8 +14,10 @@
   "files": [
     "package.json",
     "README.md",
+    "utils/**",
     "lib/**",
-    "tpl/**"
+    "tpl/**",
+    "public/**"
   ],
   "author": "apathyjade@outlook.com",
   "private": false,

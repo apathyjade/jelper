@@ -6,23 +6,23 @@
  * @Last Modified Time: 2022-06-17 12:55:08
  */
 
-import { getModulePath } from '../common/index.js';
+import requireHelper from '../../utils/require-helper.cjs';
 import tsconfig from './tsconfig.js';
 
 const opts = {
   presets: [
-    [getModulePath('@babel/preset-env'), {
+    [requireHelper.resolve('@babel/preset-env'), {
       'targets': {
         'chrome': '58',
         'ie': '11',
       }
     }],
-    [getModulePath('@babel/preset-react')],
-    [getModulePath('@babel/preset-typescript'), tsconfig],
+    [requireHelper.resolve('@babel/preset-react')],
+    [requireHelper.resolve('@babel/preset-typescript'), tsconfig],
   ],
   plugins: [
     [
-      getModulePath('@babel/plugin-transform-runtime')
+      requireHelper.resolve('@babel/plugin-transform-runtime')
     ]
   ]
 }

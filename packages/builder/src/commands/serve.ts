@@ -3,19 +3,22 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import HtmlPlugin from 'html-webpack-plugin';
 import fs from 'fs-extra';
+import requireHelper from '../../utils/require-helper.cjs';
 
 import { babelrc } from '../config/index.js';
-import { resolveByRootPath, resolveByBasePath, getModulePath, basePath } from '../common/index.js';
+import { resolveByRootPath, resolveByBasePath, basePath } from '../common/index.js';
 
 const getPackage = () => {
   return fs.readJSONSync(resolveByBasePath('./package.json'))
 }
 
+
 const getOpts = () => {
   const { name } = getPackage();
+  console.log('requireHelper', requireHelper.resolve('babel-loader'))
   return {
     mode: 'development' as 'development',
-    entry: resolveByRootPath('./src/common/app.tsx'),
+    entry: resolveByRootPath('./public/app.js'),
     output: {
       filename: 'bundle.js',  // 输出文件名
     },
@@ -32,7 +35,7 @@ const getOpts = () => {
     resolve: {
       alias: {
         [name]: resolveByBasePath('./src'),
-        // '@mdx-js': getModulePath('@mdx-js'),
+        // '@mdx-js': requireHelper.resolve('@mdx-js'),
       },
       extensions: ['.ts', '.tsx', '.js', 'jsx', 'json', 'css', 'less', 'scss'],
       extensionAlias: {
@@ -45,13 +48,12 @@ const getOpts = () => {
       rules: [
         {
           test: /\.(mdx)$/,
-          exclude: /(node_modules|bower_components)/,
           use: [
             {
-              loader: getModulePath('babel-loader'),
+              loader: requireHelper.resolve('babel-loader'),
               options: babelrc,
             }, {
-              loader: getModulePath('@docusaurus/mdx-loader'),
+              loader: requireHelper.resolve('@docusaurus/mdx-loader'),
               options: {
                 markdownConfig: {
                 },
@@ -61,10 +63,9 @@ const getOpts = () => {
         },
         {
           test: /\.(jsx?|[cm]?ts|tsx)$/,
-          exclude: /(node_modules|bower_components)/,
           use: [
             {
-              loader: getModulePath('babel-loader'),
+              loader: requireHelper.resolve('babel-loader'),
               options: babelrc,
             }
           ]
@@ -73,12 +74,12 @@ const getOpts = () => {
           test: /\.(scss|css)$/,
           use: [
             {
-              loader: getModulePath('style-loader'),
+              loader: requireHelper.resolve('style-loader'),
             }, {
-              loader: getModulePath('css-loader'),
+              loader: requireHelper.resolve('css-loader'),
               options: { modules: true }
             }, {
-              loader: getModulePath('sass-loader'),
+              loader: requireHelper.resolve('sass-loader'),
             }
           ]
         },
