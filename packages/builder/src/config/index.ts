@@ -8,3 +8,4 @@
 
 export { default as babelrc } from './babelrc.js';
 export { default as tsconfig } from './tsconfig.js';
+export { default as webpackConfigBase } from './webpackConfig.js';

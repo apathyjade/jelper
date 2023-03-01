@@ -1,44 +1,18 @@
 
 import webpack from 'webpack';
+import { merge } from 'webpack-merge';
+import { webpackConfigBase } from '../config/index.js';
+import { resolveByBasePath } from '../common/index.js';
 
-import { babelrc } from '../config/index.js';
-import { resolveByBasePath, getModulePath } from '../common/index.js';
-
-const getOpts = () => ({
+const getOpts = () => merge(webpackConfigBase, {
   mode: 'none' as 'none',
   entry: resolveByBasePath('./src/index.tsx'),
-  output: {
-    filename: 'index.js',  // 输出文件名
-    iife: false,
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', 'jsx', 'json', 'css', 'less', 'scss'],
-    extensionAlias: {
-     '.js': ['.js', '.ts'],
-     '.cjs': ['.cjs', '.cts'],
-     '.mjs': ['.mjs', '.mts']
-    }
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(jsx?|[cm]?ts|tsx)$/,
-        exclude: /(node_modules|bower_components)/,
-        use: [
-          {
-            loader: getModulePath('babel-loader'),
-            options: babelrc,
-          }
-        ]
-      }
-    ]
-  },
   plugins: [
   ],
   experiments: {
     outputModule: true,
   },
-})
+} as any);
 
 const outputs = [
   {
