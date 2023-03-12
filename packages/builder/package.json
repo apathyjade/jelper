@@ -1,6 +1,6 @@
 {
   "name": "@jelper/builder",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "type": "module",
   "description": "'CLI to build JavaScript helper package'",
   "main": "./lib/index.js",
@@ -26,10 +26,7 @@
     "@types/babel__core": "~7.1.19",
     "@types/gulp": "~4.0.9",
     "@types/gulp-template": "~5.0.1",
-    "@types/inquirer": "~8.2.1",
-    "@types/node": "~18.0.0",
-    "@types/react": "~18.0.17",
-    "@types/react-dom": "~18.0.6"
+    "@types/inquirer": "~8.2.1"
   },
   "dependencies": {
     "@babel/core": "~7.18.5",
@@ -86,6 +83,11 @@
     "node-sass": "~8.0.0",
     "css-loader": "~6.7.3",
     "webpack-chain": "~6.5.1",
-    "webpack-merge": "~5.8.0"
+    "webpack-merge": "~5.8.0",
+    "lodash": "~4.17.21",
+    "@types/lodash": "~4.14.191",
+    "@types/node": "~18.0.0",
+    "@types/react": "~18.0.17",
+    "@types/react-dom": "~18.0.6"
   }
 }

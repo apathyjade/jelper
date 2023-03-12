@@ -1,10 +1,8 @@
-import fs from 'fs-extra'
+
 import requireHelper from '../../utils/require-helper.cjs';
 import { babelrc } from './index.js';
 import { resolveByBasePath, resolveByRootPath } from '../common/index.js';
-const getPackage = () => {
-  return fs.readJSONSync(resolveByBasePath('./package.json'))
-}
+
 const include = [
   resolveByRootPath('./'),
   resolveByBasePath('./docs/'),
@@ -12,14 +10,22 @@ const include = [
   requireHelper.resolve('@babel/plugin-transform-runtime'),
   requireHelper.resolve('prism-themes'),
 ]
-const { name } = getPackage();
+
 
 
 export default {
   resolve: {
     alias: {
-      [name]: resolveByBasePath('./src'),
-      // '@mdx-js': getModulePath('@mdx-js'),
+      'tslib': requireHelper.resolve('tslib'),
+      'lodash': requireHelper.resolve('lodash'),
+      'react': requireHelper.resolve('react'),
+      'react-dom': requireHelper.resolve('react-dom'),
+      '@mdx-js/react': requireHelper.resolve('@mdx-js/react'),
+      '@babel/runtime': requireHelper.resolve('@babel/runtime'),
+      '@types/lodash': requireHelper.resolve('@types/lodash'),
+      '@types/node': requireHelper.resolve('@types/node'),
+      '@types/react': requireHelper.resolve('@types/react'),
+      '@types/react-dom': requireHelper.resolve('@types/react-dom'),
     },
     extensions: ['.ts', '.tsx', '.js', 'jsx', 'json', 'css', 'less', 'scss'],
     extensionAlias: {

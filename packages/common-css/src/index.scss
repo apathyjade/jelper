@@ -1,0 +1,112 @@
+
+$position: (
+  l: left,
+  r: right,
+  t: top,
+  b: bottom
+);
+$size: 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 48, 56;
+$fsSize: 12, 14, 16, 18, 20, 24, 28, 32, 36, 48, 56;
+$color: (
+  brand: #0AB387,
+  blue: #4279FD,
+  green: #0AB387,
+  orange: #C14A27,
+  yellow: #F7AB4F
+);
+.pointer {
+  &:hover {
+    cursor: pointer;
+    color: map-get($color, brand);
+  }
+}
+
+.link {
+  &:hover {
+    cursor: pointer;
+    color: map-get($color, blue);
+  }
+}
+
+// 字体
+@each $item in $fsSize {
+  .fs#{$item} {
+    font-size: $item + px;
+    @if $item % 4 == 0 {
+      line-height: $item * 1.5 + px
+    } @else {
+      line-height: $item * 1.5 - 1 + px
+    }
+  }
+}
+
+// 颜色
+@each $key, $value in $color{
+  .#{$key} {
+    color: $value;
+    &.pointer {
+      color: rgba($color: $value, $alpha: .8);
+    }
+  }
+  .bg-#{$key} {
+    background-color: rgba($color: $value, $alpha: .2);
+  }
+}
+
+// n内外间距
+@each $item in $size {
+  .mg-#{$item} {
+    margin: $item + px;
+  }
+  .pd-#{$item} {
+    padding: $item + px;
+  }
+  @each $key, $value in $position{
+    .mg-#{$key + $item} {
+      margin-#{$value}: $item + px;
+    }
+    .pd-#{$key + $item} {
+      padding-#{$value}: $item + px;
+    }
+  }
+}
+
+.text {
+  &-xs,
+  &-s,
+  &-m,
+  &-l,
+  &-xl {
+    display: inline-block;
+    // vertical-align: text-top;
+    &.inline {
+      display: inline;
+      padding: 0;
+    }
+  }
+  &-xs {
+    padding: 3px 0;
+    line-height: 18px;
+    font-size: 12px;
+  }
+  &-s {
+    padding: 4px 0;
+    line-height: 20px;
+    font-size: 14px;
+  }
+  &-m {
+    padding: 6px 0;
+    line-height: 20px;
+    font-size: 14px;
+  }
+  &-l {
+    padding: 8px 0;
+    line-height: 20px;
+    font-size: 14px;
+  }
+  &-xl {
+    padding: 8px 0;
+    line-height: 24px;
+    font-size: 16px;
+  }
+}

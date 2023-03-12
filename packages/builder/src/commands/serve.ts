@@ -3,11 +3,20 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import HtmlPlugin from 'html-webpack-plugin';
 import { merge } from 'webpack-merge';
+import fs from 'fs-extra'
 
 import { webpackConfigBase } from '../config/index.js';
-import { resolveByRootPath, basePath } from '../common/index.js';
+import { resolveByRootPath, resolveByBasePath, basePath } from '../common/index.js';
 
-
+const getPackageJson = (() => {
+  const packageJson = null 
+  return () => {
+    if (packageJson) {
+      return packageJson;
+    }
+    return fs.readJSONSync(resolveByBasePath('./package.json'));
+  };
+})();
 
 const getOpts = () => {
   return merge(webpackConfigBase, {
@@ -15,6 +24,11 @@ const getOpts = () => {
     entry: resolveByRootPath('./public/app.tsx'),
     output: {
       filename: 'bundle.js', // 输出文件名
+    },
+    resolve: {
+      alias: {
+        [getPackageJson().name]: resolveByBasePath('./src'),
+      },
     },
     watch: true,
     devServer: {

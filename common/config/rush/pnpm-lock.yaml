@@ -34,6 +34,7 @@ importers:
       '@types/gulp': ~4.0.9
       '@types/gulp-template': ~5.0.1
       '@types/inquirer': ~8.2.1
+      '@types/lodash': ~4.14.191
       '@types/node': ~18.0.0
       '@types/react': ~18.0.17
       '@types/react-dom': ~18.0.6
@@ -49,6 +50,7 @@ importers:
       gulp-template: ~5.0.0
       html-webpack-plugin: ^5.5.0
       inquirer: ~9.0.0
+      lodash: ~4.17.21
       node-sass: ~8.0.0
       ora: ~6.1.0
       prism-react-renderer: ~1.3.5
@@ -93,6 +95,7 @@ importers:
       '@rollup/plugin-replace': 4.0.0_rollup@2.75.6
       '@rollup/plugin-typescript': 8.3.3_rollup@2.75.6+typescript@4.7.3
       '@types/fs-extra': 9.0.13
+      '@types/lodash': 4.14.191
       '@types/webpack-env': 1.18.0
       babel-loader: 9.1.0_963b51318aaa43a31e1b2271817a21aa
       chalk: 5.0.1
@@ -105,6 +108,7 @@ importers:
       gulp-template: 5.0.0
       html-webpack-plugin: 5.5.0_webpack@5.75.0
       inquirer: 9.0.0
+      lodash: 4.17.21
       node-sass: 8.0.0
       ora: 6.1.0
       prism-react-renderer: 1.3.5_react@18.2.0
@@ -4704,6 +4708,10 @@ packages:
   /@types/lodash/4.14.182:
     resolution: {integrity: sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==}
     dev: true
+
+  /@types/lodash/4.14.191:
+    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
+    dev: false
 
   /@types/mdast/3.0.10:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
