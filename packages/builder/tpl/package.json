@@ -3,15 +3,26 @@
   "version": "0.0.1",
   "description": "<%= description %>",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "jelper build",
+    "serve": "jelper serve"
   },
   "keywords": [
     "store",
     "helper"
   ],
+  "files": [
+    "package.json",
+    "README.md",
+    "es/**",
+    "lib/**"
+  ],
   "devDependencies": {
-    "@jelper/builder": "~0.1.4"
+    "@jelper/builder": "~0.1.7",
+    "@types/lodash": "~4.14.182",
+    "@types/node": "~18.0.0"
   },
   "dependencies": {
     "lodash": "~4.17.21"

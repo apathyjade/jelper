@@ -16,11 +16,13 @@ const getOpts = () => merge(webpackConfigBase, {
 
 const outputs = [
   {
+    filename: 'index.js',
     path: resolveByBasePath('./es'),
     library: {
       type: 'module',
     },
   }, {
+    filename: 'index.js',
     path: resolveByBasePath('./lib'),
     library: {
       type: 'commonjs2',

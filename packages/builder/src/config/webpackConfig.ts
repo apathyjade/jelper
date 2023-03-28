@@ -14,6 +14,10 @@ const include = [
 
 
 export default {
+  externals: {
+    react: 'react',
+    '@alifd/next': '@alifd/next',
+  },
   resolve: {
     alias: {
       'tslib': requireHelper.resolve('tslib'),
