@@ -6,7 +6,7 @@ import { resolveByBasePath } from '../common/index.js';
 
 const getOpts = () => merge(webpackConfigBase, {
   mode: 'none' as 'none',
-  entry: resolveByBasePath('./src/index.tsx'),
+  entry: resolveByBasePath('./src'),
   plugins: [
   ],
   experiments: {

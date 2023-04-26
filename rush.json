@@ -478,29 +478,40 @@
       "projectFolder": "packages/builder",
       "tags": ["tools", "helper", "builder"],
       "reviewCategory": "production",
-      "shouldPublish": true,
+      "shouldPublish": true
     },
     {
       "packageName": "@jelper/enum",
       "projectFolder": "packages/enum",
       "tags": ["tools", "helper", "enum"],
       "reviewCategory": "production",
-      "shouldPublish": true,
+      "shouldPublish": true
     },
     {
       "packageName": "@jelper/store",
       "projectFolder": "packages/store",
       "tags": ["tools", "helper", "store"],
       "reviewCategory": "production",
-      "shouldPublish": true,
+      "shouldPublish": true
     }
     ,
+    {
+      "packageName": "@jelper/use-value",
+      "projectFolder": "packages/useValue",
+      "tags": [
+        "tools",
+        "helper",
+        "hooks"
+      ],
+      "reviewCategory": "production",
+      "shouldPublish": true
+    },
     {
       "packageName": "@jelper/promise",
       "projectFolder": "packages/promise",
       "tags": ["tools", "helper", "promise"],
       "reviewCategory": "production",
-      "shouldPublish": true,
+      "shouldPublish": true
     }
   ]
 }

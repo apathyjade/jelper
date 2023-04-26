@@ -15,8 +15,9 @@ const include = [
 
 export default {
   externals: {
-    react: 'react',
-    '@alifd/next': '@alifd/next',
+    react: 'React',
+    "lodash": '_',
+    '@alifd/next': 'NextUi',
   },
   resolve: {
     alias: {
