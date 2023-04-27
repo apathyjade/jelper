@@ -20,6 +20,6 @@
 #
 registry=https://registry.npmjs.org/
 //registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}
-always-auth=true
-access=public
-force=true
+always-auth=false
+# access=public
+force=false
