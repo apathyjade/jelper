@@ -2,7 +2,8 @@ name: jelper-publish
 on: push
 
 env:
-  NODE_AUTH_TOKEN: ${{vars.NODE_AUTH_TOKEN}}
+  NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
+  ttt: test
 
 jobs:
   publish-npm:
@@ -18,5 +19,7 @@ jobs:
       # - run: rush build
       - run: echo 'Hi ${{ vars.NODE_AUTH_TOKEN }}'
       - run: echo $NODE_AUTH_TOKEN
+      - run: echo $ttt
+      - run: echo 't${{ttt}}''
       # - run: rush publish -p --include-all
     
