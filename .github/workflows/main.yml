@@ -9,7 +9,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm install -g pnpm @microsoft/rush
+      - run: npm install -g pnpm
+      - run: npm install -g @microsoft/rush
       - run: rush update
       - run: rush build
       
@@ -22,7 +23,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: npm install -g pnpm @microsoft/rush
+      - run: npm install -g pnpm
+      - run: npm install -g @microsoft/rush
       - run: rush publish -p --include-all
         env:
           NODE_AUTH_TOKEN: ${{env.NODE_AUTH_TOKEN}}
