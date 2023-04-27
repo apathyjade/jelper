@@ -9,7 +9,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm run build
+      - run: npm install -g @microsoft/rush
+      - run: rush update
+      - run: rush build
       
   publish-npm:
     needs: build
