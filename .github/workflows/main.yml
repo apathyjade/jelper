@@ -11,10 +11,10 @@ jobs:
           node-version: 16
         env:
           NODE_AUTH_TOKEN: ${{env.NODE_AUTH_TOKEN}}
-      - run: npm install -g pnpm
-      - run: npm install -g @microsoft/rush
-      - run: rush update
-      - run: rush build
-      - run: echo 'Hi ${{ env.NPM_AUTH_TOKEN }}
-      - run: rush publish -p --include-all
+      # - run: npm install -g pnpm
+      # - run: npm install -g @microsoft/rush
+      # - run: rush update
+      # - run: rush build
+      - run: echo 'Hi ${{ env.NPM_AUTH_TOKEN }}'
+      # - run: rush publish -p --include-all
     
