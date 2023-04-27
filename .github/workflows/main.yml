@@ -20,6 +20,6 @@ jobs:
       - run: echo 'Hi ${{ vars.NODE_AUTH_TOKEN }}'
       - run: echo $NODE_AUTH_TOKEN
       - run: echo $ttt
-      - run: echo 't${{ttt}}''
+      - run: echo 't${{ env.ttt}}''
       # - run: rush publish -p --include-all
     
