@@ -3,7 +3,6 @@ on: push
 
 env:
   NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
-  ttt: test
 
 jobs:
   publish-npm:
@@ -13,11 +12,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+      - run: echo $NODE_AUTH_TOKEN
+      - run: npm config set "${NPM_AUTH_TOKEN}"
       - run: npm install -g pnpm
       - run: npm install -g @microsoft/rush
       - run: rush update
       - run: rush build
-      # - run: echo $NODE_AUTH_TOKEN
       # - run: echo $ttt
       - run: rush publish -p --include-all
     
