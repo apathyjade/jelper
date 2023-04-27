@@ -14,7 +14,7 @@ jobs:
           node-version: 16
       - run: echo $NODE_AUTH_TOKEN
       - run: npm config set "${NPM_AUTH_TOKEN}"
-      - run: npm login
+      - run: npm config get
       - run: npm install -g pnpm
       - run: npm install -g @microsoft/rush
       - run: rush update
