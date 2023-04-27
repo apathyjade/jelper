@@ -13,13 +13,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      # - run: npm install -g pnpm
-      # - run: npm install -g @microsoft/rush
-      # - run: rush update
-      # - run: rush build
-      - run: echo 'Hi ${{ vars.NODE_AUTH_TOKEN }}'
-      - run: echo $NODE_AUTH_TOKEN
-      - run: echo $ttt
-      - run: echo 't${{ env.ttt}}''
-      # - run: rush publish -p --include-all
+      - run: npm install -g pnpm
+      - run: npm install -g @microsoft/rush
+      - run: rush update
+      - run: rush build
+      # - run: echo $NODE_AUTH_TOKEN
+      # - run: echo $ttt
+      - run: rush publish -p --include-all
     
