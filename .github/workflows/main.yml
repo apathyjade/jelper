@@ -18,5 +18,5 @@ jobs:
       - run: rush update
       - run: rush build
       # - run: echo $ttt
-      - run: rush publish -p --include-all -n $NODE_AUTH_TOKEN
+      - run: rush publish -p --include-all --tag=beta
     
