@@ -9,7 +9,6 @@ import {
 
 const getOpts = async () => {
   const cfgPath = path.relative(resolveByRootPath('./lib/common'), path.resolve('./jelper.config.mjs'));
-  console.log(resolveByRootPath('./lib/common'), path.resolve('./jelper.config.mjs'), cfgPath);
   let jelperCfg: any = {}
   try {
     jelperCfg = await import(cfgPath.replace(/\\/g, '/'));
@@ -26,7 +25,7 @@ const getOpts = async () => {
         outputModule: true
       }
     } as any,
-    jelperCfg?.default?.webpackCfg
+    jelperCfg?.default?.webpackCfg || {}
   );
 }
 const outputs = [
