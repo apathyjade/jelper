@@ -1,20 +1,10 @@
-import path from 'path';
 import webpack from 'webpack';
 import { merge } from 'webpack-merge';
 import { webpackConfigBase } from '../config/index.js';
-import {
-  resolveByBasePath,
-  resolveByRootPath,
-} from '../common/index.js';
+import { resolveByBasePath, getJelperCfg } from '../common/index.js';
 
 const getOpts = async () => {
-  const cfgPath = path.relative(resolveByRootPath('./lib/common'), path.resolve('./jelper.config.mjs'));
-  let jelperCfg: any = {}
-  try {
-    jelperCfg = await import(cfgPath.replace(/\\/g, '/'));
-  } catch (e) {
-    console.log('no jelper.config.mjs');
-  }
+  const jelperCfg: any = await getJelperCfg();
   return merge(
     webpackConfigBase,
     {
@@ -25,7 +15,7 @@ const getOpts = async () => {
         outputModule: true
       }
     } as any,
-    jelperCfg?.default?.webpackCfg || {}
+    jelperCfg?.webpackCfg || {}
   );
 }
 const outputs = [
