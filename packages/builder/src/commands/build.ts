@@ -1,19 +1,29 @@
-
+import path from 'path';
 import webpack from 'webpack';
 import { merge } from 'webpack-merge';
 import { webpackConfigBase } from '../config/index.js';
-import { resolveByBasePath } from '../common/index.js';
+import {
+  resolveByBasePath,
+  resolveByRootPath,
+} from '../common/index.js';
 
-const getOpts = () => merge(webpackConfigBase, {
-  mode: 'none' as 'none',
-  entry: resolveByBasePath('./src'),
-  plugins: [
-  ],
-  experiments: {
-    outputModule: true,
-  },
-} as any);
-
+const getOpts = async () => {
+  const cfgPath = path.relative(resolveByRootPath('./lib/common'), path.resolve('./jelper.config.mjs'));
+  console.log(resolveByRootPath('./lib/common'), path.resolve('./jelper.config.mjs'), cfgPath);
+  const jelperCfg = await import(cfgPath.replace(/\\/g, '/'));
+  return merge(
+    webpackConfigBase,
+    {
+      mode: 'none' as 'none',
+      entry: resolveByBasePath('./src'),
+      plugins: [],
+      experiments: {
+        outputModule: true
+      }
+    } as any,
+    jelperCfg?.default?.webpackCfg
+  );
+}
 const outputs = [
   {
     filename: 'index.js',
@@ -32,7 +42,7 @@ const outputs = [
 
 export default async function () {
   console.log('start build');
-  const opts = getOpts();
+  const opts = await getOpts() as any;
 
   outputs.forEach((output) => {
     webpack({
