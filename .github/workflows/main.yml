@@ -27,4 +27,4 @@ jobs:
         run: rush publish -p --include-all --tag=beta
       - name: publish
         if: ${{ github.ref_name == 'master'}}
-        run: rush publish -p --include-all --tag=beta
+        run: rush publish -p --include-all
