@@ -1,5 +1,9 @@
 name: jelper-publish
-on: push
+on:
+  push:
+   branches:
+      - master
+      - development
 
 env:
   NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
@@ -12,10 +16,15 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: echo $NPM_AUTH_TOKEN
-      - run: npm install -g pnpm
-      - run: npm install -g @microsoft/rush
-      - run: rush update
-      - run: rush build
-      # - run: echo $ttt
-      - run: rush publish -p --include-all --tag=beta
+      - name: build
+        run: |
+          npm install -g pnpm
+          npm install -g @microsoft/rush
+          rush update
+          rush build
+      - name: publish beta
+        if: ${{ github.ref_name == 'development'}}
+        run: rush publish -p --include-all --tag=beta
+      - name: publish
+        if: ${{ github.ref_name == 'master'}}
+        run: rush publish -p --include-all --tag=beta

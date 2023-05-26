@@ -6,7 +6,7 @@ import { merge } from 'webpack-merge';
 import fs from 'fs-extra'
 
 import { webpackConfigBase } from '../config/index.js';
-import { resolveByRootPath, resolveByBasePath, basePath } from '../common/index.js';
+import { resolveByRootPath, resolveByBasePath, basePath, getJelperCfg } from '../common/index.js';
 
 const getPackageJson = (() => {
   const packageJson = null 
@@ -18,42 +18,47 @@ const getPackageJson = (() => {
   };
 })();
 
-const getOpts = () => {
-  return merge(webpackConfigBase, {
-    mode: 'development',
-    entry: resolveByRootPath('./public/app.tsx'),
-    output: {
-      filename: 'bundle.js', // 输出文件名
-    },
-    resolve: {
-      alias: {
-        [getPackageJson().name]: resolveByBasePath('./src'),
+const getOpts = async() => {
+  const jelperCfg: any = await getJelperCfg();
+  return merge(
+    webpackConfigBase,
+    {
+      mode: 'development',
+      entry: resolveByRootPath('./public/app.tsx'),
+      output: {
+        filename: 'bundle.js' // 输出文件名
       },
-    },
-    watch: true,
-    devServer: {
-      open: true,
-      server: 'http',
-      allowedHosts: ['127.0.0.1', 'localhost'],
-      port: 8080,
-      static: {
-        directory: resolveByRootPath('./public'),
+      resolve: {
+        alias: {
+          [getPackageJson().name]: resolveByBasePath('./src')
+        }
       },
-    },
-    plugins: [
-      new HtmlPlugin({
-        template: resolveByRootPath('./public/index.html'),
-      }),
-      new webpack.DefinePlugin({
-        'process.env.Project_Path': JSON.stringify(basePath),
-      }),
-    ],
-  }as any);
+      watch: true,
+      devServer: {
+        open: true,
+        server: 'http',
+        allowedHosts: ['127.0.0.1', 'localhost'],
+        port: 8080,
+        static: {
+          directory: resolveByRootPath('./public')
+        }
+      },
+      plugins: [
+        new HtmlPlugin({
+          template: resolveByRootPath('./public/index.html')
+        }),
+        new webpack.DefinePlugin({
+          'process.env.Project_Path': JSON.stringify(basePath)
+        })
+      ]
+    } as any,
+    jelperCfg?.webpackCfg
+  );
 }
 
 export default async function () {
   console.log('start serve');
-  const opts = getOpts();
+  const opts = getOpts() as any;
   const compiler = webpack(opts as any, (err, stats) => {
     if (err) {
       console.error(err);

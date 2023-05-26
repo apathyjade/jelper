@@ -16,3 +16,19 @@ export const getModulePath = (moduleName: string) => {
 }
 export const resolveByRootPath = (s: string) => path.resolve(rootPath, s);
 export const resolveByBasePath = (s: string) => path.resolve(basePath, s);
+
+export const getJelperCfg = (() => {
+  let jelperCfg;
+  return async () => {
+    if (jelperCfg) {
+      return jelperCfg;
+    }
+    const cfgPath = path.relative(resolveByRootPath('./lib/common'), path.resolve('./jelper.config.mjs'));
+    try {
+      jelperCfg = (await import(cfgPath.replace(/\\/g, '/'))).default;
+    } catch (e) {
+      jelperCfg = {};
+    }
+    return jelperCfg;
+  }
+})();
