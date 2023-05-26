@@ -58,7 +58,7 @@ const getOpts = async() => {
 
 export default async function () {
   console.log('start serve');
-  const opts = getOpts() as any;
+  const opts = await getOpts() as any;
   const compiler = webpack(opts as any, (err, stats) => {
     if (err) {
       console.error(err);
