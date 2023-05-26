@@ -13,6 +13,36 @@ const getOpts = async () => {
       plugins: [],
       experiments: {
         outputModule: true
+      },
+      externals: {
+        react: {
+          amd: 'react',
+          commonjs: 'react',
+          module: 'react',
+          umd: 'react',
+          root: 'react'
+        },
+        'react-dom': {
+          amd: 'react-dom',
+          commonjs: 'react-dom',
+          module: 'react-dom',
+          umd: 'react-dom',
+          root: 'react-dom'
+        },
+        classnames: {
+          amd: 'classnames',
+          commonjs: 'classnames',
+          module: 'classnames',
+          umd: 'classnames',
+          root: 'classnames'
+        },
+        'styled-components': {
+          amd: 'styled-components',
+          commonjs: 'styled-components',
+          module: 'styled-components',
+          umd: 'styled-components',
+          root: 'styled-components'
+        }
       }
     } as any,
     jelperCfg?.webpackCfg || {}
