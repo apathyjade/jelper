@@ -7,25 +7,24 @@
  */
 
 import React, { useState, useCallBack, useEffect } from 'react';
-import _ from 'lodash';
-
 interface Options<T> {
   isEqual?: (a:T, b: T) => boolean
 }
 
-function useValue<T>(value: T, opts: Options<T> = {}) {
+function useValue<T = any>(value: T, opts: Options<T> = {}) {
   const {
-    isEqual = _.isEqual
+    isEqual = (a, b) => a === b
   } = opts;
   const [val, setVal] = useState<T>(value);
   const [oldValue, setOldValue] = useState<T>(value);
   useEffect(() => {
     if (!isEqual(value, oldValue)) {
       setOldValue(value)
+      if (!isEqual(value, val)) {
+        setVal(value);
+      }
     }
-    if (!isEqual(value, val)) {
-      setVal(value);
-    }
+    
   }, [value, oldValue, val])
   return [val, setVal]
 }
