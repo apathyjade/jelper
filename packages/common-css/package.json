@@ -4,6 +4,7 @@
   "description": "通用css",
   "main": "lib/index.js",
   "scripts": {
+    "build": "jelper build",
     "serve": "jelper serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +13,7 @@
     "helper"
   ],
   "devDependencies": {
-    "@jelper/builder": "~1.x.x"
+    "@jelper/builder": "workspace:*"
   },
   "dependencies": {
     "lodash": "~4.17.21"
