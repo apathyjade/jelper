@@ -88,6 +88,7 @@ $color: (
 }
 // 文本
 .text {
+  &,
   &-xs,
   &-s,
   &-m,
@@ -105,6 +106,7 @@ $color: (
     line-height: 20px;
     font-size: 14px;
   }
+  &,
   &-m { // 32
     padding: 6px 0;
     line-height: 20px;
@@ -150,12 +152,61 @@ $color: (
 }
 
 .flex {
-  &-between-top {
+  &-between,
+  &-start,
+  &-end,
+  &-center,
+  &-around,
+  &-evenly {
     display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: flex-start;
+    overflow: hidden;
+    &.s {
+      &-start {
+        align-items: flex-start;
+      }
+      &-end {
+        align-items: flex-end;
+      }
+      &-center {
+        align-items: center;
+      }
+    }
+
+    & > s {
+      &-start {
+        align-self: flex-start;
+      }
+      &-end {
+        align-self: flex-end;
+      }
+      &-center {
+        align-self: flex-center;
+      }
+    }
   }
-  &-cc {
-    display: flex;
+
+  &-between {
+    justify-content: space-between;
+  }
+  &-start {
+    justify-content: flex-start;
+  }
+  &-end {
+    justify-content: flex-end;
+  }
+  &-center {
     justify-content: center;
-    align-items: center;
+  }
+  &-around {
+    justify-content: space-around;
+  }
+  &-evenly {
+    justify-content: space-evenly;
+  }
+  &-stretch {
+    justify-content: stretch;
   }
 }
