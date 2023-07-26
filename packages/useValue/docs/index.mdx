@@ -4,10 +4,17 @@ name: Hello world
 
 *a*
 
-import enumHelper from '@jelper/useValue' // Assumes an integration is used to compile MDX -> JS.
+import { useState, useCallBack, useEffect } from 'react';
+import useValue from '@jelper/use-value' // Assumes an integration is used to compile MDX -> JS.
 export const Demo = () => {
-  console.log(enumHelper)
-  return <p>测试下</p>;
+  const [o, setO] = useState(true);
+  const [value, setVaue] = useValue(o);
+  return (
+    <>
+      <p onClick={() => setVaue(!value)}>测试下{value ? 1 : 0}a</p>
+      <p onClick={() => setO(!o)}>OOOO:::{o ? 1 : 0}</p>
+    </>
+  );
 };
 
 <Demo />

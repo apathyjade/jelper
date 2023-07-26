@@ -52,7 +52,8 @@ const getOpts = async() => {
         })
       ]
     } as any,
-    jelperCfg?.webpackCfg
+    jelperCfg?.webpackCfg || {},
+    { externals: [] }
   );
 }
 

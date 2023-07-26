@@ -1,6 +1,6 @@
 {
   "name": "@jelper/use-value",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "reack hooks useValue",
   "main": "lib/index.js",
   "module": "es/index.js",

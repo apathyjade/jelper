@@ -4,13 +4,13 @@ name: Hello world
 
 *a*
 
-import ccss from '@jelper/common-css';
+import gc from '@jelper/common-css';
 
-<div className={ccss['text-xs']}>测试下</div>
-<div className={ccss['text-s']}>测试下</div>
-<div className={ccss['text-m']}>测试下</div>
-<div className={ccss['text-l']}>测试下</div>
-<div className={ccss['text-xl']}>测试下</div>
+<div className={`${gc['text-xs']} ${gc['bg-test']} ${gc['test']}`}>测试下</div>
+<div className={`${gc['text-s']}  ${gc['bg-blue']} ${gc['blue']}`}>测试下</div>
+<div className={`${gc['text-m']}  ${gc['bg-green']} ${gc['green']}`}>测试下</div>
+<div className={`${gc['text-l']}  ${gc['bg-orange']} ${gc['orange']}`}>测试下</div>
+<div className={`${gc['text-xl']}  ${gc['bg-yellow']} ${gc['yellow']}`}>测试下</div>
 
 ## 样例
 ```jsx title="/src/components/HelloCodeTitle.js"
