@@ -512,6 +512,18 @@
       "tags": ["tools", "helper", "promise"],
       "reviewCategory": "production",
       "shouldPublish": true
+    },
+    {
+      "packageName": "@jelper/hooks",
+      "projectFolder": "packages/hooks",
+      "tags": [
+        "react",
+        "tools",
+        "helper",
+        "hooks"
+      ],
+      "reviewCategory": "production",
+      "shouldPublish": true
     }
   ]
 }

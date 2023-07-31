@@ -7,13 +7,32 @@ $position: (
 );
 $size: 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 48, 56;
 $fsSize: 12, 14, 16, 18, 20, 24, 28, 32, 36, 48, 56;
+$fsWeight: 400, 500, 600;
+$c: 15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5;
 $color: (
   brand: #0AB387,
   blue: #4279FD,
   green: #0AB387,
   orange: #C14A27,
-  yellow: #F7AB4F
+  yellow: #F7AB4F,
 );
+@function rgbaToHex($rgbaColor,$background: rgb(255,255,255)) {
+  $bgR : red($background);
+  $bgG : green($background);
+  $bgB : blue($background);
+
+  $colorRed : red($rgbaColor);
+  $colorGreen : green($rgbaColor);
+  $colorBlue : blue($rgbaColor);
+  $colorAlpha : alpha($rgbaColor);
+
+  $rgbColor : rgb(
+      (1 - $colorAlpha) * $bgR + $colorAlpha * $colorRed,
+      (1 - $colorAlpha) * $bgG + $colorAlpha * $colorGreen,
+      (1 - $colorAlpha) * $bgB + $colorAlpha * $colorBlue);
+  @return $rgbColor;
+}
+
 .pointer {
   &:hover {
     cursor: pointer;
@@ -28,7 +47,7 @@ $color: (
   }
 }
 
-// 字体
+// 字体大小
 @each $item in $fsSize {
   .fs#{$item} {
     font-size: $item + px;
@@ -39,7 +58,12 @@ $color: (
     }
   }
 }
-
+// 字重
+@each $item in $fsWeight {
+  .fw#{$item} {
+    font-weight: $item;
+  }
+}
 // 颜色
 @each $key, $value in $color{
   .#{$key} {
@@ -49,7 +73,19 @@ $color: (
     }
   }
   .bg-#{$key} {
-    background-color: rgba($color: $value, $alpha: .2);
+    $color: rgba($color: $value, $alpha: .1);
+    background-color: rgbaToHex($color);
+  }
+  .#{$key}-light {
+    color: rgbaToHex(rgba($color: $value, $alpha: .60));
+  }
+  .#{$key}-disabled {
+    color: rgbaToHex(rgba($color: $value, $alpha: .2));
+  }
+}
+@each $item in $c {
+  .c#{$item} {
+    color: #{'#'}#{$item}#{$item}#{$item};
   }
 }
 
@@ -70,43 +106,127 @@ $color: (
     }
   }
 }
-
+// 文本
 .text {
+  &,
   &-xs,
   &-s,
   &-m,
   &-l,
   &-xl {
     display: inline-block;
-    // vertical-align: text-top;
-    &.inline {
-      display: inline;
-      padding: 0;
-    }
   }
-  &-xs {
+  &-xs { // 24
     padding: 3px 0;
     line-height: 18px;
     font-size: 12px;
   }
-  &-s {
+  &-s { // 28
     padding: 4px 0;
     line-height: 20px;
     font-size: 14px;
   }
-  &-m {
+  &,
+  &-m { // 32
     padding: 6px 0;
     line-height: 20px;
     font-size: 14px;
   }
-  &-l {
+  &-l { // 36
     padding: 8px 0;
     line-height: 20px;
     font-size: 14px;
   }
-  &-xl {
+  &-xl { // 40
     padding: 8px 0;
     line-height: 24px;
     font-size: 16px;
+  }
+}
+// 对齐方式  text-align vertical-align
+.align {
+  &-center {
+    text-align: center;
+  }
+  &-left {
+    text-align: left;
+  }
+  &-right {
+    text-align: right;
+  }
+  &-middle {
+    vertical-align: middle;
+  }
+  &-top {
+    vertical-align: top;
+  }
+  &-bottom {
+    vertical-align: bottom;
+  }
+  &-super {
+    vertical-align: super;
+  }
+  &-sub {
+    vertical-align: sub;
+  }
+}
+
+.flex {
+  &-between,
+  &-start,
+  &-end,
+  &-center,
+  &-around,
+  &-evenly {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: flex-start;
+    overflow: hidden;
+    &.s {
+      &-start {
+        align-items: flex-start;
+      }
+      &-end {
+        align-items: flex-end;
+      }
+      &-center {
+        align-items: center;
+      }
+    }
+
+    & > s {
+      &-start {
+        align-self: flex-start;
+      }
+      &-end {
+        align-self: flex-end;
+      }
+      &-center {
+        align-self: flex-center;
+      }
+    }
+  }
+
+  &-between {
+    justify-content: space-between;
+  }
+  &-start {
+    justify-content: flex-start;
+  }
+  &-end {
+    justify-content: flex-end;
+  }
+  &-center {
+    justify-content: center;
+  }
+  &-around {
+    justify-content: space-around;
+  }
+  &-evenly {
+    justify-content: space-evenly;
+  }
+  &-stretch {
+    justify-content: stretch;
   }
 }

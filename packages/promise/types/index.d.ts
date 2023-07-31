@@ -15,3 +15,5 @@ type PromiseCb<T = any, R = any> = (
     reject: Reject<Error>
   }
 ) => void
+
+type ReturnPromiseFn<T = any, R = any> = (data: T) => Promise<R>;
