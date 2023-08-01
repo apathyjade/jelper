@@ -1,0 +1,34 @@
+{
+  "name": "@jelper/hooks",
+  "version": "0.1.0",
+  "description": "react hooks helper",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "jelper build",
+    "serve": "jelper serve"
+  },
+  "keywords": [
+    "store",
+    "helper"
+  ],
+  "files": [
+    "package.json",
+    "README.md",
+    "es/**",
+    "lib/**"
+  ],
+  "devDependencies": {
+    "@jelper/builder": "workspace:*",
+    "@types/lodash": "~4.14.182",
+    "@types/node": "~18.0.0",
+    "@types/react": "~18.2.17"
+  },
+  "dependencies": {
+    "lodash": "~4.17.21",
+    "react": "~18.2.0"
+  },
+  "author": "apathyjade@outlook.com",
+  "license": "ISC"
+}
