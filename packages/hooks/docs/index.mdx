@@ -2,10 +2,30 @@
 name: Hello world
 ---
 
-
-import { Demos } from '@jelper/hooks';
-
-
-<Demos />
+import { useRef, useEffect, useMemo } from 'react';
+import { useRtState, useBeforMount } from '@jelper/hooks';
 
 
+export const Demo = () => {
+    const [data, setData, getData] = useRtState(0);
+    const ref = useRef();
+    useEffect(() => {
+        return () => {
+            console.log('useEffect', document.querySelectorAll('div'))
+        }
+    });
+    useBeforMount(() => {
+        console.log(ref.current, ref)
+    });
+    useMemo(() => {
+        console.log('useMemo', ref.current, ref)
+    })
+    return !data ? 
+            <div ref={ref} onClick={() => {
+            console.log(getData() + 1)
+            setData(getData() + 1)
+                }}>add {data}</div>
+            : undefined;
+}
+
+<Demo />

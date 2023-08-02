@@ -1,4 +1,5 @@
 
+export { default as useRtState } from './useRtState';
 export { default as useSwitch } from './useSwitch';
-import { default as useLifeCycle } from './useLifeCycle';
-
+export { default as useLifeCycle } from './useLifeCycle';
+export { default as useBeforMount } from './useBeforMount';
