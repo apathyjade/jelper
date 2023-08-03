@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const useBeforMount = (cb: Function) => {
+const useBeforeMount = (cb: Function) => {
   const [val, setVal] = useState<boolean>(false);
   if (val) {
     setVal(false)
@@ -10,4 +10,4 @@ const useBeforMount = (cb: Function) => {
   }
 }
 
-export default useBeforMount;
+export default useBeforeMount;
