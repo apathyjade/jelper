@@ -11,6 +11,6 @@ export { default as useSwitch } from './useSwitch';
 export { default as useParamsState } from './useParamsState';
 
 export { default as useIsUnmount } from './useIsUnmount';
-export { default as useBeforeMount } from './useBeforeMount';
+export { default as useCreate } from './useCreate';
 export { default as useMount } from './useMount';
 export { default as useUnmount } from './useUnmount';
