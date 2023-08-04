@@ -1,7 +1,5 @@
 import { useRef, useCallback } from 'react';
 import useSafeState from './useSafeState';
-import { set } from 'lodash';
-
 
 const useWatchState = <T>(value: T, cb?: (val: React.SetStateAction<T>) => void): [
   s: T,
@@ -12,7 +10,7 @@ const useWatchState = <T>(value: T, cb?: (val: React.SetStateAction<T>) => void)
   ref.current = cb
   const setValFn = useCallback((newVal: React.SetStateAction<T>) => {
     setVal(newVal);
-    cb?.(newVal)
+    ref.current?.(newVal)
   }, [])
   return [val, setValFn];
 }
