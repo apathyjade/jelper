@@ -1,8 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import useSafeState from './useSafeState';
 
 
-const useSwitch = (value: boolean) => {
+const useBoolState = (value: boolean) => {
   const [val, setVal] = useSafeState<boolean>(value);
   const switchFn = useCallback((switchValue: React.SetStateAction<boolean> | undefined) => {
     if (typeof switchValue === 'boolean') {
@@ -13,4 +13,4 @@ const useSwitch = (value: boolean) => {
   return [val, switchFn];
 }
 
-export default useSwitch;
+export default useBoolState;
