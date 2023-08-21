@@ -34,3 +34,6 @@ export { default as useUnmount } from './useUnmount';
 export { default as useThrottle } from './useThrottle';
 export { default as useDebounce } from './useDebounce';
 
+// 使用异步
+export { default as useAsync } from './useAsync';
+

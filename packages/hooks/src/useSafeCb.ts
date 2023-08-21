@@ -1,13 +1,17 @@
 import { useState, useCallback } from 'react';
 import useIsUnmount from './useIsUnmount';
 
-const useSafeCb = (cb: Function, deps: any[] = [])  => {
-    const isUnmount = useIsUnmount();
-    return useCallback((...arg) => {
-        console.log('useSafeCb', !isUnmount())
-        if (!isUnmount()) {
-            cb(...arg)
-        }
-    }, deps);
+const useSafeCb = <
+  T extends DefFn,
+  D extends any[]
+>(cb: T, deps?: D): (
+  (p: Parameters<T>) => (ReturnType<T> | undefined)
+) => {
+  const isUnmount = useIsUnmount();
+  return useCallback((...arg) => {
+    if (!isUnmount()) {
+      return cb(...arg)
+    }
+  }, deps);
 }
 export default useSafeCb;
