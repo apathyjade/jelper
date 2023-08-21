@@ -1,7 +1,6 @@
 
 import useSafeState from "./useSafeState";
 import useRtCb from "./useRtCb";
-import { useState } from "react";
 
 interface Opts<T extends (...arg: any) => any, R> {
   defParams: Parameters<T>;

@@ -1,11 +1,3 @@
-/*
- * @Author: mikey.zhaopeng 
- * @Date: 2023-08-03 19:04:40 
- * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2023-08-03 19:31:40
- */
-
-
 
 // state
 export { default as useSafeState } from './useSafeState';
