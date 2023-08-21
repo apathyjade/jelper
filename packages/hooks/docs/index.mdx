@@ -2,30 +2,23 @@
 name: Hello world
 ---
 
-import { useRef, useEffect, useMemo } from 'react';
-import { useRtState, useBeforMount } from '@jelper/hooks';
+import { useState, useRef, useCallback, useEffect, useMemo } from 'react';
+import { useCreate, useRtCb, useRtState } from '@jelper/hooks';
 
 
 export const Demo = () => {
-    const [data, setData, getData] = useRtState(0);
-    const ref = useRef();
-    useEffect(() => {
-        return () => {
-            console.log('useEffect', document.querySelectorAll('div'))
-        }
-    });
-    useBeforMount(() => {
-        console.log(ref.current, ref)
-    });
-    useMemo(() => {
-        console.log('useMemo', ref.current, ref)
-    })
-    return !data ? 
-            <div ref={ref} onClick={() => {
-            console.log(getData() + 1)
-            setData(getData() + 1)
-                }}>add {data}</div>
-            : undefined;
+    const state = useState(0);
+    const onClick = useCallback(() => {
+        state[1](state[0] + 1);
+        console.log(state[0]);
+    }, [])
+    // useEffect(() => {
+    //     console.log('useEffect')
+    //     return () => {
+    //         console.log('demo useEffect')
+    //     }
+    // }, [])
+    return <span onClick={onClick} >{state[0]}</span>;
 }
 
 <Demo />

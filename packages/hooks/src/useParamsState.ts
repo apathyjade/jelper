@@ -5,7 +5,7 @@
  * @Last Modified by:   jade
  * @Last Modified Time: 2023-07-31 18:14:40
  */
-import React, { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import useSafeState from './useSafeState';
 
 export default function useParamsState<T = object>(defData: T): [

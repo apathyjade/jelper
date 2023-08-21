@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const useUnmount = (cb: Function) => {
   const ref = useRef(cb);
@@ -7,7 +7,7 @@ const useUnmount = (cb: Function) => {
     return () => {
       ref.current();
     };
-  });
+  }, []);
 }
 
 export default useUnmount;

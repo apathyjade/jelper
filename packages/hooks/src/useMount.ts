@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const useMount = (cb: Function) => {
   const ref = useRef(cb);

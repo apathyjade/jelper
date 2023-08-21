@@ -8,11 +8,9 @@ const useIsUnmount = (): (() => boolean) => {
     return () => {
       ref.current = false;
     };
-  });
+  }, []);
 
-  const isUnmount = useCallback(() => !ref.current, [])
-
-  return isUnmount
+  return useCallback(() => !ref.current, [])
 }
 
 export default useIsUnmount;
