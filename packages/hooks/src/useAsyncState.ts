@@ -2,7 +2,7 @@
 import useSafeState from "./useSafeState";
 import useRtCb from "./useRtCb";
 
-const usePromiseState = <T = any>(cb: T, opts) => {
+const useAsyncState = <T = any>(cb: T, opts) => {
   const fn = useRtCb(cb as Function);
   const [params, setParams] = useSafeState(opts?.defParams);
   const [loading, setLoading] = useSafeState(false);
@@ -27,4 +27,4 @@ const usePromiseState = <T = any>(cb: T, opts) => {
   }
 };
 
-export default usePromiseState;
+export default useAsyncState;
