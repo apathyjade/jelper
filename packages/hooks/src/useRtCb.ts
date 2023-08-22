@@ -1,12 +1,16 @@
+
 import { useRef } from 'react';
 import useSafeCb from './useSafeCb';
 
-const useRtCb = (cb: Function, deps: any[] = []) => {
-    const ref = useRef(cb);
-    ref.current = cb;
-    return useSafeCb((...arg) => {
-        ref.current(...arg);
-    }, deps)
+const useRtCb = <
+  T extends (...arg: any) => any,
+  D extends any[]
+>(cb: T, deps?: D): ReturnFn<T> => {
+  const ref = useRef(cb);
+  ref.current = cb;
+  return useSafeCb((...arg: Parameters<T>) => {
+    return ref.current(...arg);
+  }, deps)
 }
 
 export default useRtCb;

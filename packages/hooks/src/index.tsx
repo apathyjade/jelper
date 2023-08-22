@@ -1,11 +1,3 @@
-/*
- * @Author: mikey.zhaopeng 
- * @Date: 2023-08-03 19:04:40 
- * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2023-08-03 19:31:40
- */
-
-
 
 // state
 export { default as useSafeState } from './useSafeState';
@@ -33,4 +25,7 @@ export { default as useUnmount } from './useUnmount';
 // 节流防抖
 export { default as useThrottle } from './useThrottle';
 export { default as useDebounce } from './useDebounce';
+
+// 使用异步
+export { default as useAsync } from './useAsync';
 

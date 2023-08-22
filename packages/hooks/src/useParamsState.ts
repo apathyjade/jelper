@@ -1,10 +1,4 @@
-/*
- * @Author: jade <apathyjade@outlook.com>
- * @Version: 0.0.1
- * @Date: 2023-07-31 18:14:40
- * @Last Modified by:   jade
- * @Last Modified Time: 2023-07-31 18:14:40
- */
+
 import { useCallback } from 'react';
 import useSafeState from './useSafeState';
 
