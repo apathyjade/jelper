@@ -1,0 +1,50 @@
+
+$size: 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 48;
+$direction: (
+  l: left,
+  r: right,
+  t: top,
+  b: bottom
+);
+
+// n内外间距
+@each $item in $size {
+  .mg-#{$item} {
+    margin: $item + px;
+  }
+  .pd-#{$item} {
+    padding: $item + px;
+  }
+}
+@each $item in $size {
+  .mg-lr#{$item} {
+    margin-left: $item + px;
+    margin-right: $item + px;
+  }
+  .mg-tb#{$item} {
+    margin-top: $item + px;
+    margin-bottom: $item + px;
+  }
+  .pd-lr#{$item} {
+    padding-left: $item + px;
+    padding-right: $item + px;
+  }
+  .pd-tb#{$item} {
+    padding-top: $item + px;
+    padding-bottom: $item + px;
+  }
+}
+@each $item in $size {
+  @each $key, $value in $direction{
+    .mg-#{$key + $item} {
+      margin-#{$value}: $item + px;
+    }
+    .pd-#{$key + $item} {
+      padding-#{$value}: $item + px;
+    }
+  }
+}
+.mg-auto {
+  margin-left: auto;
+  margin-right: auto;
+}

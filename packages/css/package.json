@@ -1,19 +1,21 @@
 {
-  "name": "@jelper/common-css",
+  "name": "@jelper/css",
   "version": "0.0.1",
   "description": "通用css",
   "main": "lib/index.js",
   "scripts": {
     "build": "jelper build",
     "serve": "jelper serve",
+    "build:css": "sass src/index.scss dist/index.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "store",
+    "css",
     "helper"
   ],
   "devDependencies": {
-    "@jelper/builder": "workspace:*"
+    "@jelper/builder": "workspace:*",
+    "sass": "~1.66.1"
   },
   "dependencies": {
     "lodash": "~4.17.21"
