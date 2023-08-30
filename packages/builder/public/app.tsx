@@ -15,11 +15,16 @@ const scope = {
 
 // @ts-ignore
 const requireComponent = require.context(
+  // @ts-ignore
     process.env.Project_Path + '/docs',
-    true,
+    false,
     /\.mdx/
   )
-const Contents = requireComponent.keys().map((path: string) => requireComponent(path).default)
+const Contents = requireComponent.keys().map((path: string) => {
+  console.log(requireComponent(path))
+  return requireComponent(path).default;
+})
+console.log(Contents);
 
 const components = {
   em: props => <i {...props } />,
