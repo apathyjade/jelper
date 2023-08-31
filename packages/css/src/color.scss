@@ -34,11 +34,25 @@ $c: 15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5;
   }
 }
 
+.default {
+  cursor: default;
+}
+.not-allowed {
+  cursor: not-allowed;
+}
+
 .link {
   &:hover {
     cursor: pointer;
     color: map-get($color, blue);
   }
+}
+
+.white {
+  color: #fff;
+}
+.bg-white {
+  background: #fff;
 }
 
 // 颜色

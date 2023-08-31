@@ -3,9 +3,25 @@
   color: #4279FD;
 }
 
+.default {
+  cursor: default;
+}
+
+.not-allowed {
+  cursor: not-allowed;
+}
+
 .link:hover {
   cursor: pointer;
   color: #4279FD;
+}
+
+.white {
+  color: #fff;
+}
+
+.bg-white {
+  background: #fff;
 }
 
 .blue {
@@ -142,53 +158,6 @@
 
 .cf5 {
   color: #f5f5f5;
-}
-
-.flex-between, .flex-start, .flex-end, .flex-center, .flex-around, .flex-evenly {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  align-items: flex-start;
-  overflow: hidden;
-}
-.flex-between.s-start, .flex-start.s-start, .flex-end.s-start, .flex-center.s-start, .flex-around.s-start, .flex-evenly.s-start {
-  align-items: flex-start;
-}
-.flex-between.s-end, .flex-start.s-end, .flex-end.s-end, .flex-center.s-end, .flex-around.s-end, .flex-evenly.s-end {
-  align-items: flex-end;
-}
-.flex-between.s-center, .flex-start.s-center, .flex-end.s-center, .flex-center.s-center, .flex-around.s-center, .flex-evenly.s-center {
-  align-items: center;
-}
-.flex-between > s-start, .flex-start > s-start, .flex-end > s-start, .flex-center > s-start, .flex-around > s-start, .flex-evenly > s-start {
-  align-self: flex-start;
-}
-.flex-between > s-end, .flex-start > s-end, .flex-end > s-end, .flex-center > s-end, .flex-around > s-end, .flex-evenly > s-end {
-  align-self: flex-end;
-}
-.flex-between > s-center, .flex-start > s-center, .flex-end > s-center, .flex-center > s-center, .flex-around > s-center, .flex-evenly > s-center {
-  align-self: flex-center;
-}
-.flex-between {
-  justify-content: space-between;
-}
-.flex-start {
-  justify-content: flex-start;
-}
-.flex-end {
-  justify-content: flex-end;
-}
-.flex-center {
-  justify-content: center;
-}
-.flex-around {
-  justify-content: space-around;
-}
-.flex-evenly {
-  justify-content: space-evenly;
-}
-.flex-stretch {
-  justify-content: stretch;
 }
 
 .fs12 {
@@ -983,6 +952,22 @@
   margin-right: auto;
 }
 
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.inline {
+  display: inline;
+}
+
+.none {
+  display: none;
+}
+
 .flex-between, .flex-start, .flex-end, .flex-center, .flex-around, .flex-evenly {
   display: flex;
   flex-wrap: nowrap;
@@ -1186,6 +1171,24 @@
 }
 .align-sub {
   vertical-align: sub;
+}
+
+.rotate90 {
+  transform: rotate(90deg);
+}
+.rotate180 {
+  transform: rotate(180deg);
+}
+.rotate270 {
+  transform: rotate(270deg);
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
 }
 
 /*# sourceMappingURL=index.css.map */
