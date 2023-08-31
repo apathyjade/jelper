@@ -65,3 +65,11 @@
     vertical-align: sub;
   }
 }
+
+// 换行
+.nowrap {
+  white-space: nowrap;
+}
+.pre-wrap {
+  white-space: pre-wrap;
+}
