@@ -1,7 +1,8 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { MDXProvider } from '@mdx-js/react';
+import history from "history/browser";
 import 'prism-themes/themes/prism-vsc-dark-plus.css';
 import {
   LiveProvider,
@@ -17,14 +18,16 @@ const scope = {
 const requireComponent = require.context(
   // @ts-ignore
     process.env.Project_Path + '/docs',
-    false,
+    true,
     /\.mdx/
   )
-const Contents = requireComponent.keys().map((path: string) => {
-  console.log(requireComponent(path))
-  return requireComponent(path).default;
-})
-console.log(Contents);
+const Modules = requireComponent.keys().map((path: string) => {
+  const m = requireComponent(path);
+  if (!m.frontMatter.path) {
+    m.frontMatter.path = path.replace(/^\.|(\/index)?\.(md|mdx)$/g, '');
+  }
+  return m;
+});
 
 const components = {
   em: props => <i {...props } />,
@@ -39,12 +42,36 @@ const components = {
   )
 }
 
+const moduleKeyMap = Modules.reduce((res, m) => ({
+  ...res,
+  [m.frontMatter.path]: m,
+}), {})
+
 const App = () => {
-  return <MDXProvider components={components}>
-    {
-      Contents.map((It, index) => <It key={index} />)
-    }
-  </MDXProvider>
+  const [key, setKey] = useState<any>('');
+  const Main = moduleKeyMap[key]?.default || React.Fragment
+
+  useEffect(() => {
+    setKey(history.location.pathname.replace(/\/$/g, ''));
+    return history.listen(({ location, action }) => {
+      setKey(location.pathname.replace(/\/$/g, ''));
+    });
+  }, []);
+
+  return <div>
+    <div>
+      {
+        Modules.map(it => (
+          <div onClick={() => history.push(it.frontMatter.path || '/')} key={it.frontMatter.path}>
+            {it.frontMatter.name}
+          </div>
+        ))
+      }
+    </div>
+    <MDXProvider components={components}>
+      <Main />
+    </MDXProvider>
+  </div>
 }
 
 // @ts-ignore

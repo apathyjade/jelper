@@ -9,7 +9,7 @@ import { webpackConfigBase } from '../config/index.js';
 import { resolveByRootPath, resolveByBasePath, basePath, getJelperCfg } from '../common/index.js';
 
 const getPackageJson = (() => {
-  const packageJson = null 
+  const packageJson = null
   return () => {
     if (packageJson) {
       return packageJson;
@@ -39,6 +39,12 @@ const getOpts = async() => {
         server: 'http',
         allowedHosts: ['127.0.0.1', 'localhost'],
         port: 8080,
+        proxy: {
+          '/[^.]+': {
+            target: 'http://localhost:8080',
+            pathRewrite: { '/[^.]+$': '/' },
+          },
+        },
         static: {
           directory: resolveByRootPath('./public')
         }
