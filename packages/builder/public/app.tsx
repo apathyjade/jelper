@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { MDXProvider } from '@mdx-js/react';
 import history from "history/browser";
 import 'prism-themes/themes/prism-vsc-dark-plus.css';
+import $style from './app.module.scss';
 import {
   LiveProvider,
   LiveEditor,
@@ -58,19 +59,23 @@ const App = () => {
     });
   }, []);
 
-  return <div>
-    <div>
+  return <div className={$style.main}>
+    <div className={$style.side}>
       {
         Modules.map(it => (
-          <div onClick={() => history.push(it.frontMatter.path || '/')} key={it.frontMatter.path}>
+          <div
+            className={`${$style.item}${ it.frontMatter.path === key ? ` ${$style.active}` : ''}`}
+            onClick={() => history.push(it.frontMatter.path || '/')} key={it.frontMatter.path}>
             {it.frontMatter.name}
           </div>
         ))
       }
     </div>
-    <MDXProvider components={components}>
-      <Main />
-    </MDXProvider>
+    <div className={$style.body}>
+      <MDXProvider components={components}>
+        <Main />
+      </MDXProvider>
+    </div>
   </div>
 }
 
