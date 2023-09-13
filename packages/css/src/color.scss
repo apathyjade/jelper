@@ -34,10 +34,7 @@ $c: 15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5;
   }
 }
 
-.default {
-  cursor: default;
-}
-.not-allowed {
+.disabled {
   cursor: not-allowed;
 }
 
@@ -59,18 +56,18 @@ $c: 15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5;
 @each $key, $value in $color{
   .#{"" + $key} {
     color: $value;
-    &.pointer {
-      color: rgba($color: $value, $alpha: .8);
+    &.pointer:hover {
+      color: rgbaToHex(rgba($color: $value, $alpha: .8));
     }
   }
   .bg-#{"" + $key} {
-    $color: rgba($color: $value, $alpha: .1);
+    $color: rgbaToHex(rgba($color: $value, $alpha: .1));
     background-color: rgbaToHex($color);
   }
   .#{"" + $key}-light {
     color: rgbaToHex(rgba($color: $value, $alpha: .6));
   }
-  .#{"" + $key}-disabled {
+  .#{"" + $key}.disabled {
     color: rgbaToHex(rgba($color: $value, $alpha: .2));
   }
 }
@@ -78,6 +75,7 @@ $c: 15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5;
   .c#{$item} {
     color: #{'#'}#{$item}#{$item}#{$item};
   }
+  .bg-c#{$item} {
+    color: #{'#'}#{$item}#{$item}#{$item};
+  }
 }
-
-

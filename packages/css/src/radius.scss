@@ -1,7 +1,7 @@
 
 .radius {
   &-none {
-    border-radius: 0;
+    border-radius: 0 !important;
   }
   &-4 {
     border-radius: 4px;
