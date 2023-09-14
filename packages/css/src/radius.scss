@@ -1,12 +1,9 @@
 
 .radius {
-  &-none {
-    border-radius: 0 !important;
-  }
+  border-radius: 50%;
   &-4 {
     border-radius: 4px;
   }
-
   &-8 {
     border-radius: 8px;
   }
