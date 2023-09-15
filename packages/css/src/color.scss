@@ -5,6 +5,7 @@ $color: (
   green: #0AB387,
   orange: #C14A27,
   yellow: #F7AB4F,
+  black: #656565,
 ) !default;
 
 
@@ -29,6 +30,8 @@ $c: 15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5;
 
 .disabled {
   cursor: not-allowed;
+  $color: map-get($color, blue);
+  color: rgbaToHex(rgba($color: $color, $alpha: .2));
 }
 
 .pointer {

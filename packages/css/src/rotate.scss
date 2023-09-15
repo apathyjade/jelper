@@ -1,5 +1,5 @@
 
-$rotateDge: 90, 180, 270;
+$rotateDge: 45, 90, 135, 180, 225, 270, 315;
 .rotate {
   @each $item in $rotateDge {
     &#{$item} {
