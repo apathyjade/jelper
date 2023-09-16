@@ -24,6 +24,9 @@
     "sass": "~1.66.1"
   },
   "dependencies": {},
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "apathyjade@outlook.com",
   "license": "ISC"
 }
