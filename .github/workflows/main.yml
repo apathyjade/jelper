@@ -3,7 +3,7 @@ on:
   push:
    branches:
       - master
-      - development
+      - beta
 
 env:
   NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
@@ -23,7 +23,7 @@ jobs:
           rush update
           rush build
       - name: publish beta
-        if: ${{ github.ref_name == 'development'}}
+        if: ${{ github.ref_name == 'beta'}}
         run: rush publish -p --include-all --tag=beta --prerelease-name bata
       - name: publish
         if: ${{ github.ref_name == 'master'}}
