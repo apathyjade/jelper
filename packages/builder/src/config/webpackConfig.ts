@@ -11,22 +11,27 @@ const include = [
   requireHelper.resolve('prism-themes'),
 ]
 
+const aliasList = [
+  'tslib',
+  'lodash',
+  'react',
+  'react-dom',
+  'history',
+  '@mdx-js/react',
+  '@babel/runtime',
+  '@types/lodash',
+  '@types/node',
+  '@types/react',
+  '@types/react-dom',
+]
 
 
 export default {
   resolve: {
-    alias: {
-      'tslib': requireHelper.resolve('tslib'),
-      'lodash': requireHelper.resolve('lodash'),
-      'react': requireHelper.resolve('react'),
-      'react-dom': requireHelper.resolve('react-dom'),
-      '@mdx-js/react': requireHelper.resolve('@mdx-js/react'),
-      '@babel/runtime': requireHelper.resolve('@babel/runtime'),
-      '@types/lodash': requireHelper.resolve('@types/lodash'),
-      '@types/node': requireHelper.resolve('@types/node'),
-      '@types/react': requireHelper.resolve('@types/react'),
-      '@types/react-dom': requireHelper.resolve('@types/react-dom'),
-    },
+    alias: aliasList.reduce((res, name) => ({
+      ...res,
+      [name]: requireHelper.resolve(name),
+    }), {}),
     extensions: ['.ts', '.tsx', '.js', 'jsx', 'json', 'css', 'less', 'scss'],
     extensionAlias: {
       '.js': ['.js', '.ts'],
@@ -69,7 +74,7 @@ export default {
             loader: requireHelper.resolve('style-loader'),
           }, {
             loader: requireHelper.resolve('css-loader'),
-            options: { modules: true }
+            options: { modules: undefined }
           }, {
             loader: requireHelper.resolve('sass-loader'),
           }

@@ -1,0 +1,29 @@
+{
+  "name": "@jelper/css",
+  "version": "0.1.1",
+  "description": "通用css",
+  "main": "dist/index.css",
+  "scripts": {
+    "build": "npm run build:lib & npm run build:dist",
+    "serve": "jelper serve",
+    "build:lib": "./scripts/index.sh",
+    "build:dist": "sass src/index.scss dist/index.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "./lib/*",
+    "./dist/*",
+    "./docs/*"
+  ],
+  "keywords": [
+    "css",
+    "helper"
+  ],
+  "devDependencies": {
+    "@jelper/builder": "workspace:*",
+    "sass": "~1.66.1"
+  },
+  "dependencies": {},
+  "author": "apathyjade@outlook.com",
+  "license": "ISC"
+}

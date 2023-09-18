@@ -1,0 +1,21 @@
+
+$fsSize: 12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48;
+$fsWeight: 400, 500, 600;
+
+// 字体大小
+@each $item in $fsSize {
+  .fs#{$item} {
+    font-size: $item + px;
+    @if $item % 4 == 0 {
+      line-height: $item * 1.5 + px
+    } @else {
+      line-height: $item * 1.5 - 1 + px
+    }
+  }
+}
+// 字重
+@each $item in $fsWeight {
+  .fw#{$item} {
+    font-weight: $item;
+  }
+}

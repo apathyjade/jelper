@@ -1,0 +1,9 @@
+
+$rotateDge: 45, 90, 135, 180, 225, 270, 315;
+.rotate {
+  @each $item in $rotateDge {
+    &#{$item} {
+      transform: rotate($item + deg);
+    }
+  }
+}

@@ -68,3 +68,4 @@ common/autoinstallers/*/.npmrc
 .heft
 es
 lib
+dist

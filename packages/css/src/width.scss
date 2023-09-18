@@ -1,0 +1,55 @@
+
+$width-xs: (
+  xs: 16,
+  s: 24,
+  m: 36,
+  l: 48,
+  xl: 56,
+) !default;
+$width-s: (
+  xs: 64,
+  s: 80,
+  m: 96,
+  l: 112,
+  xl: 128,
+) !default;
+$width-m: (
+  xs: 160,
+  s: 192,
+  m: 224,
+  l: 320,
+  xl: 416,
+) !default;
+$width-l: (
+  xs: 512,
+  s: 640,
+  m: 768,
+  l: 896,
+  xl: 1024
+) !default;
+$width-xl: (
+  xs: 1280,
+  s: 1440,
+  m: 1360,
+  l: 1680,
+  xl: 1920
+) !default;
+
+$width: (
+  xs: $width-xs,
+  s: $width-s,
+  m: $width-m,
+  l: $width-l,
+  xl: $width-xl,
+);
+
+@each $key, $sizeWidth in $width {
+  @each $k, $w in $sizeWidth {
+    .w-#{"" + $key}-#{"" + $k} {
+      width: $w + px;
+    }
+  }
+}
+.w-full {
+  width: 100%;
+}
