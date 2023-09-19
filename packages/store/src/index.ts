@@ -36,7 +36,7 @@ const memory: Storage = (() => {
 
 const storageMap: {[prop in StorageType]: Storage} = {
   memory,
-  local: localStorage ,
+  local: localStorage,
   session: sessionStorage,
 }
 
@@ -52,58 +52,46 @@ const getKey = (key: string|undefined, type: StoreType): string => {
   return `jelper_p_${location.pathname}${key ? `_${key}` : ''}`;
 }
 
-const isExpired = (time: number, expires: number = 0) => (
-  expires && Date.now() - time > expires
+const isExpired = (time: number, expires: number = 0): boolean => (
+  !!expires && Date.now() - time > expires
 );
 
-export class Store<T = any> {
-  readonly type: StoreType;
-  readonly key: string;
-  readonly expires: number;
-  private storage: Storage;
-  constructor(opts: Options<T>) {
-    const {
-      expires = 0,
-      cache,
-      value,
-      type = StoreType.page,
-      key,
-    } = opts;
-    this.type = type;
-    this.key = getKey(key, type);
-    this.storage = getStorage(cache);
-    this.expires = expires;
-    if (value !== undefined && this.getValue() === undefined) {
-      this.setValue(value);
-    }
+export const setValue = <T = any>(key: string, value: T, opt) => {
+  const {
+    cache = StorageType.local,
+    type = StoreType.page,
+    expires
+  } = opt || {};
+  const storage = getStorage(cache)
+  const storageKey = getKey(key, type);
+  storage.setItem(storageKey, JSON.stringify({
+    expires,
+    time: Date.now(),
+    value,
+  }))
+}
+
+export const getValue = <T = any>(key: string, opt) => {
+  const {
+    cache = StorageType.local,
+    type = StoreType.page,
+  } = opt || {};
+  const storage = getStorage(cache)
+  const storageKey = getKey(key, type);
+  const value = storage.getItem(storageKey);
+  if (typeof value !== 'string') {
+    return undefined;
   }
-  private getItem() {
-    const item = this.storage.getItem(this.key);
-    if (typeof item !== 'string') {
-      return undefined;
-    }
-    return JSON.parse(item) as unknown as StorageValue<T>
-  }
-  private setItem(value: StorageValue) {
-    this.storage.setItem(this.key, JSON.stringify(value))
-  }
-  isExpired() {
-    const item = this.getItem();
-    return item === undefined || isExpired(item.time, item.expires);
-  }
-  getValue(): T|undefined {
-    const item = this.getItem();
-    if (item === undefined || isExpired(item.time, item.expires)) {
+  try {
+    const data = JSON.parse(value) as unknown as StorageValue<T>;
+    if (isExpired(data.time, data.expires)) {
+      storage.removeItem(storageKey);
       return undefined
+    } else if (data.expires) {
+      setValue(key, data.value, {storage, expires: data.expires});
     }
-    return item.value;
+    return data.value;
+  } catch(e) {
+    return undefined;
   }
-  setValue(value: T) {
-    this.setItem({
-      key: this.key,
-      expires: this.expires,
-      time: Date.now(),
-      value,
-    })
-  }
-};
+}

@@ -1,6 +1,6 @@
 {
   "name": "@jelper/store",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "store helper",
   "main": "lib/index.js",
   "scripts": {
