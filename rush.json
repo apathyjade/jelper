@@ -88,6 +88,10 @@
       ],
       "reviewCategory": "production",
       "shouldPublish": true
+    },
+    {
+      "packageName": "@jelper/website",
+      "projectFolder": "packages/website"
     }
   ]
 }
