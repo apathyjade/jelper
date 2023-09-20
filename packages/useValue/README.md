@@ -1,5 +1,5 @@
 # @jelper/useValue
-reack受控组件hook, useValue受控传入value
+react受控组件hook, useValue受控传入value
 
 ## 使用
 

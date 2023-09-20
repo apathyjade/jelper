@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "npm run copy & docusaurus start",
-    "build": "npm run copy & docusaurus build",
+    "start": "npm run copy && docusaurus start",
+    "build": "npm run copy && docusaurus build && ./copyToScope.sh",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -32,6 +32,7 @@
     "@jelper/hooks": "workspace:*",
     "@jelper/promise": "workspace:*",
     "@jelper/store": "workspace:*",
+    "@jelper/use-value": "workspace:*",
     "@tsconfig/docusaurus": "^1.0.5",
     "typescript": "^4.7.4"
   },
