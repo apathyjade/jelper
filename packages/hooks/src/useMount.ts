@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'react';
+import useRtRef from './useRtRef';
 
 const useMount = (cb: Function) => {
-  const ref = useRef(cb);
-  ref.current = cb
-
+  const ref = useRtRef(cb);
   useEffect(() => {
     ref.current();
   });

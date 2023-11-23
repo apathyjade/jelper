@@ -1,20 +1,20 @@
 
-// state
+
+// 预防组件销毁更新
 export { default as useSafeState } from './useSafeState';
-export { default as useRtState } from './useRtState';
-export { default as useBoolState } from './useBoolState';
-export { default as useParamsState } from './useParamsState';
-
-// callback
 export { default as useSafeCb } from './useSafeCb';
-export { default as useRtCb } from './useRtCb';
 
-// effect
-export { default as useSafeEffect } from './useSafeEffect';
+// 传入参数实时更新，保证内部最新数据
+export { default as useRtRef } from './useRtRef';
+export { default as useRtState } from './useRtState';
+export { default as useRtCb } from './useRtCb';
+export { default as useRtMemo } from './useRtMemo';
 export { default as useRtEffect } from './useRtEffect';
 
-// memo
-export { default as useRtMemo } from './useRtMemo';
+
+// 特殊state
+export { default as useBoolState } from './useBoolState';
+export { default as useParamsState } from './useParamsState';
 
 //  生命周期
 export { default as useIsUnmount } from './useIsUnmount';
@@ -25,8 +25,6 @@ export { default as useUnmount } from './useUnmount';
 // 节流防抖
 export { default as useThrottle } from './useThrottle';
 export { default as useDebounce } from './useDebounce';
-
-export { default as useValue } from './useValue';
 
 // 使用异步
 export { default as useAsync } from './useAsync';

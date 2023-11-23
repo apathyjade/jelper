@@ -2,7 +2,7 @@
 import { useCallback } from 'react';
 import useSafeState from './useSafeState';
 
-export default function useParamsState<T = object>(defData: T): [
+export default function useParamsState<T extends object>(defData: T): [
   d: T,
   u: React.Dispatch<React.SetStateAction<Partial<T>>>,
   s: React.Dispatch<React.SetStateAction<T>>,

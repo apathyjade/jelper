@@ -44,12 +44,6 @@ const useAsync = <
       run(param);
     }
   });
-  return {
-    data,
-    run,
-    loading,
-    error
-  }
+  return { data, run, loading, error }
 };
-
 export default useAsync;

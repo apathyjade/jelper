@@ -1,12 +1,9 @@
-import { useRef, useMemo } from 'react';
-import useSafeCb from './useSafeCb';
+import { useMemo } from 'react';
+import useRtRef from './useRtRef';
 
 const useRtMemo = (cb: Function, deps: any[] = []) => {
-    const ref = useRef(cb);
-    ref.current = cb;
-    return useRtMemo(() => {
-        ref.current();
-    }, deps)
-}
+  const ref = useRtRef(cb);
+  return useMemo(() => ref.current(), deps);
+};
 
 export default useRtMemo;
