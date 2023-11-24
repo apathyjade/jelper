@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+
+import { useEffect } from 'react';
 import useRtRef from './useRtRef';
 
 const useMount = (cb: Function) => {

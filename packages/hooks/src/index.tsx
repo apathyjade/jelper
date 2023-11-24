@@ -16,6 +16,9 @@ export { default as useRtEffect } from './useRtEffect';
 export { default as useBoolState } from './useBoolState';
 export { default as useParamsState } from './useParamsState';
 
+// 特殊 Effect
+export { default as useUpdateEffect } from './useUpdateEffect';
+
 //  生命周期
 export { default as useIsUnmount } from './useIsUnmount';
 export { default as useCreate } from './useCreate';
@@ -31,4 +34,5 @@ export { default as useAsync } from './useAsync';
 
 // 浏览器api
 export { default as useListener } from './useListener';
+export { default as useResizeObserver } from './useResizeObserver';
 
