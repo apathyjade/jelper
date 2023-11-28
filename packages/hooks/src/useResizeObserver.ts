@@ -2,7 +2,7 @@
  * @Author: apathyjade
  * @Date: 2023-11-24 10:52:51
  * @Last Modified by: apathyjade
- * @Last Modified time: 2023-11-24 11:36:46
+ * @Last Modified time: 2023-11-28 18:16:35
  */
 
 import { useEffect, useState } from 'react';
@@ -42,7 +42,7 @@ const unobserve = (target) => {
   delete observeCatch[key];
 };
 
-export default function (dom: HTMLElement, cb: (dom: HTMLElement) => void) {
+export default function useResizeObserver (dom: HTMLElement, cb: (dom: HTMLElement) => void) {
   useCreate(init);
   const [domId] = useState<number>(id++);
   useEffect(() => {
