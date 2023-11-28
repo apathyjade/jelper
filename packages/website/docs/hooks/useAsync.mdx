@@ -1,0 +1,25 @@
+---
+name: Hello world
+sort: 2
+---
+
+import { useState, useRef, useCallback, useEffect, useMemo } from 'react';
+import { useCreate, useRtCb, useRtState } from '@jelper/hooks';
+
+
+export const Demo = () => {
+    const state = useState(0);
+    const onClick = useCallback(() => {
+        state[1](state[0] + 1);
+        console.log(state[0]);
+    }, [])
+    // useEffect(() => {
+    //     console.log('useEffect')
+    //     return () => {
+    //         console.log('demo useEffect')
+    //     }
+    // }, [])
+    return <span onClick={onClick} >{state[0]}</span>;
+}
+
+<Demo />

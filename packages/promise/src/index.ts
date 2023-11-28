@@ -29,7 +29,7 @@ export function usePromise<T>(): [Resolve<T>, Reject, Promise<T>] {
   return [resolve, reject, p]
 }
 
-export function callWithPromis(cb: PromiseCb, data: Parameters<ReturnPromiseFn>[0]) {
+export function callWithPromise(cb: PromiseCb, data: Parameters<ReturnPromiseFn>[0]) {
   return new Promise((resolve, reject) => {
     cb(data, { resolve, reject });
   })
@@ -42,7 +42,7 @@ export function toCallPromise<T = any, R = any>(fn: ReturnPromiseFn<T, R>)
       resolve: (d: R) => void,
       reject: Reject
     }
-  ) => void 
+  ) => void
 {
   return (data: T, { resolve, reject }) => {
     return fn(data).then(resolve, reject)

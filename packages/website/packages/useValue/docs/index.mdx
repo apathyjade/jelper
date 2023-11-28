@@ -1,0 +1,26 @@
+---
+name: Hello world
+---
+
+*a*
+
+import { useState, useCallBack, useEffect } from 'react';
+import useValue from '@jelper/use-value' // Assumes an integration is used to compile MDX -> JS.
+export const Demo = () => {
+  const [o, setO] = useState(true);
+  const [value, setVaue] = useValue(o);
+  return (
+    <>
+      <p onClick={() => setVaue(!value)}>测试下{value ? 1 : 0}a</p>
+      <p onClick={() => setO(!o)}>OOOO:::{o ? 1 : 0}</p>
+    </>
+  );
+};
+
+<Demo />
+
+## 样例
+```jsx title="/src/components/HelloCodeTitle.js"
+<p>asd</p>
+```
+

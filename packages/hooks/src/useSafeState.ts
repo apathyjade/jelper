@@ -7,7 +7,7 @@ const useSafeState = <T>(value?: T): [
     setFn: React.Dispatch<React.SetStateAction<T>>,
 ] => {
     const [state, setState] = useState<T>(value);
-    const setCb = useSafeCb(setState, [])
+    const setCb = useSafeCb(setState)
     return [state, setCb];
 }
 export default useSafeState;

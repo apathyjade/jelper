@@ -15,7 +15,6 @@ export interface EnumItem {
 
 class EnumHelper<T extends EnumItem = EnumItem> {
   protected data: T[] = [];
-  protected keyMap: { [p: string]: T } = {}
   constructor(list: T[]) {
     list.forEach((it) => {
       if (!it) {
@@ -23,21 +22,20 @@ class EnumHelper<T extends EnumItem = EnumItem> {
       }
       Object.freeze(it)
       this.data.push(it)
-      this.keyMap[it.key] = it
     });
   }
   getList() {
     return this.data;
   }
-  get(key: string): T {
-    return this.keyMap[key];
+  get(key: string, value?: any ): T | undefined {
+    if (value === undefined) {
+      return this.getList().find(it => it.key === key);
+    }
+    return this.getList().find(it => it[key] === value);
   }
   getLabel(key: string): string | undefined {
     return this.get(key)?.label;
   }
-  getByValue(value: T['value']): T | undefined {
-    return this.getList().find(it => it.value === value);
-  }
 }
-Object.freeze(EnumHelper);
+
 export default EnumHelper;
