@@ -61,7 +61,7 @@
     ,
     {
       "packageName": "@jelper/use-value",
-      "projectFolder": "packages/useValue",
+      "projectFolder": "packages/use-value",
       "tags": [
         "tools",
         "helper",
