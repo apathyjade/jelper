@@ -13,7 +13,8 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "copy": "./packageDocs.sh"
+    "copy": "./packageDocs.sh",
+    "publish": "echo \"ok: success\""
   },
   "dependencies": {
     "@docusaurus/core": "2.4.1",
