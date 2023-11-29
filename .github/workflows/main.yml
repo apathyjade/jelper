@@ -24,7 +24,8 @@ jobs:
           rush build
       - name: publish beta
         if: ${{ github.ref_name == 'beta'}}
-        run: rush publish -p --include-all --tag=beta --prerelease-name bata
+        run: rush publish --apply
       - name: publish
         if: ${{ github.ref_name == 'master'}}
-        run: rush publish -p --include-all --tag=latest
+        run: |
+          rush publish -p --include-all --tag=latest
