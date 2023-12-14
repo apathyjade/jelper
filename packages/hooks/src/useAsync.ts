@@ -11,7 +11,7 @@ interface Opt<T extends (...arg: any) => any, R> {
 }
 
 const useAsync = <
-  T extends (...arg: any) => any,
+  T extends (...arg: any) => Promise<any>,
   R extends Object
 >(asyncFn: T, opt: Opt<T, R> = {
   immediate: false,
@@ -44,12 +44,6 @@ const useAsync = <
       run(param);
     }
   });
-  return {
-    data,
-    run,
-    loading,
-    error
-  }
+  return { data, run, loading, error }
 };
-
 export default useAsync;

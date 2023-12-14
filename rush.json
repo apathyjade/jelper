@@ -57,18 +57,6 @@
       "tags": ["tools", "helper", "store"],
       "reviewCategory": "production",
       "shouldPublish": true
-    }
-    ,
-    {
-      "packageName": "@jelper/use-value",
-      "projectFolder": "packages/useValue",
-      "tags": [
-        "tools",
-        "helper",
-        "hooks"
-      ],
-      "reviewCategory": "production",
-      "shouldPublish": true
     },
     {
       "packageName": "@jelper/promise",
@@ -88,6 +76,11 @@
       ],
       "reviewCategory": "production",
       "shouldPublish": true
+    },
+    {
+      "packageName": "@jelper/website",
+      "projectFolder": "packages/website",
+      "shouldPublish": false
     }
   ]
 }

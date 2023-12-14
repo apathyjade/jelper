@@ -1,13 +1,13 @@
 
 import { useRef } from 'react';
 import useSafeCb from './useSafeCb';
+import useRtRef from './useRtRef';
 
 const useRtCb = <
-  T extends (...arg: any) => any,
+  T extends DefFn,
   D extends any[]
 >(cb: T, deps?: D): ReturnFn<T> => {
-  const ref = useRef(cb);
-  ref.current = cb;
+  const ref = useRtRef(cb);
   return useSafeCb((...arg: Parameters<T>) => {
     return ref.current(...arg);
   }, deps)
