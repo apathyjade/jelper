@@ -91,7 +91,8 @@
     },
     {
       "packageName": "@jelper/website",
-      "projectFolder": "packages/website"
+      "projectFolder": "packages/website",
+      "shouldPublish": false
     }
   ]
 }
