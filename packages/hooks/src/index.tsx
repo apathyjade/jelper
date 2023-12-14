@@ -33,6 +33,8 @@ export { default as useDebounce } from './useDebounce';
 export { default as useAsync } from './useAsync';
 
 // 浏览器api
+export { default as useTimeout } from './useTimeout';
+export { default as useInterval } from './useInterval';
 export { default as useListener } from './useListener';
 export { default as useResizeObserver } from './useResizeObserver';
 

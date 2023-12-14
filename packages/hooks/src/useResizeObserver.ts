@@ -5,48 +5,52 @@
  * @Last Modified time: 2023-11-28 18:16:35
  */
 
-import { useEffect, useState } from 'react';
-import useCreate from './useCreate';
+import { useEffect } from 'react';
+import useSafeCb from './useSafeCb';
 
-let id = null;
-let observerProp = null;
 let resizeObserver = null;
-let observeCatch = null;
+let observeCatch: Map<HTMLElement, Function>|null = null;
+
 
 function init() {
   if (resizeObserver) {
     return;
   }
-  observeCatch = {};
-  id = 0;
-  observerProp = 'data-observer-id'
+  observeCatch = new Map();
   resizeObserver = new window.ResizeObserver(
     (targets) => {
       targets?.forEach((item: any) => {
-        const key = item?.target.getAttribute(observerProp);
-        observeCatch[key]?.(item?.target);
+        observeCatch.get(item?.target)?.(item);
       });
     },
   );
 }
 
-const observe = (target, domIdx, cb) => {
-  const key = `${domIdx}`;
-  observeCatch[key] = cb;
-  target?.setAttribute(observerProp, key);
+const observe = (target: HTMLElement, cb) => {
+  if (!resizeObserver) {
+    init();
+  }
+  observeCatch.set(target, cb);
   resizeObserver.observe(target);
 };
-const unobserve = (target) => {
+const unobserve = (target: HTMLElement) => {
+  if (!resizeObserver) {
+    init();
+  }
   resizeObserver.unobserve(target);
-  const key = target.getAttribute(observerProp);
-  delete observeCatch[key];
+  observeCatch?.delete(target);
 };
 
-export default function useResizeObserver (dom: HTMLElement, cb: (dom: HTMLElement) => void) {
-  useCreate(init);
-  const [domId] = useState<number>(id++);
+export default function useResizeObserver (dom: HTMLElement, cb: (dom: ResizeObserverEntry) => void) {
+  const selfObserve = useSafeCb(() => {
+    observe(dom, cb);
+  }, [dom, cb]);
+  const selfUnobserve = useSafeCb(() => {
+    unobserve(dom);
+  }, [dom]);
   useEffect(() => {
-    observe(dom, domId, cb);
+    observe(dom, cb);
     return () => unobserve(dom);
-  }, [dom, cb])
+  }, [dom, cb]);
+  return [selfObserve, selfUnobserve];
 };

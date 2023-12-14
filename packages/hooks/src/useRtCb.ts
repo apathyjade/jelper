@@ -4,7 +4,7 @@ import useSafeCb from './useSafeCb';
 import useRtRef from './useRtRef';
 
 const useRtCb = <
-  T extends (...arg: any) => any,
+  T extends DefFn,
   D extends any[]
 >(cb: T, deps?: D): ReturnFn<T> => {
   const ref = useRtRef(cb);
