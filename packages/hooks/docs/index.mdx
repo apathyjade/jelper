@@ -3,23 +3,90 @@ title: hooks
 sort: 1
 ---
 
-import { useState, useRef, useCallback, useEffect, useMemo } from 'react';
-import { useCreate, useRtCb, useRtState } from '@jelper/hooks';
+### hooks
 
+React Hooks 库，包含react基础hooks的拓展，生命周期的模拟，浏览器api的封装等能力；
+
+#### 安装
+
+```bash
+npm install @jelper/hooks
+```
+
+#### 示例
+
+```jsx
+import { useCreate } from '@jelper/hooks';
 
 export const Demo = () => {
-    const state = useState(0);
-    const onClick = useCallback(() => {
-        state[1](state[0] + 1);
-        console.log(state[0]);
-    }, [])
-    // useEffect(() => {
-    //     console.log('useEffect')
-    //     return () => {
-    //         console.log('demo useEffect')
-    //     }
-    // }, [])
-    return <span onClick={onClick} >{state[0]}</span>;
+    const state = useCreate(() => {
+        console.log('同步执行， 只执行一次')
+    });
+    return <span>Demo</span>;
 }
+```
 
-<Demo />
+#### hooks列表
+- [useSafeState](#useSafeState)
+- [useSafeCb](#useSafeCb)
+- [useRtRef](#useRtRef)
+- [useRtState](#useRtState)
+- [useRtCb](#useRtCb)
+- [useRtMemo](#useRtMemo)
+- [useRtEffect](#useRtEffect)
+- [useBoolState](#useBoolState)
+- [useParamsState](#useParamsState)
+- [useUpdateEffect](#useUpdateEffect)
+- [useIsUnmount](#useIsUnmount)
+- [useCreate](#useCreate)
+- [useMount](#useMount)
+- [useUnmount](#useUnmount)
+- [useThrottle](#useThrottle)
+- [useDebounce](#useDebounce)
+- [useAsync](#useAsync)
+- [useTimeout](#useTimeout)
+- [useInterval](#useInterval)
+- [useListener](#useListener)
+- [useResizeObserver](#useResizeObserver)
+
+##### useSafeState
+
+#### useSafeCb
+
+#### useRtRef
+
+#### useRtState
+
+#### useRtCb
+
+#### useRtMemo
+
+#### useRtEffect
+
+#### useBoolState
+
+#### useParamsState
+
+#### useUpdateEffect
+
+#### useIsUnmount
+
+#### useCreate
+
+#### useMount
+
+#### useUnmount
+
+#### useThrottle
+
+#### useDebounce
+
+#### useAsync
+
+#### useTimeout
+
+#### useInterval
+
+#### useListener
+
+#### useResizeObserver
