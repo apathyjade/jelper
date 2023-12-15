@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "npm run copy && docusaurus start",
-    "build": "npm run copy && docusaurus build",
+    "build": "npm run copy && docusaurus build && ./copyToScope.sh",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
