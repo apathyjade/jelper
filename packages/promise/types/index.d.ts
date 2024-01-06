@@ -8,6 +8,8 @@
 
 type Resolve<T = any> = (value: T) => void;
 type Reject<T = Error> = (reason?: T) => void;
+type AsyncFn<T extends any[] = any[], R = any> = (...args: T) => Promise<R>;
+
 type PromiseCb<T = any, R = any> = (
   data: R,
   opts: {

@@ -56,11 +56,11 @@ const isExpired = (time: number, expires: number = 0): boolean => (
   !!expires && Date.now() - time > expires
 );
 
-export const setValue = <T = any>(key: string, value: T, opt) => {
+export const setValue = <T = any>(key: string, value: T, opt: Options) => {
   const {
     cache = StorageType.local,
     type = StoreType.page,
-    expires
+    expires,
   } = opt || {};
   const storage = getStorage(cache)
   const storageKey = getKey(key, type);
@@ -71,7 +71,7 @@ export const setValue = <T = any>(key: string, value: T, opt) => {
   }))
 }
 
-export const getValue = <T = any>(key: string, opt) => {
+export const getValue = <T = any>(key: string, opt: Options) => {
   const {
     cache = StorageType.local,
     type = StoreType.page,
@@ -88,7 +88,7 @@ export const getValue = <T = any>(key: string, opt) => {
       storage.removeItem(storageKey);
       return undefined
     } else if (data.expires) {
-      setValue(key, data.value, {storage, expires: data.expires});
+      setValue(key, data.value, { expires: data.expires});
     }
     return data.value;
   } catch(e) {

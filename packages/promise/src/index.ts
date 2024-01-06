@@ -6,6 +6,8 @@
  * @Last Modified Time: 2022-06-30 16:43:10
  */
 
+import { AsyncCompleter } from "readline";
+
 export function toPromise <T>(data: any): Promise<T> {
   if (typeof data === 'function') {
     return toPromise(data());
@@ -19,14 +21,41 @@ export function toPromise <T>(data: any): Promise<T> {
   return Promise.resolve(data);
 };
 
-export function usePromise<T>(): [Resolve<T>, Reject, Promise<T>] {
+export function buildPromiseHandler<T>(): [Promise<T>, Resolve<T>, Reject] {
   let resolve = null;
   let reject = null;
-  const p = new Promise<T>((r, j) => {
+  const promise = new Promise<T>((r, j) => {
     resolve = r;
     reject = j;
   })
-  return [resolve, reject, p]
+  return [promise, resolve, reject]
+}
+
+export function buildCacheAsyncFn<T extends any[] = any[] , R = any>(fn: AsyncFn<T, R>): AsyncFn<T, R> {
+  let handlers = [];
+  let loading = false;
+  let result: Promise<R> = null
+  return (...arg) => {
+    if (result) {
+      return result;
+    }
+    if (!loading) {
+      loading = true;
+      fn(...arg).then((data) => {
+        handlers.forEach(([resolve, reject]) => resolve(data))
+        result = Promise.resolve(data)
+      }).catch((error) => {
+        handlers.forEach(([resolve, reject]) => reject(error));
+        result = Promise.reject(error)
+      }).finally(() => {
+        loading = false;
+        handlers = []
+      });
+    }
+    return new Promise((resolve, reject) => {
+      handlers.push([resolve, reject])
+    });
+  }
 }
 
 export function callWithPromise(cb: PromiseCb, data: Parameters<ReturnPromiseFn>[0]) {
