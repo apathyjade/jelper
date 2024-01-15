@@ -36,6 +36,9 @@ class EnumHelper<T extends EnumItem = EnumItem> {
   getLabel(key: string): string | undefined {
     return this.get(key)?.label;
   }
+  getValue(key: string): EnumItem['value'] | undefined {
+    return this.get(key)?.value;
+  }
 }
 
 export default EnumHelper;

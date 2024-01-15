@@ -77,5 +77,3 @@ export function toCallPromise<T = any, R = any>(fn: ReturnPromiseFn<T, R>)
     return fn(data).then(resolve, reject)
   };
 }
-
-
