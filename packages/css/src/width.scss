@@ -11,28 +11,28 @@ $width-s: (
   s: 80,
   m: 96,
   l: 112,
-  xl: 128,
+  xl: 136,
 ) !default;
 $width-m: (
   xs: 160,
   s: 192,
   m: 224,
-  l: 320,
-  xl: 416,
+  l: 256,
+  xl: 288,
 ) !default;
 $width-l: (
-  xs: 512,
-  s: 640,
-  m: 768,
-  l: 896,
-  xl: 1024
+  xs: 320,
+  s: 448,
+  m: 576,
+  l: 704,
+  xl: 832
 ) !default;
 $width-xl: (
-  xs: 1280,
-  s: 1440,
-  m: 1360,
-  l: 1680,
-  xl: 1920
+  xs: 960,
+  s: 1120,
+  m: 1280,
+  l: 1440,
+  xl: 1600
 ) !default;
 
 $width: (
