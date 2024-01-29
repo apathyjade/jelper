@@ -21,6 +21,10 @@ export function toPromise <T>(data: any): Promise<T> {
   return Promise.resolve(data);
 };
 
+export function callLikeSerial<T extends AsyncFn>(cbs: T[]): Promise<any> {
+  return cbs.reduce((p, cb) => p.then(cb), Promise.resolve());
+}
+
 export function buildPromiseHandler<T>(): [Promise<T>, Resolve<T>, Reject] {
   let resolve = null;
   let reject = null;
