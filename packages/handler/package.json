@@ -1,5 +1,5 @@
 {
-  "name": "callback",
+  "name": "handler",
   "version": "0.0.1",
   "description": "回调函数工具包",
   "main": "lib/index.js",
@@ -10,7 +10,7 @@
     "serve": "jelper serve"
   },
   "keywords": [
-    "store",
+    "handler",
     "helper"
   ],
   "files": [
@@ -24,9 +24,7 @@
     "@types/lodash": "~4.14.182",
     "@types/node": "~18.0.0"
   },
-  "dependencies": {
-    "lodash": "~4.17.21"
-  },
+  "dependencies": {},
   "author": "apathyjade@outlook.com",
   "license": "ISC"
 }
