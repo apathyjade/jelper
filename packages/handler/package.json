@@ -1,5 +1,5 @@
 {
-  "name": "handler",
+  "name": "@jelper/handler",
   "version": "0.1.0",
   "description": "回调函数工具包",
   "main": "lib/index.js",
@@ -20,7 +20,7 @@
     "lib/**"
   ],
   "devDependencies": {
-    "@jelper/builder": "~0.1.7",
+    "@jelper/builder": "workspace:*",
     "@types/lodash": "~4.14.182",
     "@types/node": "~18.0.0"
   },

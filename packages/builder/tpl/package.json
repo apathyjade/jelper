@@ -20,7 +20,7 @@
     "lib/**"
   ],
   "devDependencies": {
-    "@jelper/builder": "~0.1.7",
+    "@jelper/builder": "workspace:*",
     "@types/lodash": "~4.14.182",
     "@types/node": "~18.0.0"
   },
