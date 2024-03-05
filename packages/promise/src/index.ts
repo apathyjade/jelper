@@ -59,23 +59,3 @@ export function buildCacheAsyncFn<T extends any[] = any[] , R = any>(fn: AsyncFn
     });
   }
 }
-
-export function callWithPromise(cb: PromiseCb, data: Parameters<ReturnPromiseFn>[0]) {
-  return new Promise((resolve, reject) => {
-    cb(data, { resolve, reject });
-  })
-}
-
-export function toCallPromise<T = any, R = any>(fn: ReturnPromiseFn<T, R>)
-: (
-    data: T,
-    opt: {
-      resolve: (d: R) => void,
-      reject: Reject
-    }
-  ) => void
-{
-  return (data: T, { resolve, reject }) => {
-    return fn(data).then(resolve, reject)
-  };
-}
