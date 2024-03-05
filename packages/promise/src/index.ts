@@ -6,8 +6,6 @@
  * @Last Modified Time: 2022-06-30 16:43:10
  */
 
-import { AsyncCompleter } from "readline";
-
 export function toPromise <T>(data: any): Promise<T> {
   if (typeof data === 'function') {
     return toPromise(data());
@@ -46,10 +44,10 @@ export function buildCacheAsyncFn<T extends any[] = any[] , R = any>(fn: AsyncFn
     if (!loading) {
       loading = true;
       fn(...arg).then((data) => {
-        handlers.forEach(([resolve, reject]) => resolve(data))
+        handlers.forEach(([resolve, _]) => resolve(data))
         result = Promise.resolve(data)
       }).catch((error) => {
-        handlers.forEach(([resolve, reject]) => reject(error));
+        handlers.forEach(([_, reject]) => reject(error));
         result = Promise.reject(error)
       }).finally(() => {
         loading = false;

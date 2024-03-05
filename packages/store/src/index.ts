@@ -40,7 +40,7 @@ const storageMap: {[prop in StorageType]: Storage} = {
   session: sessionStorage,
 }
 
-const getStorage = (type: StorageType = StorageType.memory): Storage => storageMap[type];
+const getStorage = (type: StorageType = StorageType.local): Storage => storageMap[type];
 
 const getKey = (key: string|undefined, type: StoreType): string => {
   if (type === StoreType.global) {
@@ -55,6 +55,8 @@ const getKey = (key: string|undefined, type: StoreType): string => {
 const isExpired = (time: number, expires: number = 0): boolean => (
   !!expires && Date.now() - time > expires
 );
+
+
 
 export const setValue = <T = any>(key: string, value: T, opt: Options) => {
   const {
@@ -94,4 +96,22 @@ export const getValue = <T = any>(key: string, opt: Options) => {
   } catch(e) {
     return undefined;
   }
+}
+
+export const remove = (key: string, opt: Options) => {
+  const {
+    cache = StorageType.local,
+    type = StoreType.page,
+  } = opt || {};
+  const storage = getStorage(cache)
+  const storageKey = getKey(key, type);
+  storage.removeItem(storageKey);
+}
+
+export const clear = (opt: Options) => {
+  const {
+    cache = StorageType.local,
+  } = opt || {};
+  const storage = getStorage(cache);
+  storage.clear();
 }

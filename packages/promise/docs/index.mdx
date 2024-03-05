@@ -1,0 +1,22 @@
+---
+name: Hello world
+---
+
+import { useEffect } from 'react';
+import { useSingleHandler } from '@jelper/handler';
+
+export const handler = useSingleHandler();
+
+export const Demo = () => {
+  useEffect(() => {
+    handler.on(() => {
+      console.log('on');
+      return { state: 0 }
+    })
+  }, [])
+  return <p onClick={() => handler.call().then(console.log) }>测试下</p>;
+};
+
+<Demo />
+
+

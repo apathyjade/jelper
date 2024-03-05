@@ -2,7 +2,7 @@
 type PromiseResult<T extends Promise<any>> = T extends Promise<infer R> ? R : never
 type DefCb = (p: any) => Promise<any>;
 
-export default class MultipleHandler<T extends DefCb> {
+export class MultipleHandler<T extends DefCb> {
   constructor() {
     this.value = [];
   }
@@ -14,10 +14,11 @@ export default class MultipleHandler<T extends DefCb> {
     this.value = [ ...this.value, cb ];
   }
   off(cb: T) {
-    this.value = this.value.filter((item) => item !== cb);
-  }
-  dispose() {
-    this.value = null;
+    if (cb) {
+      this.value = this.value.filter((item) => item !== cb);
+    } else {
+      this.value = [];
+    }
   }
   call(data: Parameters<T>): Promise<PromiseResult<ReturnType<T>>[]> {
     const cbs = this.value;
@@ -43,9 +44,6 @@ export class SingleHandler<T extends DefCb> {
   off() {
     this.value = null;
   }
-  dispose() {
-    this.value = null;
-  }
   call(data: Parameters<T>): ReturnType<T> {
     if (!this.value) {
       return Promise.reject(new Error('handler is not exist')) as ReturnType<T>;
@@ -56,3 +54,5 @@ export class SingleHandler<T extends DefCb> {
 
 export const useSingleHandler: <T extends DefCb>() => SingleHandler<T> = () => new SingleHandler();
 export const useMultipleHandler: <T extends DefCb>() => MultipleHandler<T> = () => new MultipleHandler();
+
+export default MultipleHandler;
