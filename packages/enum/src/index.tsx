@@ -13,29 +13,30 @@ export interface EnumItem {
   [prop: string]: any;
 }
 
-class EnumHelper<T extends EnumItem = EnumItem> {
+export class EnumHelper<T extends EnumItem = EnumItem> {
   protected data: T[] = [];
   constructor(list: T[]) {
-    list.forEach((it) => {
-      if (!it) {
-        return;
-      }
-      Object.freeze(it)
-      this.data.push(it)
-    });
+    this.data = list;
   }
-  getList() {
+  public getData() {
     return this.data;
   }
-  get(key: string, value?: any ): T | undefined {
+  public get(key: string, value?: any ): T | undefined {
     if (value === undefined) {
-      return this.getList().find(it => it.key === key);
+      return this.getData().find(it => it.key === key);
     }
-    return this.getList().find(it => it[key] === value);
+    return this.getData().find(it => it[key] === value);
   }
-  getLabel(key: string): string | undefined {
+  public getLabel(key: string): string | undefined {
     return this.get(key)?.label;
+  }
+  public getValue(key: string): EnumItem['value'] | undefined {
+    return this.get(key)?.value;
   }
 }
 
-export default EnumHelper;
+export const useEnumHelper = <T extends EnumItem, U extends {}>(data: T[], expand: U ): (U & EnumHelper) => {
+  return Object.assign(new EnumHelper<T>(data), expand);
+}
+
+export default useEnumHelper;

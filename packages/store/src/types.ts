@@ -26,9 +26,9 @@ export interface Storage {
 export interface Options<T = any> {
   expires?: number,
   cache?: StorageType,
-  value?: T,
   type?: StoreType,
-  key?: string,
+  // value?: T,
+  // key?: string,
 }
 
 export interface StorageValue<T = any> {

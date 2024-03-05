@@ -9,7 +9,10 @@ $color: (
 ) !default;
 
 
-$c: 15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5;
+$c:
+15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5,
+0d, 1d, 2d, 3d, 4d, 5d, 6d, 7d, 8d, 9d, ad, bd, cd, dd, ed, fd;
+
 
 @function rgbaToHex($rgbaColor,$background: rgb(255,255,255)) {
   $bgR : red($background);
@@ -30,7 +33,7 @@ $c: 15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5;
 
 .disabled {
   cursor: not-allowed;
-  $color: map-get($color, blue);
+  $color: map-get($color, black);
   color: rgbaToHex(rgba($color: $color, $alpha: .2));
 }
 
@@ -46,13 +49,6 @@ $c: 15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5;
     cursor: pointer;
     color: map-get($color, blue);
   }
-}
-
-.white {
-  color: #fff;
-}
-.bg-white {
-  background: #fff;
 }
 
 // 颜色
@@ -82,4 +78,17 @@ $c: 15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5;
   .bg-c#{$item} {
     background-color: #{'#'}#{$item}#{$item}#{$item};
   }
+}
+
+.white {
+  color: #fff;
+}
+.black {
+  color: #000;
+}
+.bg-white {
+  background: #fff;
+}
+.bg-black {
+  background: #000;
 }

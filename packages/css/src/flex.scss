@@ -5,45 +5,94 @@
 .flex-between,
 .flex-around,
 .flex-evenly {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  align-items: flex-start;
-
-  &.s-start {
+  &,
+  &-start,
+  &-end,
+  &-center,
+  &-stretch,
+  &-baseline {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
     align-items: flex-start;
   }
-  &.s-end {
+
+  &-start {
+    align-items: flex-start;
+  }
+  &-end {
     align-items: flex-end;
   }
-  &.s-center {
+  &-center {
     align-items: center;
   }
-  &.s-stretch {
+  &-stretch {
     align-items: stretch;
   }
-  &.s-baseline {
+  &-baseline {
     align-items: baseline;
   }
 }
 
 .flex-start {
-  justify-content: flex-start;
+  &,
+  &-start,
+  &-end,
+  &-center,
+  &-stretch,
+  &-baseline {
+    justify-content: flex-start;
+  }
 }
 .flex-end {
-  justify-content: flex-end;
+  &,
+  &-start,
+  &-end,
+  &-center,
+  &-stretch,
+  &-baseline {
+    justify-content: flex-end;
+  }
 }
 .flex-center {
-  justify-content: center;
+  &,
+  &-start,
+  &-end,
+  &-center,
+  &-stretch,
+  &-baseline {
+    justify-content: center;
+  }
 }
 .flex-between {
-  justify-content: space-between;
+  &,
+  &-start,
+  &-end,
+  &-center,
+  &-stretch,
+  &-baseline {
+    justify-content: space-between;
+  }
 }
 .flex-around {
-  justify-content: space-around;
+  &,
+  &-start,
+  &-end,
+  &-center,
+  &-stretch,
+  &-baseline {
+    justify-content: space-around;
+  }
 }
 .flex-evenly {
-  justify-content: space-evenly;
+  &,
+  &-start,
+  &-end,
+  &-center,
+  &-stretch,
+  &-baseline {
+    justify-content: space-evenly;
+  }
 }
 
 .flex-item {

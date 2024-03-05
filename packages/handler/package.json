@@ -1,8 +1,7 @@
 {
-  "name": "@jelper/enum",
-  "version": "1.2.0",
-  "private": false,
-  "description": "",
+  "name": "@jelper/handler",
+  "version": "0.1.1",
+  "description": "回调函数工具包",
   "main": "lib/index.js",
   "module": "es/index.js",
   "scripts": {
@@ -10,29 +9,22 @@
     "build": "jelper build",
     "serve": "jelper serve"
   },
+  "keywords": [
+    "handler",
+    "helper"
+  ],
   "files": [
     "package.json",
     "README.md",
     "es/**",
     "lib/**"
   ],
-  "keywords": [
-    "helper",
-    "enum"
-  ],
-  "author": "apathyjade@outlook.com",
-  "license": "ISC",
   "devDependencies": {
-    "@babel/runtime": "~7.18.3",
     "@jelper/builder": "workspace:*",
     "@types/lodash": "~4.14.182",
     "@types/node": "~18.0.0"
   },
-  "dependencies": {
-    "lodash": "~4.17.21",
-    "react": "~18.2.0",
-    "tslib": "~2.4.1",
-    "@mdx-js/react": "1.x",
-    "@mdx-js/mdx": "1.x"
-  }
+  "dependencies": {},
+  "author": "apathyjade@outlook.com",
+  "license": "ISC"
 }

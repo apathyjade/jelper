@@ -59,6 +59,13 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@jelper/handler",
+      "projectFolder": "packages/handler",
+      "tags": ["tools", "helper", "handler"],
+      "reviewCategory": "production",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@jelper/promise",
       "projectFolder": "packages/promise",
       "tags": ["tools", "helper", "promise"],
