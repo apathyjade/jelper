@@ -17,15 +17,15 @@ const useAsync = <
   immediate: false,
   catchParam: false,
 }) => {
-  const [data, setData] = useSafeState(null);
-  const [param, setParam] = useSafeState(opt.defParam || {});
+  const [data, setData] = useSafeState<R|null|undefined>(null);
+  const [param, setParam] = useSafeState<Partial<Parameters<T>>|undefined>(opt.defParam || {});
   const [loading, setLoading] = useSafeState(false);
   const [error, setError] = useSafeState(null);
 
-  const run = useRtCb((runParam: Partial<Parameters<T>>) => {
+  const run = useRtCb((runParam?: Partial<Parameters<T>>) => {
     const currParam = opt.catchParam ? {
       ...param,
-      ...runParam,
+      ...(runParam || {}),
     } : runParam;
     setLoading(true);
     setError(null);
@@ -33,7 +33,7 @@ const useAsync = <
       .then(opt.format)
       .then((resData) => {
         setData(resData);
-        setParam(currParam);
+        setParam(currParam as any);
       }, setError)
       .finally(() => {
         setLoading(false)

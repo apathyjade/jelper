@@ -24,24 +24,8 @@ import { useXxx } from '@jelper/hooks';
 
 用法同 useState, 当调用组件销毁时，不再更新 state
 
-#### 参数
-
-同 useState
-
-#### 返回值
-
-同 useState
-
 ### useSafeCb
 
-#### 说明
+用法同 useCallback, 当调用组件销毁时，不再执行回调函数
 
-用法同 useState, 当调用组件销毁时，不再更新 state
 
-#### 参数
-
-同 useState
-
-#### 返回值
-
-同 useState

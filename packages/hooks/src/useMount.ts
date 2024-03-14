@@ -5,7 +5,7 @@ import useRtRef from './useRtRef';
 const useMount = (cb: Function) => {
   const ref = useRtRef(cb);
   useEffect(() => {
-    ref.current();
+    ref.current?.();
   });
 }
 

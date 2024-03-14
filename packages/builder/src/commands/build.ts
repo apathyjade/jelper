@@ -1,7 +1,9 @@
 import webpack from 'webpack';
 import { merge } from 'webpack-merge';
+import { exec } from 'child_process';
 import { webpackConfigBase } from '../config/index.js';
 import { resolveByBasePath, getJelperCfg } from '../common/index.js';
+import requireHelper from '../../utils/require-helper.cjs';
 
 const getOpts = async () => {
   const jelperCfg: any = await getJelperCfg();
@@ -62,12 +64,26 @@ const outputs = [
       type: 'commonjs2',
     }
   }
-]
+];
+
+const buildTypes = async () => {
+  const tscCommand = `${requireHelper.resolve('typescript')}/bin/tsc  --emitDeclarationOnly`;
+  return new Promise((resolve) => {
+    exec(tscCommand, (error) => {
+      if (error) {
+        console.error(`执行tsc出错: ${error}`);
+        return;
+      }
+      console.log('.d.ts文件 编译完成');
+      resolve(null);
+    });
+  })
+}
 
 export default async function () {
   console.log('start build');
+  await buildTypes();
   const opts = await getOpts() as any;
-
   outputs.forEach((output) => {
     webpack({
       ...opts,
@@ -80,13 +96,13 @@ export default async function () {
         console.error(err);
         return;
       }
-
       console.log(
         stats.toString({
           chunks: false, // 使构建过程更静默无输出
           colors: true,  // 在控制台展示颜色
         })
       );
-    }) 
-  })
+    });
+  });
+
 }

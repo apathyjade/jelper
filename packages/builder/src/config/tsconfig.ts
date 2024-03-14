@@ -12,6 +12,8 @@ export default {
     target: 'es5',
     outDir: './lib',
     jsx: 'react',
+    declaration: true,
+    declarationDir: './types'
   },
   include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.d.ts'],
   // exclude: ['node_modules', 'lib']
