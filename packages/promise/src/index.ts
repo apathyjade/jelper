@@ -24,8 +24,8 @@ export function callLikeSerial<T extends AsyncFn>(cbs: T[]): Promise<any> {
 }
 
 export function buildPromiseHandler<T>(): [Promise<T>, Resolve<T>, Reject] {
-  let resolve = null;
-  let reject = null;
+  let resolve: Resolve<T> = undefined as any;
+  let reject: Reject = undefined as any;
   const promise = new Promise<T>((r, j) => {
     resolve = r;
     reject = j;
@@ -34,9 +34,9 @@ export function buildPromiseHandler<T>(): [Promise<T>, Resolve<T>, Reject] {
 }
 
 export function buildCacheAsyncFn<T extends any[] = any[] , R = any>(fn: AsyncFn<T, R>): AsyncFn<T, R> {
-  let handlers = [];
+  let handlers: Array<[Resolve<R>, Reject]> = [] as any;
   let loading = false;
-  let result: Promise<R> = null
+  let result: Promise<R> = null as any
   return (...arg) => {
     if (result) {
       return result;

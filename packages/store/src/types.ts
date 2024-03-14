@@ -23,12 +23,10 @@ export interface Storage {
   clear: () => void;
 }
 
-export interface Options<T = any> {
+export interface Options {
   expires?: number,
   cache?: StorageType,
   type?: StoreType,
-  // value?: T,
-  // key?: string,
 }
 
 export interface StorageValue<T = any> {
