@@ -1,6 +1,6 @@
 {
   "name": "@jelper/hooks",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "react hooks helper",
   "main": "lib/index.js",
   "module": "es/index.js",
