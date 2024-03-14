@@ -3,6 +3,8 @@
   "version": "1.1.0",
   "description": "store helper",
   "main": "lib/index.js",
+  "module": "es/index.js",
+	"types": "types/index.d.ts",
   "scripts": {
     "build": "jelper build",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,9 +13,26 @@
     "store",
     "helper"
   ],
-  "author": "apathyjade@outlook.com",
-  "license": "ISC",
+  "files": [
+    "package.json",
+    "README.md",
+    "es/**",
+    "lib/**",
+    "types/**"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
-    "@jelper/builder": "workspace:*"
-  }
+    "@jelper/builder": "workspace:*",
+    "@types/node": "~18.0.0",
+    "@types/react": "~18.2.17",
+    "@types/lodash-es": "~4.17.8"
+  },
+  "dependencies": {
+    "react": "~18.2.0",
+    "lodash-es": "~4.17.21"
+  },
+  "author": "apathyjade@outlook.com",
+  "license": "ISC"
 }
