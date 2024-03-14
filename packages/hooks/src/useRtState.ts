@@ -12,7 +12,7 @@ interface Options<T> {
   isEqual?: (a:T, b: T) => boolean
 }
 
-const defEqual = (a, b) => a === b;
+const defEqual = (a: any, b: any) => a === b;
 
 export default function useRtState<T = any>(
   value: T,

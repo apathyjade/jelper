@@ -1,5 +1,4 @@
 
-import { useRef } from 'react';
 import useSafeCb from './useSafeCb';
 import useRtRef from './useRtRef';
 
@@ -9,7 +8,7 @@ const useRtCb = <
 >(cb: T, deps?: D): ReturnFn<T> => {
   const ref = useRtRef(cb);
   return useSafeCb((...arg: Parameters<T>) => {
-    return ref.current(...arg);
+    return ref.current?.(...arg);
   }, deps)
 }
 

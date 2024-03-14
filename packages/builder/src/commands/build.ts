@@ -67,9 +67,9 @@ const outputs = [
 ];
 
 const buildTypes = async () => {
-  const tscComander = `${requireHelper.resolve('typescript')}/bin/tsc  --emitDeclarationOnly`;
+  const tscCommand = `${requireHelper.resolve('typescript')}/bin/tsc  --emitDeclarationOnly`;
   return new Promise((resolve) => {
-    exec(tscComander, (error) => {
+    exec(tscCommand, (error) => {
       if (error) {
         console.error(`执行tsc出错: ${error}`);
         return;
@@ -78,7 +78,6 @@ const buildTypes = async () => {
       resolve(null);
     });
   })
-  
 }
 
 export default async function () {
@@ -105,5 +104,5 @@ export default async function () {
       );
     });
   });
-  
+
 }
