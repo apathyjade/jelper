@@ -31,7 +31,7 @@ export class MultipleHandler<T extends DefCb> {
 }
 
 export class SingleHandler<T extends DefCb> {
-  private value: T
+  private value: T|null = null
   on(cb: T) {
     if (this.value) {
       console.warn('handler is already exist');
