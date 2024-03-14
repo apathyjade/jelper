@@ -69,3 +69,4 @@ common/autoinstallers/*/.npmrc
 es
 lib
 dist
+types
