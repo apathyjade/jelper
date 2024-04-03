@@ -49,6 +49,9 @@
   &-right {
     text-align: right;
   }
+  &-justify {
+    text-align: justify;
+  }
   &-middle {
     vertical-align: middle;
   }
@@ -69,6 +72,16 @@
 // 换行
 .nowrap {
   white-space: nowrap;
+}
+.wrap,
+.pre-wrap {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: normal;
+
+}
+.wrap {
+  white-space: normal;
 }
 .pre-wrap {
   white-space: pre-wrap;
