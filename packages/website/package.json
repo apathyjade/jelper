@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "npm run copy && docusaurus serve",
+    "start": "npm run copy && npm run serve",
     "build": "npm run copy && docusaurus build && npm run copyToScope",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",

@@ -3,7 +3,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 
-const docsPath = path.resolve(__dirname, '../docs');
+const docsPath = path.resolve(__dirname, '../build');
 const outPath = path.resolve(__dirname, '../../../docs');
 
 
