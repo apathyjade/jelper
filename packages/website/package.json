@@ -4,16 +4,18 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "npm run copy && docusaurus start",
-    "build": "npm run copy && docusaurus build && ./copyToScope.sh",
+    "start": "npm run copy && docusaurus serve",
+    "build": "npm run copy && docusaurus build && npm run copyToScope",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
+    "docs-build": "docusaurus build",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "copy": "./packageDocs.sh"
+    "copy": "node ./scripts",
+    "copyToScope": "node ./scripts/copyToScope.js"
   },
   "dependencies": {
     "@docusaurus/core": "2.4.1",
@@ -34,7 +36,8 @@
     "@jelper/store": "workspace:*",
     "@jelper/handler": "workspace:*",
     "@tsconfig/docusaurus": "^1.0.5",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "fs-extra": "^11.2.0"
   },
   "browserslist": {
     "production": [
