@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_jelper_website=self.webpackChunk_jelper_website||[]).push([[511],{6349:function(e){e.exports=JSON.parse('{"label":"docusaurus","permalink":"/jelper/blog/tags/docusaurus","allTagsPath":"/jelper/blog/tags","count":4}')}}]);
