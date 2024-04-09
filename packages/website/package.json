@@ -14,7 +14,7 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
     "watch": "node ./scripts/watchDocs.js",
-    "copy": "node ./scripts",
+    "copy": "node ./scripts/index.js",
     "copyToScope": "node ./scripts/copyToScope.js"
   },
   "dependencies": {

@@ -67,7 +67,7 @@ const config = {
         title: 'jelper',
         logo: {
           alt: 'jelper',
-          src: 'img/logo.svg',
+          src: 'img/logo.png',
         },
         items: [
           {
