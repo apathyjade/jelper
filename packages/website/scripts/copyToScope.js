@@ -8,6 +8,7 @@ const outPath = path.resolve(__dirname, '../../../docs');
 
 
 try {
+  fs.removeSync(outPath)
   if (fs.pathExistsSync(docsPath)) {
     fs.copySync(docsPath, outPath);
   }

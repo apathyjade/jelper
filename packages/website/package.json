@@ -4,16 +4,16 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "npm run copy && npm run serve",
+    "start": "npm run watch & npm run serve",
     "build": "npm run copy && docusaurus build && npm run copyToScope",
     "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "docs-build": "docusaurus build",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
+    "watch": "node ./scripts/watchDocs.js",
     "copy": "node ./scripts",
     "copyToScope": "node ./scripts/copyToScope.js"
   },
@@ -37,7 +37,8 @@
     "@jelper/handler": "workspace:*",
     "@tsconfig/docusaurus": "^1.0.5",
     "typescript": "^4.7.4",
-    "fs-extra": "^11.2.0"
+    "fs-extra": "^11.2.0",
+    "chokidar": "3.6.0"
   },
   "browserslist": {
     "production": [
