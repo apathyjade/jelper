@@ -3,31 +3,32 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "docusaurus": "docusaurus",
-    "start": "npm run watch & npm run serve",
+    "start": "npm run watch & docusaurus start",
     "build": "npm run copy && docusaurus build && npm run copyToScope",
+    "serve": "docusaurus serve",
     "swizzle": "docusaurus swizzle",
     "clear": "docusaurus clear",
-    "serve": "docusaurus serve",
     "docs-build": "docusaurus build",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
     "watch": "node ./scripts/watchDocs.js",
-    "copy": "node ./scripts/index.js",
+    "copy": "node ./scripts/copyDocs.js && exit 0",
     "copyToScope": "node ./scripts/copyToScope.js"
   },
   "dependencies": {
-    "@docusaurus/core": "2.4.1",
-    "@docusaurus/preset-classic": "2.4.1",
-    "@mdx-js/react": "^1.6.22",
+    "@docusaurus/core": "3.2.1",
+    "@docusaurus/preset-classic": "3.2.1",
+    "@mdx-js/react": "^3.x.x",
     "clsx": "^1.2.1",
     "prism-react-renderer": "^1.3.5",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.4.1",
+    "@docusaurus/module-type-aliases": "3.2.1",
+    "@docusaurus/types": "3.2.1",
+    "@tsconfig/docusaurus": "^2.0.3",
     "@jelper/builder": "workspace:*",
     "@jelper/css": "workspace:*",
     "@jelper/enum": "workspace:*",
@@ -35,7 +36,6 @@
     "@jelper/promise": "workspace:*",
     "@jelper/store": "workspace:*",
     "@jelper/handler": "workspace:*",
-    "@tsconfig/docusaurus": "^1.0.5",
     "typescript": "^4.7.4",
     "fs-extra": "^11.2.0",
     "chokidar": "3.6.0"
@@ -53,6 +53,6 @@
     ]
   },
   "engines": {
-    "node": ">=16.14"
+    "node": ">=18.0"
   }
 }
