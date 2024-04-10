@@ -1,7 +1,28 @@
 ---
 title: 基础样式片段
 ---
-ss 
+import '@jelper/css'
+
 @jelper/css 基础样式片段
 
+### install
 
+```tsx
+import '@jelper/css'
+```
+
+### 样例
+
+```tsx live
+function Demo() {
+  return <div className={'flex-between-center'}>
+    <div className={'fs16 fw600 c35'}>
+      标题
+    </div>
+    <div className={'c55'}>
+      操作
+    </div>
+  </div>
+}
+
+```

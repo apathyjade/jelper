@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'jelper官网文档',
-  tagline: '基础工具',
+  tagline: '基础工具库，提供常用css片段、工具函数、react hooks等',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -58,6 +58,7 @@ const config = {
     ],
   ],
 
+  themes: ['@docusaurus/theme-live-codeblock'],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
