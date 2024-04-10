@@ -24,7 +24,7 @@ const requireComponent = require.context(
   )
 const Modules = requireComponent.keys().map((path: string) => {
   const m = requireComponent(path);
-  if (!m.frontMatter.path) {
+    if (!m.frontMatter.path) {
     m.frontMatter.path = path.replace(/^\.|(\/index)?\.(md|mdx)$/g, '');
   }
   return m;
@@ -66,7 +66,7 @@ const App = () => {
           <div
             className={`${$style.item}${ it.frontMatter.path === key ? ` ${$style.active}` : ''}`}
             onClick={() => history.push(it.frontMatter.path || '/')} key={it.frontMatter.path}>
-            {it.frontMatter.name}
+            {it.frontMatter.title}
           </div>
         ))
       }
