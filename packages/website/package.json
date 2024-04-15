@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npm run watch & docusaurus start",
-    "build": "npm run copy && docusaurus build && npm run copyToScope",
+    "build": "npm run clear && npm run copy && docusaurus build && npm run copyToScope",
     "serve": "docusaurus serve",
     "swizzle": "docusaurus swizzle",
     "clear": "docusaurus clear",
