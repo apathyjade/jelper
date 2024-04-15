@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_jelper_website=self.webpackChunk_jelper_website||[]).push([[5128],{1359:e=>{e.exports=JSON.parse('{"label":"facebook","permalink":"/jelper/blog/tags/facebook","allTagsPath":"/jelper/blog/tags","count":1,"unlisted":false}')}}]);

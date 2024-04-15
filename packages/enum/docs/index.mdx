@@ -2,18 +2,55 @@
 title: enum
 ---
 
-*a*
+### install
 
-import enumHelper from '@jelper/enum' // Assumes an integration is used to compile MDX -> JS.
-export const Demo = () => {
-  console.log(enumHelper)
-  return <p>测试下</p>;
-};
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-<Demo />
+<Tabs>
+
+<TabItem value="npm" label="npm">
+```shell
+npm istall @jelper/css
+```
+</TabItem>
+
+<TabItem value="pnpm" label="pnpm">
+```shell
+pnpm istall @jelper/css
+```
+</TabItem>
+
+<TabItem value="yarn" label="yarn">
+```bash
+yarn istall @jelper/css
+```
+</TabItem>
+
+</Tabs>
+
 
 ## 样例
-```jsx title="/src/components/HelloCodeTitle.js"
-<p>asd</p>
+
+import EnumHelper from '@jelper/enum';
+
+export const sad = 123;
+
+```jsx live noInline
+const enumHelper = EnumHelper.build([
+  { label: 'A', key: 'a', value: 1 },
+  { label: 'A', key: 'a', value: 1 },
+  { label: 'A', key: 'a', value: 1 },
+], {
+  getTotal() {
+    return this.valueOf.reduce((res, it) => res + it.value);
+  }
+})
+render(
+  <>
+    <div> a: {enumHelper.getLabel('a')} </div>
+    <div>total: {enumHelper.getTotal()}</div>
+  </>
+);
 ```
 

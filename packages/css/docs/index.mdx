@@ -1,8 +1,48 @@
 ---
 title: 基础样式片段
 ---
+import '@jelper/css'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 @jelper/css 基础样式片段
 
+### install
+
+<Tabs>
+
+<TabItem value="npm" label="npm">
+```shell
+npm istall @jelper/css
+```
+</TabItem>
+
+<TabItem value="pnpm" label="pnpm">
+```shell
+pnpm istall @jelper/css
+```
+</TabItem>
+
+<TabItem value="yarn" label="yarn">
+```bash
+yarn istall @jelper/css
+```
+</TabItem>
+
+</Tabs>
 
 
+### 样例
+
+```tsx live noInline
+render(
+  <div className={'flex-between-center'}>
+    <div className={'fs16 fw600 c35'}>
+      标题
+    </div>
+    <div className={'c55'}>
+      操作
+    </div>
+  </div>
+)
+```

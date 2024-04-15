@@ -4,6 +4,7 @@
   "description": "回调函数工具包",
   "main": "lib/index.js",
   "module": "es/index.js",
+	"types": "types/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "jelper build",
@@ -17,7 +18,8 @@
     "package.json",
     "README.md",
     "es/**",
-    "lib/**"
+    "lib/**",
+    "types/**"
   ],
   "devDependencies": {
     "@jelper/builder": "workspace:*",

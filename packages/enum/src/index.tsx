@@ -18,6 +18,9 @@ export class EnumHelper<T extends EnumItem = EnumItem> {
   constructor(list: T[]) {
     this.data = list;
   }
+  public valueOf() {
+    return this.data;
+  }
   public getData() {
     return this.data;
   }
@@ -33,10 +36,9 @@ export class EnumHelper<T extends EnumItem = EnumItem> {
   public getValue(key: string): EnumItem['value'] | undefined {
     return this.get(key)?.value;
   }
+  static build<T extends EnumItem, U extends {}>(data: T[], expand?: U ): (U & EnumHelper) {
+    return Object.assign(new EnumHelper<T>(data), expand);
+  }
 }
 
-export const useEnumHelper = <T extends EnumItem, U extends {}>(data: T[], expand: U ): (U & EnumHelper) => {
-  return Object.assign(new EnumHelper<T>(data), expand);
-}
-
-export default useEnumHelper;
+export default EnumHelper;
