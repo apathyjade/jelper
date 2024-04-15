@@ -7,15 +7,37 @@ import '@jelper/css'
 
 ### install
 
-```tsx
-import '@jelper/css'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+
+<TabItem value="npm" label="npm">
+```shell
+npm istall @jelper/css
 ```
+</TabItem>
+
+<TabItem value="pnpm" label="pnpm">
+```shell
+pnpm istall @jelper/css
+```
+</TabItem>
+
+<TabItem value="yarn" label="yarn">
+```bash
+yarn istall @jelper/css
+```
+</TabItem>
+
+</Tabs>
+
 
 ### 样例
 
-```tsx live
-function Demo() {
-  return <div className={'flex-between-center'}>
+```tsx live noInline
+render(
+  <div className={'flex-between-center'}>
     <div className={'fs16 fw600 c35'}>
       标题
     </div>
@@ -23,6 +45,5 @@ function Demo() {
       操作
     </div>
   </div>
-}
-
+)
 ```

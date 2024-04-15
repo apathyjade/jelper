@@ -57,8 +57,7 @@ const config = {
       }),
     ],
   ],
-
-  themes: ['@docusaurus/theme-live-codeblock'],
+  plugins: ['@docusaurus/theme-live-codeblock'],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -125,6 +124,11 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      // liveCodeBlock: {
+      //   globalImports: [
+      //     'import EnumHelper from "@jelper/enum";',
+      //   ]
+      // }
     }),
 };
 

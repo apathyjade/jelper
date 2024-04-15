@@ -2,12 +2,33 @@
 title: enum
 ---
 
-
 ### install
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+
+<TabItem value="npm" label="npm">
+```shell
+npm istall @jelper/css
 ```
-npm install @jelper/enum
+</TabItem>
+
+<TabItem value="pnpm" label="pnpm">
+```shell
+pnpm istall @jelper/css
 ```
+</TabItem>
+
+<TabItem value="yarn" label="yarn">
+```bash
+yarn istall @jelper/css
+```
+</TabItem>
+
+</Tabs>
+
 
 ## 样例
 
@@ -16,23 +37,20 @@ import EnumHelper from '@jelper/enum';
 export const sad = 123;
 
 ```jsx live noInline
-function Demo(props) {
-  const enumHelper = EnumHelper.build([
-    { label: 'A', key: 'a', value: 1 },
-    { label: 'A', key: 'a', value: 1 },
-    { label: 'A', key: 'a', value: 1 },
-  ], {
-    getTotal() {
-      return this.valueOf.reduce((res, it) => res + it.value);
-    }
-  })
-  return (
-    <>
-      <div> a: {enumHelper.getLabel('a')} </div>
-      <div>total: {enumHelper.getTotal()}</div>
-    </>
-  );
-}
-<Demo />
+const enumHelper = EnumHelper.build([
+  { label: 'A', key: 'a', value: 1 },
+  { label: 'A', key: 'a', value: 1 },
+  { label: 'A', key: 'a', value: 1 },
+], {
+  getTotal() {
+    return this.valueOf.reduce((res, it) => res + it.value);
+  }
+})
+render(
+  <>
+    <div> a: {enumHelper.getLabel('a')} </div>
+    <div>total: {enumHelper.getTotal()}</div>
+  </>
+);
 ```
 

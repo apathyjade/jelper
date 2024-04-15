@@ -13,6 +13,7 @@ $fsWeight: 400, 500, 600;
     }
   }
 }
+
 // 字重
 @each $item in $fsWeight {
   .fw#{$item} {
