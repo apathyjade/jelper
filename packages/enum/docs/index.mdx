@@ -2,55 +2,86 @@
 title: enum
 ---
 
-### install
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs>
+### install
 
+<Tabs>
 <TabItem value="npm" label="npm">
 ```shell
-npm istall @jelper/css
+npm istall @jelper/enum
 ```
 </TabItem>
 
 <TabItem value="pnpm" label="pnpm">
 ```shell
-pnpm istall @jelper/css
+pnpm istall @jelper/enum
 ```
 </TabItem>
 
 <TabItem value="yarn" label="yarn">
 ```bash
-yarn istall @jelper/css
+yarn istall @jelper/enum
 ```
 </TabItem>
-
 </Tabs>
 
 
 ## 样例
 
+```tsx
 import EnumHelper from '@jelper/enum';
 
-export const sad = 123;
+const enumHelper = new EnumHelper([
+  { label: 'A', key: 'a', value: 1 },
+  { label: 'B', key: 'b', value: 2 },
+  { label: 'C', key: 'c', value: 3 },
+]);
 
-```jsx live noInline
-const enumHelper = EnumHelper.build([
+console.log(enumHelper.get(1)); // { label: 'A', key: 'a', value: 1 },
+console.log(enumHelper.getLabel('a')); // A
+
+// 拓展
+const enumHelperSuper = EnumHelper.build([
   { label: 'A', key: 'a', value: 1 },
-  { label: 'A', key: 'a', value: 1 },
-  { label: 'A', key: 'a', value: 1 },
+  { label: 'B', key: 'b', value: 2 },
+  { label: 'C', key: 'c', value: 3 },
 ], {
-  getTotal() {
-    return this.valueOf.reduce((res, it) => res + it.value);
-  }
-})
-render(
-  <>
-    <div> a: {enumHelper.getLabel('a')} </div>
-    <div>total: {enumHelper.getTotal()}</div>
-  </>
-);
+  getName() { return 'enumHelperSuper';}
+}); // 或者使用继承
+
+console.log(enumHelper.getName()); // enumHelperSuper
+
 ```
 
+## Api
+
+### EnumHelper
+
+实例属性
+| 属性       |    类型     | 说明 |
+|-------|-------|-------|
+| constructor    | (list: EnumItem[]) => void    |  - |
+| valueOf   | () => EnumItem[]    |  - |
+| getData  | () => EnumItem[]    |  - |
+| get  | (key: string, value\?: EnumItem['value']) => EnumItem \| undefined    |  - |
+| getLabel  | (key: string) => EnumItem['label'] \| undefined    |  - |
+| getValue  | (key: string) => EnumItem['value'] \| undefined     |  - |
+
+静态属性
+| 属性       |    类型     | 说明 |
+|-------|-------|-------|
+| build   | (list: EnumItem[], extendsObj: Object ) => EnumHelper    |  - |
+
+## Interface
+
+```ts
+interface EnumItem {
+  label: string;
+  key: string;
+  value?: number | string | boolean | null;
+  [prop: string]: any;
+}
+```

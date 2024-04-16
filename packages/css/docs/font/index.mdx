@@ -1,0 +1,16 @@
+---
+title: font
+order: 3
+---
+
+<>
+{[ 12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48 ].map(size => (
+  <div className={`fs${size}`}>{`fs${size}`}:字体大小{size}px</div>
+))}
+</>
+
+<>
+{[ 400, 500, 600 ].map(size => (
+  <div className={`fw${size}`}>{`fw${size}`}:字重{size}</div>
+))}
+</>

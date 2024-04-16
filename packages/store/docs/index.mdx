@@ -2,5 +2,89 @@
 title: store
 ---
 
-xxx
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
+<Tabs>
+<TabItem value="npm" label="npm">
+```shell
+npm istall @jelper/store
+```
+</TabItem>
+
+<TabItem value="pnpm" label="pnpm">
+```shell
+pnpm istall @jelper/store
+```
+</TabItem>
+
+<TabItem value="yarn" label="yarn">
+```bash
+yarn istall @jelper/store
+```
+</TabItem>
+</Tabs>
+
+## Example
+
+```tsx
+import stroe from '@jelper/store';
+
+store.setValue<string>('key', 'pagekey');
+store.setValue<string>('value', 'home');
+
+console.log(store.getValue<string>('key')) // pagekey
+console.log(store.getValue<string>('value')) // home
+
+store.remove('value');
+console.log(store.getValue<string>('key')) // pagekey
+console.log(store.getValue<string>('value')) // undefined
+
+store.clear();
+console.log(store.getValue<string>('key')) // undefined
+console.log(store.getValue<string>('value')) // undefined
+
+```
+
+
+## Api
+
+浏览器缓存工具包，支持 localStorage、sessionStorage 和 内存缓存，解决跨页面冲突、过期等问题；
+
+| 方法       |    参数     | 返回值 |
+|-------|-------|-------|
+| setValue  | \(key: string; value: any; opts?: Option \)    | void |
+| getValue  | \(key: string; opts?: Omit\<Option, 'expire'\> \}    | any |
+| remove  | \(key: string; opts?: Omit\<Option, 'expire'\> \}    | void |
+| clear  | \(opts?: Omit\<Option, 'expire'\>\)    | void |
+
+注：opts 默认值 <em>\{ type: StoreType.page, cache: StorageType.local, expires: undefined  \}</em>
+
+## Type
+
+### Option
+
+```ts
+interface Options {
+  cache?: StorageType,
+  type?: StoreType,
+  expires?: number,
+}
+```
+
+### StoreType
+```ts
+export enum StoreType {
+  global = 'global', // 全局缓存
+  page = 'page', // 页面级缓存
+}
+```
+
+### StorageType
+```ts
+export enum StorageType {
+  memory = 'memory', // 内存
+  session = 'session', // sessionStorage
+  local = 'local', // localStorage
+}
+```

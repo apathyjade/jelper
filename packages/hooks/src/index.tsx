@@ -8,8 +8,8 @@ export { default as useSafeCb } from './useSafeCb';
 export { default as useRtRef } from './useRtRef';
 export { default as useRtState } from './useRtState';
 export { default as useRtCb } from './useRtCb';
-export { default as useRtMemo } from './useRtMemo';
-export { default as useRtEffect } from './useRtEffect';
+// export { default as useRtMemo } from './useRtMemo';
+// export { default as useRtEffect } from './useRtEffect';
 
 
 // 特殊state
