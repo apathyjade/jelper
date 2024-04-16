@@ -5,9 +5,7 @@ import '@jelper/css'
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-@jelper/css 基础样式片段
-
-### install
+基础样式片段
 
 <Tabs>
 
@@ -46,3 +44,86 @@ render(
   </div>
 )
 ```
+
+## Api
+
+### 字体
+|        |    前缀     | 值 | 例子 |
+|-------|-------|-------|-------|
+| 字体大小   | fs  |  12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48 | fs12,fs14|
+| 字体字重   | fs  |  400, 500, 600 | fs400,fs600|
+
+### 间距
+
+|        |    前缀     | 值 | 例子 |
+|-------|-------|-------|-------|
+| 内间距   | pd-  |  0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 48, 56, 64 | pd-4, pd-tb8, pd-lr8, pd-l8, pd-t8, pd-r8, pd-b8 |
+| 外间距   | mg-  |  0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 48, 56, 64 | mg-4, mg-tb8, mg-lr8, mg-l8, mg-t8, mg-r8, mg-b8 |
+
+#### 其他
+* mg-auto
+
+### display
+* block
+* inline-block
+* inline
+* hide
+
+### 文本
+
+|        |    前缀     | 值 | 例子 |
+|-------|-------|-------|-------|
+|  文本  | text-   |  xs, s,m, l, xl | text, text-m, text-l |
+|  对齐  | align-  |  center, left, right, justify, middle, top, bottom, super, sub | align-left, align-middle |
+|  换行  | 无  |  nowrap, wrap, pre-wrap | nowrap, wrap, pre-wrap |
+
+
+### flex
+
+|        |    前缀     | 值 | 例子 |
+|-------|-------|-------|-------|
+|  flex  | flex   |  start, end, center, between, around, evenly | flex-start, flex-end, flex-center, flex-between, flex-around, flex-evenly |
+|        |        |  start, end, center, stretch, baseline | flex-between-start,  flex-between-center |
+|  item  | flex-item  |  start, end, center, stretch, baseline | flex-item-center |
+
+### color
+
+关键词
+* brand
+* blue
+* green
+* orange
+* yellow
+* black
+* white
+
+class格式: color, bg-color, color-light
+
+|    前缀     | 值 | 例子 |
+|-------|-------|-------|
+| c |  15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5, 0d, 1d, 2d, 3d, 4d, 5d, 6d, 7d, 8d, 9d, ad, bd, cd, dd, ed, fd | c15, c65 |
+| bg-c |  15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5, 0d, 1d, 2d, 3d, 4d, 5d, 6d, 7d, 8d, 9d, ad, bd, cd, dd, ed, fd | bg-c15, bg-c65 |
+
+### link
+
+* pointer
+* link
+* disabled
+
+### position
+
+* relative
+* absolute
+
+### radius
+
+|        |    前缀     | 值 | 例子 |
+|-------|-------|-------|-------|
+|  圆角  | radius-   |  4,8 | radius, radius-4, radius-8 |
+
+### rotate
+|        |    前缀     | 值 | 例子 |
+|-------|-------|-------|-------|
+|  旋转  | rotate-   |  45, 90, 135, 180, 225, 270, 315 | rotate-45 |
+
+
