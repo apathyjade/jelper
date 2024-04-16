@@ -2,21 +2,85 @@
 title: handler
 ---
 
-import { useEffect } from 'react';
-import { useSingleHandler } from '@jelper/handler';
+import '@jelper/handler'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-export const handler = useSingleHandler();
+<Tabs>
+<TabItem value="npm" label="npm">
+```shell
+npm istall @jelper/handler
+```
+</TabItem>
 
-export const Demo = () => {
-  useEffect(() => {
-    handler.on(() => {
-      console.log('on');
-      return { state: 0 }
-    })
-  }, [])
-  return <p onClick={() => handler.call().then(console.log) }>测试下</p>;
-};
+<TabItem value="pnpm" label="pnpm">
+```shell
+pnpm istall @jelper/handler
+```
+</TabItem>
 
-<Demo />
+<TabItem value="yarn" label="yarn">
+```bash
+yarn istall @jelper/handler
+```
+</TabItem>
+</Tabs>
+
+## Example
+
+```tsx
+import { useSingleHandler, useMultipleHandler } from '@jelper/handler';
+
+const single = useSingleHandler(); // new SingleHandler();
+single.on(() => {
+  console.log('不执行');
+});
+single.on((data) => {
+  console.log(data)
+});
+single.call('single').then(() => ); // single
+single.off();
+
+const multiple = useMultipleHandler();
+multiple.on(() => {
+  console.log('同步');
+});
+multiple.on(async (data) => {
+  console.log('异步', data);
+});
+multiple.call('multiple').then(() => {
+  console.log('end');
+});
+// 同步 异步multiple end
+
+```
 
 
+## Api
+
+通信调用工具， SingleHandler、MultipleHandler为了方便拓展，推荐使用 useSingleHandler、useMultipleHandler
+
+### SingleHandler
+
+| 属性       |    类型     | 说明 |
+|-------|-------|-------|
+| on    | () => void    |  - |
+| off   | () => void    |  - |
+| call  | () => Promise    |  - |
+
+### MultipleHandler
+
+| 属性          |    类型     | 说明 |
+|-------|-------|-------|
+| size          | number                    | 绑定回调的数量 |
+| on            | () => void                |  - |
+| off           | (fn?: undefined) => void  |  - |
+| call          | () => Promise             |  Promise.all 调用  |
+| callWithRace  | () => Promise             |  Promise.race 调用 |
+
+### 方法
+
+| 方法          |    参数     | 返回值 |
+|-------|-------|-------|
+| useSingleHandler     | void     | SingleHandler   |
+| useMultipleHandler   | void     | MultipleHandler |

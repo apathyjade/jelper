@@ -27,9 +27,9 @@ yarn istall @jelper/promise
 </TabItem>
 </Tabs>
 
-### Example
+## Example
 
-#### toPromise
+### toPromise
 
 ```tsx
 import { toPromise } from '@jelper/promise';
@@ -49,7 +49,7 @@ toPromise(Promise.reject('reject')) // Promise.reject('reject');
 
 ```
 
-#### callLikeSerial
+### callLikeSerial
 
 ```tsx
 import { callLikeSerial } from '@jelper/promise';
@@ -69,7 +69,7 @@ callLikeSerial([
 
 ```
 
-#### buildPromiseHandler
+### buildPromiseHandler
 
 ```tsx
 import { buildPromiseHandler } from '@jelper/promise';
@@ -84,7 +84,7 @@ resolve(); // or reject();
 
 ```
 
-#### buildCacheAsyncFn
+### buildCacheAsyncFn
 
 ```tsx
 import { buildCacheAsyncFn } from '@jelper/promise';
@@ -107,9 +107,9 @@ console.log(getAsyncData());
 
 ```
 
-### Api
+## Api
 
-#### toPromise
+### toPromise
 
 处理钩子函数返回值，将不同类型数据转成<em>promise</em>实例，方便执行后续操作
 
@@ -118,7 +118,7 @@ console.log(getAsyncData());
 | toPromise  | any    | Promise |
 
 
-#### callLikeSerial
+### callLikeSerial
 
 链式调用方法
 
@@ -126,7 +126,7 @@ console.log(getAsyncData());
 |-------|-------|-------|
 | callLikeSerial  | Array\<() => Promise\>    | Promise |
 
-#### buildPromiseHandler
+### buildPromiseHandler
 
 构建 Promise 句柄，将 promise的 resolve reject 暴露出去
 
@@ -134,7 +134,7 @@ console.log(getAsyncData());
 |-------|-------|-------|
 | callLikeSerial  | --    | [promise, resolove, reject] |
 
-#### buildCacheAsyncFn
+### buildCacheAsyncFn
 
 构建缓存结果的异步函数
 
