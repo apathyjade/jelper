@@ -1,20 +1,143 @@
 ---
 title: promise
+description: promise-api
 ---
 
-import { useEffect } from 'react';
+import '@jelper/promise'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="npm" label="npm">
+```shell
+npm istall @jelper/promise
+```
+</TabItem>
+
+<TabItem value="pnpm" label="pnpm">
+```shell
+pnpm istall @jelper/promise
+```
+</TabItem>
+
+<TabItem value="yarn" label="yarn">
+```bash
+yarn istall @jelper/promise
+```
+</TabItem>
+</Tabs>
 
 ### Example
 
 #### toPromise
 
+```tsx
+import { toPromise } from '@jelper/promise';
 
+// 返回 resolove 情况
+toPromise(1) // Promise.resolove(1);
+toPromise(true) // Promise.resolove(true);
+toPromise('xxxx') // Promise.resolove('xxxx');
+toPromise({}) // Promise.resolove({});
+toPromise(() => () => 'ok') // Promise.resolove('ok');
+toPromise(Promise.resolove('resolove')) //Promise.resolove('resolove');
+
+// 返回 reject 情况
+toPromise(false) // Promise.reject(undefined);
+toPromise(() => () => false) // Promise.reject(undefined);
+toPromise(Promise.reject('reject')) // Promise.reject('reject');
+
+```
+
+#### callLikeSerial
+
+```tsx
+import { callLikeSerial } from '@jelper/promise';
+
+callLikeSerial([
+  () => console.log('begin'),
+  () => new Promise((r) => {
+    setTimeout(() => {
+      console.log('Promise');
+      r('result');
+    }, 1000);
+  }),
+  (data) => console.log(data),
+]).then(() => console.log('end'));
+
+// begin promise result end
+
+```
+
+#### buildPromiseHandler
+
+```tsx
+import { buildPromiseHandler } from '@jelper/promise';
+
+const [promise, resolve, reject] = buildPromiseHandler();
+
+Promise.then(() => {
+  // 执行
+})
+
+resolve(); // or reject();
+
+```
+
+#### buildCacheAsyncFn
+
+```tsx
+import { buildCacheAsyncFn } from '@jelper/promise';
+
+const getAsyncData = buildCacheAsyncFn(() => {
+  console.log('执行 fn')
+  return new Promise((r) => {
+    setTimeout(() => {
+      r('result');
+    }, 1000);
+  });
+});
+
+console.log(getAsyncData());
+console.log(getAsyncData());
+
+// 执行 fn
+// result
+// result
+
+```
 
 ### Api
 
-| name   |    cc     | 标题3 |
+#### toPromise
+
+处理钩子函数返回值，将不同类型数据转成<em>promise</em>实例，方便执行后续操作
+
+| 方法       |    参数     | 返回值 |
 |-------|-------|-------|
-| toPromise           | 单元格2 | 单元格3 |
-| callLikeSerial      | 单元格5 | 单元格6 |
-| buildPromiseHandler | 单元格5 | 单元格6 |
-| buildCacheAsyncFn   |  | 单元格6 |
+| toPromise  | any    | Promise |
+
+
+#### callLikeSerial
+
+链式调用方法
+
+| 方法       |    参数     | 返回值 |
+|-------|-------|-------|
+| callLikeSerial  | Array\<() => Promise\>    | Promise |
+
+#### buildPromiseHandler
+
+构建 Promise 句柄，将 promise的 resolve reject 暴露出去
+
+| 方法       |    参数     | 返回值 |
+|-------|-------|-------|
+| callLikeSerial  | --    | [promise, resolove, reject] |
+
+#### buildCacheAsyncFn
+
+构建缓存结果的异步函数
+
+| 方法       |    参数     | 返回值 |
+|-------|-------|-------|
+| buildCacheAsyncFn  | () => Promise  | () => Promise |
