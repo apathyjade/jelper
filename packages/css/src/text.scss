@@ -1,4 +1,4 @@
-
+@import './variable.scss';
 
 // 文本
 .text {
@@ -11,31 +11,17 @@
     display: inline-block;
     vertical-align: bottom;
   }
-  &-xs { // 24
-    padding: 3px 0;
-    line-height: 18px;
-    font-size: 12px;
-  }
-  &-s { // 28
-    padding: 4px 0;
-    line-height: 20px;
-    font-size: 14px;
-  }
-  &,
-  &-m { // 32
-    padding: 6px 0;
-    line-height: 20px;
-    font-size: 14px;
-  }
-  &-l { // 36
-    padding: 8px 0;
-    line-height: 20px;
-    font-size: 14px;
-  }
-  &-xl { // 40
-    padding: 8px 0;
-    line-height: 24px;
-    font-size: 16px;
+
+  @each $key, $value in $aj_size {
+    &-#{$key} { // 24
+      $size: map-get($value, size);
+      $fs: map-get($value, fs);
+      $lh: map-get($value, lh);
+      $pd: calc(($size - $lh)/2);
+      padding: #{$pd}px 0;
+      line-height: #{$lh}px;
+      font-size: #{$fs}px;
+    }
   }
 }
 

@@ -1,19 +1,73 @@
 
-$aj_colors: (
-  brand: #4279FD,
-  blue: #4279FD,
-  green: #0AB387,
-  orange: #C14A27,
-  yellow: #F7AB4F,
-  black: #656565,
-) !default;
+$aj_brand: #4279FD !default;
+$aj_blue: #4279FD !default;
+$aj_green: #0AB387 !default;
+$aj_red: #F52743 !default;
+$aj_orange: #C14A27 !default;
+$aj_yellow: #F7AB4F !default;
+$aj_black: #656565 !default;
 
-$js_size: (
-  xl: 40,
-  l: 36,
-  m: 32,
-  s: 28,
-  xs: 24,
-) !default;
+$aj_xl_size: 40 !default;
+$aj_l_size: 36 !default;
+$aj_m_size: 32 !default;
+$aj_s_size: 28 !default;
+$aj_xs_size: 24 !default;
+
+$aj_xl_fs: 16 !default;
+$aj_l_fs: 14 !default;
+$aj_m_fs: 14 !default;
+$aj_s_fs: 14 !default;
+$aj_xs_fs: 12 !default;
+
+$aj_xl_lh: 24 !default;
+$aj_l_lh: 20 !default;
+$aj_m_lh: 20 !default;
+$aj_s_lh: 20 !default;
+$aj_xs_lh: 18 !default;
 
 
+
+
+$aj_gray:
+15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5,
+0d, 1d, 2d, 3d, 4d, 5d, 6d, 7d, 8d, 9d, ad, bd, cd, dd, ed, fd !default;
+
+$aj_reduce: 4, 8 !default;
+
+
+$aj_color: (
+  brand: $aj_brand,
+  blue: $aj_blue,
+  green: $aj_green,
+  red: $aj_red,
+  orange: $aj_orange,
+  yellow: $aj_yellow,
+  black: $aj_black,
+);
+$aj_size: (
+  xs: (
+    size: $aj_xs_size,
+    fs: $aj_xs_fs,
+    lh: $aj_xs_lh,
+  ),
+  s: (
+    size: $aj_s_size,
+    fs: $aj_s_fs,
+    lh: $aj_s_lh,
+  ),
+  m: (
+    size: $aj_m_size,
+    fs: $aj_m_fs,
+    lh: $aj_m_lh,
+  ),
+  l: (
+    size: $aj_l_size,
+    fs: $aj_l_fs,
+    lh: $aj_l_lh,
+  ),
+  xl: (
+    size: $aj_xl_size,
+    fs: $aj_xl_fs,
+    lh: $aj_xl_lh,
+  ),
+)

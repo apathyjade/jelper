@@ -1,18 +1,5 @@
 
-$brand: #4279FD !default;
-$color: (
-  blue: #4279FD,
-  green: #0AB387,
-  orange: #C14A27,
-  yellow: #F7AB4F,
-  black: #656565,
-) !default;
-
-
-$c:
-15, 25, 35, 45, 55, 65, 75, 85, 95, a5, b5, c5, d5, e5, f5,
-0d, 1d, 2d, 3d, 4d, 5d, 6d, 7d, 8d, 9d, ad, bd, cd, dd, ed, fd;
-
+@import './variable.scss';
 
 @function rgbaToHex($rgbaColor,$background: rgb(255,255,255)) {
   $bgR : red($background);
@@ -33,26 +20,27 @@ $c:
 
 .disabled {
   cursor: not-allowed;
-  $color: map-get($color, black);
+  $color: map-get($aj_color, black);
   color: rgbaToHex(rgba($color: $color, $alpha: .2));
 }
 
 .pointer {
   &:hover {
     cursor: pointer;
-    color: $brand;
+    $color: map-get($aj_color, brand);
+    color: $color;
   }
 }
 
 .link {
   &:hover {
     cursor: pointer;
-    color: map-get($color, blue);
+    color: map-get($aj_color, blue);
   }
 }
 
 // 颜色
-@each $key, $value in $color{
+@each $key, $value in $aj_color{
   .#{"" + $key} {
     color: $value;
     &.pointer:hover,
@@ -71,12 +59,15 @@ $c:
     color: rgbaToHex(rgba($color: $value, $alpha: .2));
   }
 }
-@each $item in $c {
+@each $item in $aj_gray {
   .c#{$item} {
     color: #{'#'}#{$item}#{$item}#{$item};
   }
   .bg-c#{$item} {
     background-color: #{'#'}#{$item}#{$item}#{$item};
+  }
+  .border-c#{$item} {
+    border: 1px solid #{'#'}#{$item}#{$item}#{$item};
   }
 }
 
