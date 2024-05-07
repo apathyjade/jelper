@@ -28,6 +28,7 @@ export class MultipleHandler<T extends DefCb> {
     const cbs = this.value;
     return <ReturnType<T>>Promise.race(cbs.map(async(cb) => await cb(data)));
   }
+  static build: <T extends DefCb>() => SingleHandler<T> = () => new SingleHandler();
 }
 
 export class SingleHandler<T extends DefCb> {
@@ -50,9 +51,7 @@ export class SingleHandler<T extends DefCb> {
     }
     return Promise.resolve(this.value(data)) as ReturnType<T>;
   }
+  static build: <T extends DefCb>() => MultipleHandler<T> = () => new MultipleHandler();
 }
-
-export const useSingleHandler: <T extends DefCb>() => SingleHandler<T> = () => new SingleHandler();
-export const useMultipleHandler: <T extends DefCb>() => MultipleHandler<T> = () => new MultipleHandler();
 
 export default MultipleHandler;

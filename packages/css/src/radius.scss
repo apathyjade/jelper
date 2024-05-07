@@ -1,10 +1,11 @@
+@import './variable.scss';
 
 .radius {
   border-radius: 50%;
-  &-4 {
-    border-radius: 4px;
-  }
-  &-8 {
-    border-radius: 8px;
+  
+  @each $item in $aj_reduce {
+    &-#{$item} {
+      border-radius: #{$item}px;
+    }
   }
 }
