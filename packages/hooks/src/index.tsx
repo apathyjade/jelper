@@ -8,8 +8,7 @@ export { default as useSafeCb } from './useSafeCb';
 export { default as useRtRef } from './useRtRef';
 export { default as useRtState } from './useRtState';
 export { default as useRtCb } from './useRtCb';
-// export { default as useRtMemo } from './useRtMemo';
-// export { default as useRtEffect } from './useRtEffect';
+export { default as useRtEffect } from './useRtEffect'; // 保证卸载回调能拿到最新数据
 
 
 // 特殊state
