@@ -1,8 +1,8 @@
 {
   "name": "@jelper/builder",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "type": "module",
-  "description": "'CLI to build JavaScript helper package'",
+  "description": "CLI to build JavaScript helper package",
   "main": "./lib/index.js",
   "bin": {
     "jelper": "./bin/index.js"
