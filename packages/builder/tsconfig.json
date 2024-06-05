@@ -17,7 +17,6 @@
     "types": ["webpack-env"],
 		"allowSyntheticDefaultImports": true, 
     "esModuleInterop": true,
-    "resolveJsonModule": false,
 		"jsx": "react",
 		"declaration": false,
 		"pretty": true,
