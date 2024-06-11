@@ -9,7 +9,7 @@
 
 import { Command } from 'commander';
 import fs from 'fs-extra';
-import { serve, build, init, tsBuild } from './commands/index.js';
+import { serve, init, tsBuild } from './commands/index.js';
 
 const pkgJson = fs.readJSONSync('./package.json');
 
@@ -36,7 +36,6 @@ program.command('build')
   .description('构建仓库')
   .action(() => {
     process.env['NODE_ENV'] = 'production';
-    console.log(typeof build);
     // build();
     // $`../node_modules/.bin/tsc -p ./ --outDir ./lib`;
     tsBuild();
