@@ -71,7 +71,7 @@ export default async function () {
       console.error(err);
       return;
     }
-    console.log(stats.toString({
+    console.log(stats?.toString({
       chunks: false,
       colors: true, // 在控制台展示颜色
     }));

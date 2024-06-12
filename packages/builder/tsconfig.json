@@ -35,8 +35,10 @@
 		"forceConsistentCasingInFileNames": true,
 		"skipLibCheck": true,
     "resolveJsonModule": true,
-    "outDir": "./lib"
+    "outDir": "./lib",
+		"sourceMap": false,
+		"strict": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
   "exclude": ["node_modules", "lib", "es"]
 }

@@ -6,6 +6,7 @@
  * @Last Modified Time: 2022-06-17 12:55:08
  */
 
+// @ts-ignore
 import requireHelper from '../../utils/require-helper.cjs';
 import tsconfig from './tsconfig.js';
 

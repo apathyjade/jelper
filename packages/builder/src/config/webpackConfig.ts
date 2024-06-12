@@ -1,4 +1,4 @@
-
+// @ts-ignore
 import requireHelper from '../../utils/require-helper.cjs';
 import { babelrc } from './index.js';
 import { resolveByBasePath, resolveByRootPath } from '../common/index.js';

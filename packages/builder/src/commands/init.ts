@@ -38,7 +38,7 @@ const questions: Question<Answer>[] = [
   }, {
     type: 'confirm',
     name: 'ready',
-    message: '请输入包名',
+    message: '确认？',
   }
 ]
 

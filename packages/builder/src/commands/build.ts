@@ -1,8 +1,12 @@
+
+import ora from 'ora';
+import chalk from 'chalk';
 import webpack from 'webpack';
 import { merge } from 'webpack-merge';
 import { exec } from 'child_process';
 import { webpackConfigBase } from '../config/index.js';
 import { resolveByBasePath, getJelperCfg } from '../common/index.js';
+// @ts-ignore
 import requireHelper from '../../utils/require-helper.cjs';
 
 const getOpts = async () => {
@@ -53,17 +57,11 @@ const getOpts = async () => {
 const outputs = [
   {
     filename: 'index.js',
-    path: resolveByBasePath('./es'),
+    path: resolveByBasePath('./dist'),
     library: {
-      type: 'module',
+      type: 'umd',
     },
-  }, {
-    filename: 'index.js',
-    path: resolveByBasePath('./lib'),
-    library: {
-      type: 'commonjs2',
-    }
-  }
+  },
 ];
 
 const buildTypes = async () => {
@@ -81,8 +79,7 @@ const buildTypes = async () => {
 }
 
 export default async function () {
-  console.log('start build');
-  await buildTypes();
+  const esSpinner = ora('UMD Module Creating...').start();
   const opts = await getOpts() as any;
   outputs.forEach((output) => {
     webpack({
@@ -93,11 +90,12 @@ export default async function () {
       }
     }, (err, stats) => {
       if (err) {
-        console.error(err);
+        esSpinner.fail(chalk.red('UMD Module Create Fail'));
         return;
       }
+      esSpinner.succeed('UMD Module Create Success');
       console.log(
-        stats.toString({
+        stats?.toString({
           chunks: false, // 使构建过程更静默无输出
           colors: true,  // 在控制台展示颜色
         })

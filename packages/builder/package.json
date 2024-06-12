@@ -12,6 +12,7 @@
     "test": "cypress run --component"
   },
   "files": [
+    "tsconfig.json",
     "package.json",
     "README.md",
     "utils/**",
