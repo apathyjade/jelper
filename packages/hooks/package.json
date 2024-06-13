@@ -8,6 +8,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "jelper build",
+    "build:debug": "jelper build --debug",
+    "build:help": "jelper build --help",
     "serve": "jelper serve"
   },
   "keywords": [

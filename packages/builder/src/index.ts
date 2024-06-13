@@ -11,8 +11,9 @@ import { Command } from 'commander';
 import fs from 'fs-extra';
 import { serve, init, build, tsBuild } from './commands/index.js';
 
-const pkgJson = fs.readJSONSync('./package.json');
+import type { BuildOpts } from './types.js';
 
+const pkgJson = fs.readJSONSync('./package.json');
 const program = new Command();
 
 program
@@ -33,13 +34,12 @@ program.command('serve')
   });
 
 program.command('build')
+  .option('-d, --debug', 'debug 模式', false)
   .description('构建仓库')
-  .action(async () => {
+  .action(async (opts: BuildOpts) => {
     process.env['NODE_ENV'] = 'production';
-    // build();
-    // $`../node_modules/.bin/tsc -p ./ --outDir ./lib`;
-    await tsBuild();
-    await build();
+    await tsBuild(opts);
+    await build(opts);
   });
 
-program.parse();
+program.parse(process.argv);

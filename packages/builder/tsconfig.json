@@ -14,13 +14,11 @@
       "ES2017",
       "ES2016"
 		],
-    "types": ["node"],
 		"allowSyntheticDefaultImports": true, 
     "esModuleInterop": true,
 		"jsx": "react",
 		"declaration": true,
 		"declarationDir": "./types",
-		"pretty": true,
 		"newLine": "lf",
 		"stripInternal": true,
 		"noImplicitReturns": true,
@@ -40,5 +38,5 @@
 		"strict": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
-  "exclude": ["node_modules", "lib", "es"]
+  "exclude": ["node_modules", "lib", "es", "dist"]
 }
