@@ -9,9 +9,10 @@
 
 import { Command } from 'commander';
 import fs from 'fs-extra';
-import { serve, init, build, tsBuild } from './commands/index.js';
 
-import type { BuildOpts } from './types.js';
+import { serve, init, build, copy, tsBuild } from './commands/index.js';
+
+import type { BuildOpts, CopyOpts } from './types.js';
 
 const pkgJson = fs.readJSONSync('./package.json');
 const program = new Command();
@@ -40,6 +41,15 @@ program.command('build')
     process.env['NODE_ENV'] = 'production';
     await tsBuild(opts);
     await build(opts);
+    process.exit(0);
+  });
+
+program.command('build')
+  .option('-i, --input <chart>', '输入')
+  .option('-o, --output', '输出')
+  .description('复制')
+  .action(async (opts: CopyOpts) => {
+    copy(opts);
   });
 
 program.parse(process.argv);

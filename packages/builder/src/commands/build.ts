@@ -5,15 +5,16 @@ import webpack from 'webpack';
 import { merge } from 'webpack-merge';
 import { webpackConfigBase } from '../config/index.js';
 import { resolveByBasePath, getJelperCfg } from '../common/index.js';
-// @ts-ignore
-import requireHelper from '../../utils/require-helper.cjs';
 
 import type { BuildOpts } from '../types.js';
 
 const getOpts = async () => {
   const jelperCfg: any = await getJelperCfg();
+
+  console.log(JSON.stringify(await webpackConfigBase()));
+
   return merge(
-    webpackConfigBase,
+    await webpackConfigBase(),
     {
       mode: 'none' as 'none',
       entry: resolveByBasePath('./src'),
@@ -55,25 +56,20 @@ const getOpts = async () => {
     jelperCfg?.webpackCfg || {}
   );
 }
-const outputs = [
-  {
-    filename: 'index.js',
-    path: resolveByBasePath('./dist'),
-    library: {
-      type: 'umd2',
-    },
-  },
-];
 
 export default async function (buildOpts: BuildOpts) {
   const esSpinner = ora('UMD Module Creating...').start();
   const opts = await getOpts() as any;
-  outputs.forEach((output) => {
+  return new Promise((resolve, reject) => {
     webpack({
       ...opts,
       output: {
         ...opts.output,
-        ...output
+        filename: 'index.js',
+        path: resolveByBasePath('./dist'),
+        library: {
+          type: 'umd2',
+        },
       }
     }, (err, stats) => {
       if (err) {
@@ -81,6 +77,7 @@ export default async function (buildOpts: BuildOpts) {
         if (buildOpts.debug) {
           throw err;
         }
+        reject(err);
         return;
       }
       esSpinner.succeed('UMD Module Create Success');
@@ -92,6 +89,7 @@ export default async function (buildOpts: BuildOpts) {
           })
         );
       }
+      resolve(null);
     });
   });
 }

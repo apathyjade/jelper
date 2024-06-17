@@ -7,26 +7,30 @@ import type { BuildOpts } from '../types.js';
 
 const tsc = getModulePath('.bin/tsc');
 
-export default async (opts: BuildOpts) => {
-  const esSpinner = ora('ES Module Creating...').start();
-  try {
-    await $`${tsc} -p ./ --target es6 --module es6 --outDir ./es`;
-    esSpinner.succeed('ES Module Create Success');
-  } catch(e) {
-    esSpinner.fail(chalk.red('ES Module Create Fail'));
-    if (opts.debug) {
-      throw e;
-    }
-  }
 
-  const cmjSpinner = ora('CommonJS Module Creating...').start();
+const runGenerator = async (type: string, fn: Function, opts: BuildOpts) => {
+  const esSpinner = ora(`${type} Creating...`).start();
   try {
-    await $`${tsc} -p ./ --target es5 --module commonjs --outDir ./lib`;
-    cmjSpinner.succeed('CommonJS Module Create Success');
+    await fn();
+    esSpinner.succeed(`${type} Create Success`);
   } catch(e) {
-    esSpinner.fail(chalk.red('CommonJS Module Create Fail'));
+    esSpinner.fail(chalk.red(`${type} Create Fail`));
     if (opts.debug) {
       throw e;
+    } else {
+      process.exit(1);
     }
   }
+}
+
+
+
+export default async (opts: BuildOpts) => {
+  await runGenerator('ES Module', async () => {
+    await $`${tsc} -p ./ --target es6 --module es6 --outDir ./es`;
+  }, opts);
+
+  await runGenerator('CommonJS Module', async () => {
+    await $`${tsc} -p ./ --target es5 --module commonjs --outDir ./lib`;
+  }, opts);
 }

@@ -21,7 +21,7 @@ const getPackageJson = (() => {
 const getOpts = async() => {
   const jelperCfg: any = await getJelperCfg();
   return merge(
-    webpackConfigBase,
+    await webpackConfigBase(),
     {
       mode: 'development',
       entry: resolveByRootPath('./public/app.tsx'),

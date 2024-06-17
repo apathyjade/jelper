@@ -14,7 +14,7 @@
       "ES2017",
       "ES2016"
 		],
-		"allowSyntheticDefaultImports": true, 
+		"allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
 		"jsx": "react",
 		"declaration": true,

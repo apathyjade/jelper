@@ -11,8 +11,6 @@ import gulp from 'gulp';
 import template from 'gulp-template';
 import fs from 'fs';
 import { basePath, resolveByRootPath } from '../common/index.js';
-// import chalk from 'chalk';
-// import ora from 'ora';
 
 interface Answer {
   packageName: string;
@@ -23,7 +21,7 @@ interface Answer {
 const init = (answer: Omit<Answer, 'ready'> ) => {
   gulp.src(resolveByRootPath('./tpl/**'))
     .pipe(template(answer, {}))
-    .pipe(gulp.dest(`${basePath}/`))
+    .pipe(gulp.dest(`${basePath}/`));
 }
 
 const questions: Question<Answer>[] = [
