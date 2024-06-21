@@ -1,8 +1,11 @@
 
 import path from 'path';
+import { fileURLToPath } from 'url';
 export default {
   async resolve(name: string) {
     // @ts-ignore
-    return path.dirname(await import.meta.resolve(`${name}/package.json`))
+    const fullPath = await import.meta.resolve(`${name}/package.json`);
+    // @ts-ignore
+    return path.dirname(fileURLToPath(fullPath));
   }
 }

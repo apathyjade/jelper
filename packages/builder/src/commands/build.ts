@@ -11,8 +11,6 @@ import type { BuildOpts } from '../types.js';
 const getOpts = async () => {
   const jelperCfg: any = await getJelperCfg();
 
-  console.log(JSON.stringify(await webpackConfigBase()));
-
   return merge(
     await webpackConfigBase(),
     {

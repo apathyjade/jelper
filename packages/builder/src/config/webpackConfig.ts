@@ -3,13 +3,7 @@ import requireHelper from '../utils/require-helper.js';
 import { babelrc } from './index.js';
 import { resolveByBasePath, resolveByRootPath } from '../common/index.js';
 
-const include = [
-  resolveByRootPath('./'),
-  resolveByBasePath('./docs/'),
-  resolveByBasePath('./src/'),
-  requireHelper.resolve('@babel/plugin-transform-runtime'),
-  requireHelper.resolve('prism-themes'),
-]
+
 
 const aliasList = [
   'tslib',
@@ -42,6 +36,14 @@ export default async () => {
     requireHelper.resolve('sass-loader'),
   ]);
 
+  const include = [
+    resolveByRootPath('./'),
+    resolveByBasePath('./docs/'),
+    resolveByBasePath('./src/'),
+    await requireHelper.resolve('@babel/plugin-transform-runtime'),
+    await requireHelper.resolve('prism-themes'),
+  ]
+
   const alias = (
     await Promise.all(
       aliasList.map((name: string) => (
@@ -56,7 +58,7 @@ export default async () => {
   return {
     resolve: {
       alias,
-      extensions: ['.ts', '.tsx', '.js', 'jsx', 'json', 'css', 'less', 'scss'],
+      extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.css', '.less', '.scss'],
       extensionAlias: {
         '.js': ['.js', '.ts'],
         '.cjs': ['.cjs', '.cts'],
