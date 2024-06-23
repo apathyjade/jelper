@@ -1,6 +1,6 @@
 {
   "name": "@jelper/hooks",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "react hooks helper",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -8,6 +8,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "jelper build",
+    "build:debug": "jelper build --debug",
+    "build:help": "jelper build --help",
     "serve": "jelper serve"
   },
   "keywords": [

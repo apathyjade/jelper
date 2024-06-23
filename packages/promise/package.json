@@ -1,6 +1,6 @@
 {
   "name": "@jelper/promise",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "promise 帮助类",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -8,6 +8,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "jelper build",
+    "build:debug": "jelper build --debug",
     "serve": "jelper serve"
   },
   "keywords": [

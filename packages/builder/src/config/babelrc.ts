@@ -6,25 +6,37 @@
  * @Last Modified Time: 2022-06-17 12:55:08
  */
 
-import requireHelper from '../../utils/require-helper.cjs';
+// @ts-ignore
+import requireHelper from '../utils/require-helper.js';
 import tsconfig from './tsconfig.js';
 
-const opts = {
-  presets: [
-    [requireHelper.resolve('@babel/preset-env'), {
-      'targets': {
-        'chrome': '58',
-        'ie': '11',
-      }
-    }],
-    [requireHelper.resolve('@babel/preset-react')],
-    [requireHelper.resolve('@babel/preset-typescript'), tsconfig],
-  ],
-  plugins: [
-    [
-      requireHelper.resolve('@babel/plugin-transform-runtime')
+const getOpts = async() => {
+  const [
+    presetEnvPath,
+    presetReactPath,
+    presetTypescriptPath,
+    pluginTransformRuntimePath,
+  ] = await Promise.all([
+    requireHelper.resolve('@babel/preset-env'),
+    requireHelper.resolve('@babel/preset-react'),
+    requireHelper.resolve('@babel/preset-typescript'),
+    requireHelper.resolve('@babel/plugin-transform-runtime'),
+  ]);
+  return {
+    presets: [
+      [presetEnvPath, {
+        'targets': {
+          'chrome': '58',
+          'ie': '11',
+        }
+      }],
+      [presetReactPath],
+      [presetTypescriptPath, tsconfig],
+    ],
+    plugins: [
+      [pluginTransformRuntimePath]
     ]
-  ]
-}
+  };
+};
 
-export default opts;
+export default getOpts;

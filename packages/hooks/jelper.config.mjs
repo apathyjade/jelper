@@ -1,4 +1,8 @@
 
 export default {
-  webpackCfg: {}
+  webpackCfg: {
+    externals: {
+      react: 'React'
+    }
+  }
 };

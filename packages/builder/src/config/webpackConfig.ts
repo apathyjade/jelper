@@ -1,15 +1,9 @@
-
-import requireHelper from '../../utils/require-helper.cjs';
+// @ts-ignore
+import requireHelper from '../utils/require-helper.js';
 import { babelrc } from './index.js';
 import { resolveByBasePath, resolveByRootPath } from '../common/index.js';
 
-const include = [
-  resolveByRootPath('./'),
-  resolveByBasePath('./docs/'),
-  resolveByBasePath('./src/'),
-  requireHelper.resolve('@babel/plugin-transform-runtime'),
-  requireHelper.resolve('prism-themes'),
-]
+
 
 const aliasList = [
   'tslib',
@@ -26,60 +20,93 @@ const aliasList = [
 ]
 
 
-export default {
-  resolve: {
-    alias: aliasList.reduce((res, name) => ({
-      ...res,
-      [name]: requireHelper.resolve(name),
-    }), {}),
-    extensions: ['.ts', '.tsx', '.js', 'jsx', 'json', 'css', 'less', 'scss'],
-    extensionAlias: {
-      '.js': ['.js', '.ts'],
-      '.cjs': ['.cjs', '.cts'],
-      '.mjs': ['.mjs', '.mts']
-    }
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(mdx)$/,
-        include,
-        use: [
-          {
-            loader: requireHelper.resolve('babel-loader'),
-            options: babelrc,
-          }, {
-            loader: requireHelper.resolve('@docusaurus/mdx-loader'),
-            options: {
-              markdownConfig: {},
+export default async () => {
+
+  const [
+    babelLoaderPath,
+    mdxBabelLoaderPath,
+    styleLoaderPath,
+    cssLoaderPath,
+    sassLoaderPath
+  ] = await Promise.all([
+    requireHelper.resolve('babel-loader'),
+    requireHelper.resolve('@docusaurus/mdx-loader'),
+    requireHelper.resolve('style-loader'),
+    requireHelper.resolve('css-loader'),
+    requireHelper.resolve('sass-loader'),
+  ]);
+
+  const include = [
+    resolveByRootPath('./'),
+    resolveByBasePath('./docs/'),
+    resolveByBasePath('./src/'),
+    await requireHelper.resolve('@babel/plugin-transform-runtime'),
+    await requireHelper.resolve('prism-themes'),
+  ]
+
+  const alias = (
+    await Promise.all(
+      aliasList.map((name: string) => (
+        (async () => [name, await requireHelper.resolve(name)])
+      )())
+    )
+  ).reduce((res: any, item: any) => ({
+    ...res,
+    [item[0]]: item[1],
+  }), {});
+
+  return {
+    resolve: {
+      alias,
+      extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.css', '.less', '.scss'],
+      extensionAlias: {
+        '.js': ['.js', '.ts'],
+        '.cjs': ['.cjs', '.cts'],
+        '.mjs': ['.mjs', '.mts']
+      }
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(mdx)$/,
+          include,
+          use: [
+            {
+              loader: babelLoaderPath,
+              options: await babelrc(),
+            }, {
+              loader: mdxBabelLoaderPath,
+              options: {
+                markdownConfig: {},
+              }
             }
-          }
-        ]
-      },
-      {
-        test: /\.(jsx?|[cm]?ts|tsx)$/,
-        include,
-        use: [
-          {
-            loader: requireHelper.resolve('babel-loader'),
-            options: babelrc,
-          }
-        ]
-      },
-      {
-        test: /\.(scss|css)$/,
-        include,
-        use: [
-          {
-            loader: requireHelper.resolve('style-loader'),
-          }, {
-            loader: requireHelper.resolve('css-loader'),
-            options: { modules: undefined }
-          }, {
-            loader: requireHelper.resolve('sass-loader'),
-          }
-        ]
-      },
-    ]
-  },
+          ]
+        },
+        {
+          test: /\.(jsx?|[cm]?ts|tsx)$/,
+          include,
+          use: [
+            {
+              loader: babelLoaderPath,
+              options: await babelrc(),
+            }
+          ]
+        },
+        {
+          test: /\.(scss|css)$/,
+          include,
+          use: [
+            {
+              loader: styleLoaderPath,
+            }, {
+              loader: cssLoaderPath,
+              options: { modules: undefined }
+            }, {
+              loader: sassLoaderPath,
+            }
+          ]
+        },
+      ]
+    },
+  }
 }

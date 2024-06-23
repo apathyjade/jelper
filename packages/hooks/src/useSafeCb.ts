@@ -6,10 +6,10 @@ const useSafeCb = <
   D extends any[]
 >(cb: T, deps?: D): T => {
   const isUnmount = useIsUnmount();
-  return useCallback((...arg: Parameters<T>) => {
+  return useCallback((...arg: any) => {
     if (!isUnmount()) {
       return cb(...arg)
     }
-  }, deps || []) as ReturnType<T>;
+  }, deps || []) as T;
 }
 export default useSafeCb;
