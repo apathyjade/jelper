@@ -9,6 +9,9 @@ const tsc = getModulePath('.bin/tsc');
 
 
 const runGenerator = async (type: string, fn: Function, opts: BuildOpts) => {
+  if (process.env['LOGER'] === 'none') {
+    return await fn();
+  }
   const esSpinner = ora(`${type} Creating...`).start();
   try {
     await fn();
