@@ -7,6 +7,7 @@ on:
 
 env:
   NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+  LOGER: none
 
 jobs:
   publish-npm:
