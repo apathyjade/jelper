@@ -55,10 +55,10 @@ const getOpts = async () => {
   );
 }
 
-export default async function (buildOpts: BuildOpts) {
-  const esSpinner = ora('UMD Module Creating...').start();
+const buildUmd = async (buildOpts: BuildOpts) => {
   const opts = await getOpts() as any;
   return new Promise((resolve, reject) => {
+
     webpack({
       ...opts,
       output: {
@@ -71,14 +71,12 @@ export default async function (buildOpts: BuildOpts) {
       }
     }, (err, stats) => {
       if (err) {
-        esSpinner.fail(chalk.red('UMD Module Create Fail'));
+        reject(err);
         if (buildOpts.debug) {
           throw err;
         }
-        reject(err);
         return;
       }
-      esSpinner.succeed('UMD Module Create Success');
       if (buildOpts.debug) {
         console.log(
           stats?.toString({
@@ -89,5 +87,17 @@ export default async function (buildOpts: BuildOpts) {
       }
       resolve(null);
     });
+  });
+}
+
+export default async function (buildOpts: BuildOpts) {
+  if (process.env['LOGER'] === 'none') {
+    return buildUmd(buildOpts);
+  }
+  const esSpinner = ora('UMD Module Creating...').start();
+  return buildUmd(buildOpts).then(() => {
+    esSpinner.succeed('UMD Module Create Success');
+  }, () => {
+    esSpinner.fail(chalk.red('UMD Module Create Fail'));
   });
 }
