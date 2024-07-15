@@ -1,11 +1,19 @@
 
+@function rgbaToHex($fs) {
+  @if ($fs % 4 == 0) {
+    @return $fs * 1.5;
+  }
+  @return $fs * 1.5 - 1;
+}
+
+
 $aj_brand: #4279FD !default;
 $aj_blue: #4279FD !default;
 $aj_green: #0AB387 !default;
 $aj_red: #F52743 !default;
 $aj_orange: #C14A27 !default;
 $aj_yellow: #F7AB4F !default;
-$aj_black: #656565 !default;
+$aj_black: #353535 !default;
 
 $aj_xl_size: 40 !default;
 $aj_l_size: 36 !default;
@@ -19,11 +27,11 @@ $aj_m_fs: 14 !default;
 $aj_s_fs: 14 !default;
 $aj_xs_fs: 12 !default;
 
-$aj_xl_lh: 24 !default;
-$aj_l_lh: 20 !default;
-$aj_m_lh: 20 !default;
-$aj_s_lh: 20 !default;
-$aj_xs_lh: 18 !default;
+$aj_xl_lh: rgbaToHex($aj_xl_fs);
+$aj_l_lh: rgbaToHex($aj_l_fs);
+$aj_m_lh: rgbaToHex($aj_m_fs);
+$aj_s_lh: rgbaToHex($aj_s_fs);
+$aj_xs_lh: rgbaToHex($aj_xs_fs);
 
 
 
