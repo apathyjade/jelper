@@ -1,0 +1,16 @@
+
+
+$gapSize: 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 48, 56, 64;
+
+
+@each $item in $size {
+  .gap-col#{$item} {
+    column-gap: $item + px;
+  }
+  .gap-row#{$item} {
+    padding: $item + px;
+  }
+  .gap#{$item} {
+    padding: $item + px;
+  }
+}
