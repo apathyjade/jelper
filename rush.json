@@ -37,13 +37,13 @@
       "reviewCategory": "production",
       "shouldPublish": true
     },
-    // {
-    //   "packageName": "@jelper/website",
-    //   "projectFolder": "packages/website",
-    //   "tags": ["website"],
-    //   "reviewCategory": "production",
-    //   "shouldPublish": false
-    // },
+    {
+      "packageName": "@jelper/website",
+      "projectFolder": "packages/website",
+      "tags": ["website"],
+      "reviewCategory": "production",
+      "shouldPublish": false
+    },
     {
       "packageName": "@jelper/css",
       "projectFolder": "packages/css",
@@ -76,6 +76,13 @@
       "packageName": "@jelper/promise",
       "projectFolder": "packages/promise",
       "tags": ["tools", "helper", "promise"],
+      "reviewCategory": "production",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@jelper/context-composer",
+      "projectFolder": "packages/context-composer",
+      "tags": ["tools", "helper", "context"],
       "reviewCategory": "production",
       "shouldPublish": true
     },

@@ -1,0 +1,39 @@
+{
+  "name": "@jelper/context-composer",
+  "version": "1.3.0",
+  "description": "react context helper",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+	"types": "types/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "jelper build",
+    "build:debug": "jelper build --debug",
+    "build:help": "jelper build --help",
+    "serve": "jelper serve"
+  },
+  "keywords": [
+    "store",
+    "helper"
+  ],
+  "files": [
+    "package.json",
+    "README.md",
+    "es/**",
+    "lib/**",
+    "types/**"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@jelper/builder": "workspace:*",
+    "@types/node": "~18.0.0",
+    "@types/react": "~18.2.17"
+  },
+  "dependencies": {
+    "react": "~18.2.0"
+  },
+  "author": "apathyjade@outlook.com",
+  "license": "ISC"
+}
