@@ -1,183 +1,40 @@
 ---
 title: context-composer
-sort: 1
+order: 6
 ---
 
-React Hooks 库，包含react基础hooks的拓展，生命周期的模拟，浏览器api的封装等能力；
+React Context 工具方法
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import ImportTabs from '@theme/ImportTabs';
 
-<Tabs>
-<TabItem value="npm" label="npm">
-```shell
-npm istall @jelper/hooks
+<ImportTabs name="@jelper/context-composer" />
+
+### 样例
+
+```tsx live noInline
+
+// hooks/useStateCtx.tsx
+const useStateHooks = (props) => {
+  const [count, setCount] = useState(props.count);
+  return [count, setCount];
+}
+const { forwardComposer, useComposerCtx } = createCtxComposer(useStateHooks);
+
+// pages/father.tsx
+const Father = (porps) => {
+  const [count, setCount] = useComposerCtx();
+  return (
+    <div>
+      <div>{JSON.stringify(porps)}</div>
+      {count}
+      <div onClick={() => setCount(count + 1)} > + </div>
+    </div>
+  )
+}
+const Demo = forwardComposer(Father);
+
+// 
+render(
+  <Demo count={6} />
+)
 ```
-</TabItem>
-
-<TabItem value="pnpm" label="pnpm">
-```shell
-pnpm istall @jelper/hooks
-```
-</TabItem>
-
-<TabItem value="yarn" label="yarn">
-```bash
-yarn istall @jelper/hooks
-```
-</TabItem>
-</Tabs>
-
-{/* ## Example
-
-### useSafeState
-
-### useSafeCb
-
-### useRtRef
-
-### useRtState
-
-### useRtCb
-
-### useRtMemo
-
-### useRtEffect
-
-### useBoolState
-
-### useParamsState
-
-### useUpdateEffect
-
-### useIsUnmount
-
-### useCreate
-
-### useMount
-
-### useUnmount
-
-### useThrottle
-
-### useDebounce
-
-### useAsync
-
-### useTimeout
-
-### useInterval
-
-### useListener
-
-### useResizeObserver */}
-
-## Api
-
-### useSafeState
-用法同 React.useState，但在组件卸载后不会修改数据
-
-### useSafeCb
-用法同 React.useCallback，但在组件卸载后不会执行回调函数
-
-### useRtRef
-用法同 React.useRef，但每次函数组件执行时 useRtRef传入参数都会同步赋值 ref.current
-
-### useRtState
-
-### useRtCb
-用法同 React.useCallback，每次函数组件执行时 useRtCb传入参数都会同步缓存回调缓存，但不会更新useRtCb返回函数，保证回调函数使用最新快照数据，但不会触发dom diff不一致
-
-### useBoolState
-
-| 方法       |    类型     | 说明 |
-|-------|-------|-------|
-| useBoolState   | (bool: boolean ) => [Boolean, (bool?: boolean) => void]    |  更新时不传值，取反  |
-
-### useParamsState
-
-| 方法       |    类型     | 说明 |
-|-------|-------|-------|
-| useParamsState   | \<T\>(data: T) => [T, (data: Partial\<T\>) => void), (data: T) => void]  |  -  |
-
-### useUpdateEffect
-用法同 React.useEffect，但首次不会执行，只有依赖更新才会执行
-
-### useIsUnmount
-
-| 方法       |    类型     | 说明 |
-|-------|-------|-------|
-| useIsUnmount   | () => () => boolean  |  获取组件是否卸载状态  |
-
-
-### useCreate
-
-生命周期钩子
-
-| 方法       |    类型     | 说明 |
-|-------|-------|-------|
-| useCreate   | (fn: () => void) => void  |  只同步执行一次 |
-
-### useMount
-
-生命周期钩子
-
-| 方法       |    类型     | 说明 |
-|-------|-------|-------|
-| useMount   | (fn: () => void) => void  | 函数使用最新快照数据 |
-
-
-
-### useUnmount
-
-生命周期钩子
-
-| 方法       |    类型     | 说明 |
-|-------|-------|-------|
-| useUnmount   | (fn: () => void) => void  | 函数使用最新快照数据 |
-
-### useThrottle
-
-lodash throttle
-
-| 方法       |    类型     | 说明 |
-|-------|-------|-------|
-| useThrottle | \<T\>(cb: T, wait?: number, opts?: ThrottleSettings) => T  | - |
-
-### useDebounce
-lodash debounce封装hooks
-
-| 方法       |    类型     | 说明 |
-|-------|-------|-------|
-| useDebounce | \<T\>(cb: T, wait?: number, opts?: DebounceSettings) => T  | - |
-
-### useAsync
-
-| 方法       |    类型     | 说明 |
-|-------|-------|-------|
-| useAsync | (cb: Function, opts: \{ immediate: Boolean; catchParam: Boolean \}) => \{ loading: Boolean, error: Error, data: any, run: Function \}  | - |
-
-
-### useTimeout
-| 方法       |    类型     | 说明 |
-|-------|-------|-------|
-| useTimeout |  (cb: Function, delay: number) => Function  | 返回清除函数，组件销毁自动清除 |
-
-
-### useInterval
-| 方法       |    类型     | 说明 |
-|-------|-------|-------|
-| useInterval |  (cb: Function, delay: number) => Function  | 返回清除函数，组件销毁自动清除 |
-
-### useListener
-
-| 方法       |    类型     | 说明 |
-|-------|-------|-------|
-| useInterval |  同 addEventListener  | 返回清除函数，组件销毁自动清除 |
-
-### useResizeObserver
-
-
-| 方法       |    类型     | 说明 |
-|-------|-------|-------|
-| useResizeObserver |  (dom: HTMLElement, cb: (dom: ResizeObserverEntry) => void) => [ob: () => void, unOb: () => void]  | 返回监听和清除函数，组件销毁自动清除 |
