@@ -80,6 +80,13 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@jelper/context-composer",
+      "projectFolder": "packages/context-composer",
+      "tags": ["tools", "helper", "context"],
+      "reviewCategory": "production",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@jelper/hooks",
       "projectFolder": "packages/hooks",
       "tags": [

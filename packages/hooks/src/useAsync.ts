@@ -3,26 +3,28 @@ import useSafeState from './useSafeState';
 import useRtCb from './useRtCb';
 import useCreate from './useCreate';
 
-interface Opt<T extends (...arg: any) => any, R> {
-  defParam?: Parameters<T>;
+type Parameter<T extends (p: any) => any> = Parameters<T>[0]
+
+interface Opt<T extends (p: any) => any, R> {
+  defParam?: Parameter<T>;
   immediate?: boolean;
   format?: (p: ReturnType<T>) => R;
   catchParam?: boolean;
 }
 
 const useAsync = <
-  T extends (...arg: any) => Promise<any>,
+  T extends (p: any) => Promise<any>,
   R extends Object
 >(asyncFn: T, opt: Opt<T, R> = {
   immediate: false,
   catchParam: false,
 }) => {
   const [data, setData] = useSafeState<R|null|undefined>(null);
-  const [param, setParam] = useSafeState<Partial<Parameters<T>>|undefined>(opt.defParam || {});
+  const [param, setParam] = useSafeState<Partial<Parameter<T>>|undefined>(opt.defParam || {});
   const [loading, setLoading] = useSafeState(false);
   const [error, setError] = useSafeState(null);
 
-  const run = useRtCb((runParam?: Partial<Parameters<T>>) => {
+  const run = useRtCb((runParam?: Partial<Parameter<T>>) => {
     const currParam = opt.catchParam ? {
       ...param,
       ...(runParam || {}),
@@ -46,4 +48,5 @@ const useAsync = <
   });
   return { data, run, loading, error }
 };
+
 export default useAsync;

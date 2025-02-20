@@ -12,5 +12,5 @@ export default function useUpdateEffect (
       return;
     }
     return cb();
-  }, deps);
+  }, deps || []);
 };

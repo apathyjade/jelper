@@ -10,6 +10,7 @@ const useSafeCb = <
     if (!isUnmount()) {
       return cb(...arg)
     }
+    return undefined;
   }, deps || []) as T;
 }
 export default useSafeCb;

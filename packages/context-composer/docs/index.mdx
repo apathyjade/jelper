@@ -1,0 +1,40 @@
+---
+title: context-composer
+order: 6
+---
+
+React Context 工具方法
+
+import ImportTabs from '@theme/ImportTabs';
+
+<ImportTabs name="@jelper/context-composer" />
+
+### 样例
+
+```tsx live noInline
+
+// hooks/useStateCtx.tsx
+const useStateHooks = (props) => {
+  const [count, setCount] = useState(props.count);
+  return [count, setCount];
+}
+const { forwardComposer, useComposerCtx } = createCtxComposer(useStateHooks);
+
+// pages/father.tsx
+const Father = (porps) => {
+  const [count, setCount] = useComposerCtx();
+  return (
+    <div>
+      <div>{JSON.stringify(porps)}</div>
+      {count}
+      <div onClick={() => setCount(count + 1)} > + </div>
+    </div>
+  )
+}
+const Demo = forwardComposer(Father);
+
+// 
+render(
+  <Demo count={6} />
+)
+```
