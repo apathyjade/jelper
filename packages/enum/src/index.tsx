@@ -6,12 +6,11 @@
  * @Last Modified Time: 2022-06-06 11:07:49
  */
 
-export interface EnumItem {
+export type EnumItem<T = Record<string, any>> = {
   label: string;
   key: string;
-  value?: number | string | boolean | null;
-  [prop: string]: any;
-}
+  value?: any;
+} & T;
 
 export class EnumHelper<T extends EnumItem = EnumItem> {
   protected data: T[] = [];
@@ -36,8 +35,8 @@ export class EnumHelper<T extends EnumItem = EnumItem> {
   public getValue(key: string): EnumItem['value'] | undefined {
     return this.get(key)?.value;
   }
-  static build<T extends EnumItem, U extends {}>(data: T[], expand?: U ): (U & EnumHelper) {
-    return Object.assign(new EnumHelper<T>(data), expand);
+  static build<T = {}, U = {}>(data: Array<EnumItem<T>>, expand?: U ): (EnumHelper<EnumItem<T>> & U) {
+    return Object.assign(new EnumHelper<EnumItem<T>>(data), expand);
   }
 }
 
