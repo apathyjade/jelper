@@ -2,11 +2,11 @@
 title: enum
 ---
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### install
+## 使用
+### 安装
 
 <Tabs>
 <TabItem value="npm" label="npm">
@@ -28,9 +28,7 @@ yarn istall @jelper/enum
 </TabItem>
 </Tabs>
 
-
-## 样例
-
+### 引入
 ```tsx
 import EnumHelper from '@jelper/enum';
 
@@ -50,9 +48,37 @@ const enumHelperSuper = EnumHelper.build([
   { label: 'C', key: 'c', value: 3 },
 ], {
   getName() { return 'enumHelperSuper';}
+}); 
+
+```
+
+## 样例
+
+```tsx live noInline
+
+const enumHelper = new EnumHelper([
+  { label: 'A', key: 'a', value: 1 },
+  { label: 'B', key: 'b', value: 2 },
+  { label: 'C', key: 'c', value: 3 },
+]);
+
+console.log(enumHelper.get(1)); // { label: 'A', key: 'a', value: 1 },
+console.log(enumHelper.getLabel('a')); // A
+
+// 拓展
+const enumHelperSuper = EnumHelper.build([
+  { label: 'A', key: 'a', value: 1 },
+  { label: 'B', key: 'b', value: 2 },
+  { label: 'C', key: 'c', value: 3 },
+], {
+  getName() {
+    enumHelperSuper.get(a);
+  }
 }); // 或者使用继承
 
-console.log(enumHelper.getName()); // enumHelperSuper
+render(<div>
+  {}
+</div>)
 
 ```
 

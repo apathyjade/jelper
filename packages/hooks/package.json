@@ -1,16 +1,16 @@
 {
   "name": "@jelper/hooks",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "react hooks helper",
   "main": "lib/index.js",
   "module": "es/index.js",
 	"types": "types/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "jelper serve",
     "build": "jelper build",
     "build:debug": "jelper build --debug",
     "build:help": "jelper build --help",
-    "serve": "jelper serve"
+    "test": "jelper test"
   },
   "keywords": [
     "store",
@@ -30,11 +30,17 @@
     "@jelper/builder": "workspace:*",
     "@types/node": "~18.0.0",
     "@types/react": "~18.2.17",
-    "@types/lodash-es": "~4.17.8"
+    "@types/lodash-es": "~4.17.8",
+    "@jest/globals": "~29.7.0"
   },
   "dependencies": {
     "react": "~18.2.0",
-    "lodash-es": "~4.17.21"
+    "lodash-es": "~4.17.21",
+    "@testing-library/react": "~16.2.0",
+    "@testing-library/dom": "~10.4.0",
+    "jsdom": "~26.0.0",
+    "@jest/environment": "~29.7.0",
+    "jest-environment-jsdom": "~29.7.0"
   },
   "author": "apathyjade@outlook.com",
   "license": "ISC"

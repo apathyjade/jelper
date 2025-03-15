@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const useCreate = (cb: Function) => {
+const useCreate = (cb: () => void) => {
   useState<any>(cb);
 }
 

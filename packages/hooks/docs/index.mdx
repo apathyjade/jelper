@@ -7,6 +7,36 @@ React Hooks 库，包含react基础hooks的拓展，生命周期的模拟，浏�
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { useState } from 'react';
+import { useAsync } from '@jelper/hooks';
+
+export const Example = () => {
+  const [run] = useAsync((params) => {
+    return new Promise((r) => {
+      setTimeout(() => {
+        r({ ok: true })
+      }, 4000);
+    })
+  });
+  return <div
+    onClick={() => {
+      run({ a: 12345 }).then(
+        (data) => console.log(data, 'run then'),
+        (err) => console.log(err, 'run err')
+      )
+    }}
+  >Example</div>
+}
+
+export const Demo = () => {
+  const [bool, setBool] = useState(false);
+  return <>
+    <div onClick={() => setBool(!bool)}>change</div>
+    { bool ? <Example /> : <>sad</>}
+  </>
+}
+
+<Demo />
 
 <Tabs>
 <TabItem value="npm" label="npm">

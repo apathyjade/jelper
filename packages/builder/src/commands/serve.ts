@@ -23,6 +23,7 @@ const getOpts = async() => {
   return merge(
     await webpackConfigBase(),
     {
+      name:'server',
       mode: 'development',
       entry: resolveByRootPath('./public/app.tsx'),
       output: {

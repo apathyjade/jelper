@@ -2,15 +2,14 @@
 import { useRef, useEffect } from 'react';
 
 export default function useUpdateEffect (
-  cb: () => void,
-  deps: any[],
+  cb: React.EffectCallback,
+  deps?: React.DependencyList,
 ) {
-  const ref = useRef<boolean>(true)
+  const ref = useRef<boolean>(false)
   useEffect(() => {
     if (ref.current) {
-      ref.current = false;
-      return;
+      return cb();
     }
-    return cb();
-  }, deps || []);
+    ref.current = true;
+  }, deps);
 };

@@ -44,7 +44,7 @@
   .#{"" + $key} {
     color: $value;
     &.pointer:hover,
-    &-hover {
+    &.active {
       color: rgbaToHex(rgba($color: $value, $alpha: .8));
     }
   }

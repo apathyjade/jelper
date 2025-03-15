@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import useIsUnmount from './useIsUnmount';
+import useIsUnmount from './useIsUnmounted';
 
 const useSafeCb = <
   T extends DefFn,

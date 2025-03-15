@@ -19,7 +19,7 @@ export { default as useParamsState } from './useParamsState';
 export { default as useUpdateEffect } from './useUpdateEffect';
 
 //  生命周期
-export { default as useIsUnmount } from './useIsUnmount';
+export { default as useIsUnmount } from './useIsUnmounted';
 export { default as useCreate } from './useCreate';
 export { default as useMount } from './useMount';
 export { default as useUnmount } from './useUnmount';

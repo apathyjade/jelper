@@ -6,32 +6,31 @@
  */
 
 import { useCallback, useEffect, useRef } from 'react';
-import useRtCb from './useRtCb';
 
-/**
- * 使用定时器在指定延迟后执行回调函数
- * @param callback - 回调函数
- * @param delay - 延迟时间（毫秒）
- * @returns clearTimer - 清除定时器的函数
- */
- const useTimeout = (callback: DefFn, delay: number) => {
+const useTimeout = (): [
+  (callback: Function, timeout?: number, ...arg: any[]) => void,
+  () => void,
+] => {
   const timerRef = useRef<number>();
-  /**
-   * 清除定时器
-   */
   const clearTimer = useCallback(() => {
     if (timerRef.current) {
-      clearTimeout(timerRef.current);
+      window.clearTimeout(timerRef.current);
+      timerRef.current = undefined;
     }
   }, []);
-  const cb = useRtCb(callback)
-  useEffect(() => {
-    timerRef.current = window.setTimeout(cb, delay);
-    return () => {
-      clearTimer();
-    }
-  }, [delay])
-  return clearTimer;
-}
+
+  const bindTimer = useCallback((callback: Function, timeout?: number, ...arg: any[]) => {
+    clearTimer();
+    timerRef.current = window.setTimeout(() => {
+      timerRef.current = undefined;
+      callback(...arg);
+    }, timeout);
+  }, []);
+  useEffect(() => clearTimer);
+  return [
+    bindTimer,
+    clearTimer,
+  ];
+};
 
 export default useTimeout;
