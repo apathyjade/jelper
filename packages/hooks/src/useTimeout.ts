@@ -1,9 +1,3 @@
-/*
- * @Author: apathyjade
- * @Date: 2023-12-14 16:51:29
- * @Last Modified by: apathyjade
- * @Last Modified time: 2023-12-14 17:15:27
- */
 
 import { useCallback, useEffect, useRef } from 'react';
 

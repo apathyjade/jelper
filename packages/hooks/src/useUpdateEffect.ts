@@ -1,10 +1,10 @@
 
 import { useRef, useEffect } from 'react';
 
-export default function useUpdateEffect (
+const useUpdateEffect = (
   cb: React.EffectCallback,
   deps?: React.DependencyList,
-) {
+) => {
   const ref = useRef<boolean>(false)
   useEffect(() => {
     if (ref.current) {
@@ -13,3 +13,5 @@ export default function useUpdateEffect (
     ref.current = true;
   }, deps);
 };
+
+export default useUpdateEffect;

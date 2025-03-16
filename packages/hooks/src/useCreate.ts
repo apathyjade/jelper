@@ -1,9 +1,8 @@
 
-
 import { useState } from 'react';
 
 const useCreate = (cb: () => void) => {
-  useState<any>(cb);
+  useState(cb);
 }
 
 export default useCreate;

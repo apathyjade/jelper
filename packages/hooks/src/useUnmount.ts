@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from 'react';
 
 const useUnmount = (cb: () => void) => {
@@ -8,6 +9,6 @@ const useUnmount = (cb: () => void) => {
       ref.current();
     };
   }, []);
-}
+};
 
 export default useUnmount;
