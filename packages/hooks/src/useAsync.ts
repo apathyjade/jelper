@@ -1,7 +1,15 @@
+/**
+ * @Author: apathyjade
+ * @Date: 2025-03-18 23:44:38
+ * @Last Modified by: apathyjade
+ * @Last Modified time: 2025-03-19 22:53:22
+ */
 
-import useSafeState from './useSafeState';
+import { useEffect, useState } from 'react';
 import useRtCb from './useRtCb';
 import useCreate from './useCreate';
+import useIsUnmounted from './useIsUnmounted';
+import useUnmount from './useUnmount';
 
 type Parameter<T extends (p: any) => any> = Parameters<T>[0]
 
@@ -10,19 +18,45 @@ interface Opt<T extends (p: any) => any, R> {
   immediate?: boolean;
   format?: (p: ReturnType<T>) => R;
   catchParam?: boolean;
+  onAbort?: (this: AbortSignal, ev: Event) => any;
 }
 
-const useAsync = <
-  T extends (p: any) => Promise<any>,
-  R extends Object
->(asyncFn: T, opt: Opt<T, R> = {
+const defOpt = {
   immediate: false,
   catchParam: false,
-}) => {
-  const [data, setData] = useSafeState<R|null|undefined>(null);
-  const [param, setParam] = useSafeState<Partial<Parameter<T>>|undefined>(opt.defParam || {});
-  const [loading, setLoading] = useSafeState(false);
-  const [error, setError] = useSafeState(null);
+}
+
+const useAsync = <T extends (p: any, opt?: { signal: AbortController['signal'] }) => Promise<any>, R = any>(
+  asyncFn: T,
+  opt: Opt<T, R> = defOpt
+): [
+  R | undefined,
+  {
+    run: (runParam?: Partial<Parameter<T>>) => Promise<void>;
+    refresh: () => Promise<void>;
+    loading: boolean;
+    error?: Error;
+    param: Partial<Parameter<T>>;
+  }
+] => {
+  const [data, setData] = useState<R>();
+  const [param, setParam] = useState<Partial<Parameter<T>>>(opt.defParam || {});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error>();
+
+  const [controller, setController] = useState<AbortController>();
+  const isUnmounted = useIsUnmounted();
+
+  useEffect(() => {
+    if (!controller || !opt.onAbort) {
+      return;
+    }
+    const onAbort = opt.onAbort
+    controller.signal.addEventListener('abort', onAbort);
+    return () => {
+      controller.signal.removeEventListener('abort', onAbort);
+    }
+  }, [controller]);
 
   const run = useRtCb((runParam?: Partial<Parameter<T>>) => {
     const currParam = opt.catchParam ? {
@@ -30,23 +64,42 @@ const useAsync = <
       ...(runParam || {}),
     } : runParam;
     setLoading(true);
-    setError(null);
-    return asyncFn(currParam)
-      .then(opt.format)
+    setError(undefined);
+
+    if (controller) {
+      controller.abort();
+    }
+
+    const abortController = new AbortController();
+    setController(abortController);
+
+    return asyncFn(currParam, { signal: abortController.signal })
       .then((resData) => {
-        setData(resData);
+        if (isUnmounted() || abortController.signal.aborted) return;
+        setData(opt.format ? opt.format(resData) : resData);
         setParam(currParam as any);
-      }, setError)
-      .finally(() => {
-        setLoading(false)
-      })
-  })
+        setLoading(false);
+      }, (err) => {
+        if (isUnmounted() || abortController.signal.aborted) return Promise.reject(err);
+        setError(err);
+        setLoading(false);
+      }).finally(() => {
+        if (isUnmounted()) return;
+        setController(undefined);
+      });
+  });
+  const refresh = useRtCb(() => run(param));
   useCreate(() => {
     if (opt.immediate) {
       run(param);
     }
   });
-  return { data, run, loading, error }
+  useUnmount(() => {
+    if (controller) {
+      controller.abort();
+    }
+  });
+  return [data, { run, refresh, loading, error, param }];
 };
 
 export default useAsync;

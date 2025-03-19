@@ -1,0 +1,58 @@
+
+:root {
+  
+  --theme_blue: 22, 119, 255;
+  --theme_green: 82, 196, 26;
+  --theme_red: 245, 34, 45;
+  --theme_orange: 250, 140, 22;
+  --theme_yellow: 250, 219, 20;
+  --theme_purple: 114, 46, 209;
+  --theme_cyan: 19, 194, 194;
+  --theme_magenta: 235, 47, 150;
+  --theme_pink: 235, 47, 150;
+  --theme_volcano: 250, 84, 28;
+  --theme_geekblue: 47, 84, 235;
+  --theme_gold: 250, 173, 20;
+  --theme_lime: 160, 217, 17;
+
+  --theme_darker_fc: #353535;
+  --theme_dark_fc: #454545;
+  --theme_normal_fc: #656565;
+  --theme_light_fc: #858585;
+  --theme_lighter_fc: #959595;
+
+  --theme_xs_size_: 20px;
+  --theme_s_size: 24px;
+  --theme_m_size: 28px;
+  --theme_l_size: 32px;
+  --theme_xl_size: 36px;
+
+  --theme_xs_fs: 10px;
+  --theme_s_fs: 12px;
+  --theme_m_fs: 14px;
+  --theme_l_fs: 16px;
+  --theme_xl_fs: 18px;
+  
+  --theme_xs_lh: 14px;
+  --theme_s_lh: 18px;
+  --theme_m_lh: 20px;
+  --theme_l_lh: 24px;
+  --theme_xl_lh: 26px;
+
+  --theme_text_xs_space: 4px;
+  --theme_s_space: 8px;
+  --theme_m_space: 12px;
+  --theme_l_space: 16px;
+  --theme_xl_space: 20px;
+
+  --theme_block_xs_space: 8px;
+  --theme_block_s_space: 12px;
+  --theme_block_m_space: 16px;
+  --theme_block_l_space: 20px;
+  --theme_block_xl_space: 24px;
+
+  --theme_primary_color: rgb(var(--theme_blue));
+  --theme_secondary_color: rgb(var(--theme_blue));
+  --theme_link_color: rgb(var(--theme_blue));
+
+}

@@ -14,6 +14,7 @@ const getOpts = async () => {
   return merge(
     await webpackConfigBase(),
     {
+      name:'client',
       mode: 'none' as 'none',
       entry: resolveByBasePath('./src'),
       plugins: [],

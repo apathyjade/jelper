@@ -15,6 +15,6 @@ export default {
     declaration: true,
     declarationDir: './types'
   },
-  include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.d.ts'],
-  exclude: ['node_modules', 'lib']
+  // include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.d.ts'],
+  // exclude: ['node_modules', 'lib']
 }

@@ -10,7 +10,7 @@
 import { Command } from 'commander';
 import fs from 'fs-extra';
 
-import { serve, init, build, copy, tsBuild } from './commands/index.js';
+import { serve, init, build, test, copy, tsBuild } from './commands/index.js';
 
 import type { BuildOpts, CopyOpts } from './types.js';
 
@@ -42,6 +42,13 @@ program.command('build')
     await tsBuild(opts);
     await build(opts);
   });
+
+program.command('test')
+.description('运行测试脚本')
+.action(async (opts: BuildOpts) => {
+  process.env['NODE_ENV'] = 'test';
+  await test(opts);
+});
 
 program.command('build')
   .option('-i, --input <chart>', '输入')
