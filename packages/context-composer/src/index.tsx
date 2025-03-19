@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 
-
 type Composer<P> = (Com: FC<P>) => FC<P>;
 
 export const createCtxComposer = <P extends React.JSX.IntrinsicAttributes, T>(useCfgHook: (props: P) => T) => {
