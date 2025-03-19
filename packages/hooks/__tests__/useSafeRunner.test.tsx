@@ -4,7 +4,7 @@
 // import { useState } from 'react';
 import {describe, expect, test } from '@jest/globals';
 import { renderHook, act } from '@testing-library/react';
-import useSafeRunner from '../useSafeRunner';
+import useSafeRunner from '../src/useSafeRunner';
 
 describe('useSafeRunner', () => {
   test("验证hook销毁前正常执行", async () => {

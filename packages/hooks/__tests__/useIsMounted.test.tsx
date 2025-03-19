@@ -1,7 +1,7 @@
 
 import {expect, test} from '@jest/globals';
 import { renderHook } from '@testing-library/react';
-import useIsMounted from '../useIsMounted';
+import useIsMounted from '../src/useIsMounted';
 import { useEffect } from 'react';
 
 test("验证useIsMounted", async () => {
