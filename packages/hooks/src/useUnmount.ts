@@ -1,9 +1,15 @@
+/**
+ * @Author: apathyjade
+ * @Date: 2025-03-16 11:35:20
+ * @Last Modified by: apathyjade
+ * @Last Modified time: 2025-03-18 00:17:09
+ */
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
+import useRtRef from './useRtRef';
 
 const useUnmount = (cb: () => void) => {
-  const ref = useRef(cb);
-  ref.current = cb;
+  const ref = useRtRef(cb);
   useEffect(() => {
     return () => {
       ref.current();

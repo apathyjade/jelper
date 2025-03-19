@@ -1,8 +1,15 @@
+/**
+ * @Author: apathyjade
+ * @Date: 2025-03-18 23:44:38
+ * @Last Modified by: apathyjade
+ * @Last Modified time: 2025-03-19 22:53:22
+ */
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useRtCb from './useRtCb';
 import useCreate from './useCreate';
-import useAsyncCb from './useAsyncCb';
+import useIsUnmounted from './useIsUnmounted';
+import useUnmount from './useUnmount';
 
 type Parameter<T extends (p: any) => any> = Parameters<T>[0]
 
@@ -11,6 +18,7 @@ interface Opt<T extends (p: any) => any, R> {
   immediate?: boolean;
   format?: (p: ReturnType<T>) => R;
   catchParam?: boolean;
+  onAbort?: (this: AbortSignal, ev: Event) => any;
 }
 
 const defOpt = {
@@ -18,16 +26,37 @@ const defOpt = {
   catchParam: false,
 }
 
-const useAsync = <T extends (...p: any) => Promise<any>, R extends Object>(
+const useAsync = <T extends (p: any, opt?: { signal: AbortController['signal'] }) => Promise<any>, R = any>(
   asyncFn: T,
   opt: Opt<T, R> = defOpt
-) => {
+): [
+  R | undefined,
+  {
+    run: (runParam?: Partial<Parameter<T>>) => Promise<void>;
+    refresh: () => Promise<void>;
+    loading: boolean;
+    error?: Error;
+    param: Partial<Parameter<T>>;
+  }
+] => {
   const [data, setData] = useState<R>();
   const [param, setParam] = useState<Partial<Parameter<T>>>(opt.defParam || {});
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState<Error>();
 
-  const asyncCb = useAsyncCb(asyncFn);
+  const [controller, setController] = useState<AbortController>();
+  const isUnmounted = useIsUnmounted();
+
+  useEffect(() => {
+    if (!controller || !opt.onAbort) {
+      return;
+    }
+    const onAbort = opt.onAbort
+    controller.signal.addEventListener('abort', onAbort);
+    return () => {
+      controller.signal.removeEventListener('abort', onAbort);
+    }
+  }, [controller]);
 
   const run = useRtCb((runParam?: Partial<Parameter<T>>) => {
     const currParam = opt.catchParam ? {
@@ -36,22 +65,41 @@ const useAsync = <T extends (...p: any) => Promise<any>, R extends Object>(
     } : runParam;
     setLoading(true);
     setError(undefined);
-    return asyncCb(currParam)
+
+    if (controller) {
+      controller.abort();
+    }
+
+    const abortController = new AbortController();
+    setController(abortController);
+
+    return asyncFn(currParam, { signal: abortController.signal })
       .then((resData) => {
+        if (isUnmounted() || abortController.signal.aborted) return;
         setData(opt.format ? opt.format(resData) : resData);
         setParam(currParam as any);
         setLoading(false);
       }, (err) => {
+        if (isUnmounted() || abortController.signal.aborted) return Promise.reject(err);
         setError(err);
         setLoading(false);
+      }).finally(() => {
+        if (isUnmounted()) return;
+        setController(undefined);
       });
-  })
+  });
+  const refresh = useRtCb(() => run(param));
   useCreate(() => {
     if (opt.immediate) {
       run(param);
     }
   });
-  return [run, { data, loading, error }];
+  useUnmount(() => {
+    if (controller) {
+      controller.abort();
+    }
+  });
+  return [data, { run, refresh, loading, error, param }];
 };
 
 export default useAsync;

@@ -2,11 +2,10 @@
  * @Author: apathyjade
  * @Date: 2023-11-24 10:52:51
  * @Last Modified by: apathyjade
- * @Last Modified time: 2024-03-14 16:34:42
+ * @Last Modified time: 2025-03-19 23:17:45
  */
 
-import { useEffect } from 'react';
-import useSafeCb from './useSafeCb';
+import { useCallback, useEffect } from 'react';
 
 let resizeObserver: ResizeObserver|null = null;
 let observeCatch: Map<HTMLElement, Function>|null = null;
@@ -24,7 +23,7 @@ function init() {
       });
     },
   );
-}
+};
 
 const observe = (target: HTMLElement, cb: (dom: ResizeObserverEntry) => void) => {
   if (!resizeObserver) {
@@ -42,10 +41,10 @@ const unobserve = (target: HTMLElement) => {
 };
 
 export default function useResizeObserver (dom: HTMLElement, cb: (dom: ResizeObserverEntry) => void) {
-  const selfObserve = useSafeCb(() => {
+  const selfObserve = useCallback(() => {
     observe(dom, cb);
   }, [dom, cb]);
-  const selfUnobserve = useSafeCb(() => {
+  const selfUnobserve = useCallback(() => {
     unobserve(dom);
   }, [dom]);
   useEffect(() => {

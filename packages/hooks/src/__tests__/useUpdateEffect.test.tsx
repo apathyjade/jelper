@@ -4,7 +4,7 @@
 
 import {describe, expect, test} from '@jest/globals';
 import { renderHook } from '@testing-library/react';
-import useUpdateEffect from '../useUpdateEffect';
+import useUpdateEffect from '../useUpdateEff';
 import { buildPromise } from './utils';
 import { useEffect, useState } from 'react';
 
