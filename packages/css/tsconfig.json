@@ -1,5 +1,19 @@
-{
+{  
   "compilerOptions": {
-    "lib": ["es5", "es6", "dom"]
+    "lib": ["es5", "es6", "dom"],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "pretty": true,
+    "sourceMap": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es5",
+    "outDir": "./lib",
+    "jsx": "react",
+    "declaration": true,
+    "declarationDir": "./types"
   },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
 }

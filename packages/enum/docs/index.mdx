@@ -2,78 +2,87 @@
 title: enum
 ---
 
+import CodeDemo from '@theme/CodeDemo';
+import ImportTabs from '@theme/ImportTabs';
+import ApiTable from '@theme/ApiTable';
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-### install
-
-<Tabs>
-<TabItem value="npm" label="npm">
-```shell
-npm istall @jelper/enum
-```
-</TabItem>
-
-<TabItem value="pnpm" label="pnpm">
-```shell
-pnpm istall @jelper/enum
-```
-</TabItem>
-
-<TabItem value="yarn" label="yarn">
-```bash
-yarn istall @jelper/enum
-```
-</TabItem>
-</Tabs>
+### 安装
+<ImportTabs name="@jelper/component" />
 
 
-## 样例
+### 样例
 
-```tsx
-import EnumHelper from '@jelper/enum';
+import Demo from './Demo.tsx';
 
-const enumHelper = new EnumHelper([
-  { label: 'A', key: 'a', value: 1 },
-  { label: 'B', key: 'b', value: 2 },
-  { label: 'C', key: 'c', value: 3 },
-]);
+<CodeDemo title="基础用法" desc="" text={$include('./Demo.tsx')}><Demo /></CodeDemo>
 
-console.log(enumHelper.get(1)); // { label: 'A', key: 'a', value: 1 },
-console.log(enumHelper.getLabel('a')); // A
-
-// 拓展
-const enumHelperSuper = EnumHelper.build([
-  { label: 'A', key: 'a', value: 1 },
-  { label: 'B', key: 'b', value: 2 },
-  { label: 'C', key: 'c', value: 3 },
-], {
-  getName() { return 'enumHelperSuper';}
-}); // 或者使用继承
-
-console.log(enumHelper.getName()); // enumHelperSuper
-
-```
 
 ## Api
 
 ### EnumHelper
 
-实例属性
-| 属性       |    类型     | 说明 |
-|-------|-------|-------|
-| constructor    | (list: EnumItem[]) => void    |  - |
-| valueOf   | () => EnumItem[]    |  - |
-| getData  | () => EnumItem[]    |  - |
-| get  | (key: string, value\?: EnumItem['value']) => EnumItem \| undefined    |  - |
-| getLabel  | (key: string) => EnumItem['label'] \| undefined    |  - |
-| getValue  | (key: string) => EnumItem['value'] \| undefined     |  - |
+#### 实例属性
 
-静态属性
-| 属性       |    类型     | 说明 |
-|-------|-------|-------|
-| build   | (list: EnumItem[], extendsObj: Object ) => EnumHelper    |  - |
+<ApiTable
+  dataSource={[
+    {
+      param: 'constructor',
+      desc: '构造函数',
+      type: '(list: EnumItem[]) => void',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'valueOf',
+      desc: '实例方法，获取数据数组',
+      type: '() => EnumItem[]',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'getData',
+      desc: '实例方法，获取数据数组',
+      type: '() => EnumItem[]',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'get',
+      desc: '实例方法，获取数据项',
+      type: '(key: string, value\?: EnumItem[\'value\']) => EnumItem \| undefined',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'getLabel',
+      desc: '实例方法',
+      type: '(key: string, value\?: EnumItem[\'value\']) => EnumItem[\'label\'] \| undefined',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'getValue',
+      desc: '实例方法',
+      type: '(key: string, value\?: EnumItem[\'value\']) => EnumItem[\'value\'] \| undefined',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+/>
+
+#### 静态属性
+
+<ApiTable
+  dataSource={[
+    {
+      param: 'build',
+      desc: 'EnumHelper实例构造方数',
+      type: '(list: EnumItem[], extendsObj: Object ) => EnumHelper ',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+/>
 
 ## Interface
 

@@ -1,40 +1,51 @@
 ---
-title: context-composer
-order: 6
+title: @jelper/context-composer
+order: 1
 ---
 
-React Context 工具方法
+import { Table } from 'antd';
+import CodeDemo from '@theme/CodeDemo';
+import Demo from './Demo.tsx';
+import MergeDemo from './MergeDemo.tsx';
 
 import ImportTabs from '@theme/ImportTabs';
 
+### 安装
 <ImportTabs name="@jelper/context-composer" />
 
 ### 样例
 
-```tsx live noInline
+#### 全局context使用
+<CodeDemo title="" desc="" text={$include('./Demo.tsx')}><Demo /></CodeDemo>
 
-// hooks/useStateCtx.tsx
-const useStateHooks = (props) => {
-  const [count, setCount] = useState(props.count);
-  return [count, setCount];
-}
-const { forwardComposer, useComposerCtx } = createCtxComposer(useStateHooks);
+#### 多context合并使用
+<CodeDemo title="" desc="" text={$include('./MergeDemo.tsx')}><MergeDemo /></CodeDemo>
 
-// pages/father.tsx
-const Father = (porps) => {
-  const [count, setCount] = useComposerCtx();
-  return (
-    <div>
-      <div>{JSON.stringify(porps)}</div>
-      {count}
-      <div onClick={() => setCount(count + 1)} > + </div>
-    </div>
-  )
-}
-const Demo = forwardComposer(Father);
+### API
 
-// 
-render(
-  <Demo count={6} />
-)
-```
+#### createCtxComposer\<Props, T\>
+
+创建React.createContext, 方便 <em>Provider</em> 引入和 <em>useContext</em> 使用
+
+##### 参数
+
+- useCfgHook: (props: Props) => T
+
+##### 返回值
+
+- result\<Object\>
+
+  - forwardComposer: (Com: FC\<Props\>) => FC\<Props\>
+
+  - useComposerCtx: T
+
+#### mergeComposer
+
+##### 参数
+
+- list: Array\<(Com: FC\<Props\>) => FC\<Props\>\> 
+
+##### 返回值
+
+- result: (Com: FC\<Props\>) => FC\<Props\>
+

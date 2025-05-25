@@ -3,17 +3,21 @@ import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { MDXProvider } from '@mdx-js/react';
 import history from "history/browser";
-import 'prism-themes/themes/prism-vsc-dark-plus.css';
-import $style from './app.module.scss';
-import {
-  LiveProvider,
-  LiveEditor,
-  LiveError,
-  LivePreview
-} from 'react-live'
-const scope = {
+// import 'prism-themes/themes/prism-vsc-dark-plus.css';
 
-}
+import Code from './components/CodeBlock';
+
+import $style from './app.module.scss';
+
+// import {
+//   LiveProvider,
+//   LiveEditor,
+//   LiveError,
+//   LivePreview
+// } from 'react-live'
+// const scope = {
+
+// }
 
 // @ts-ignore
 const requireComponent = require.context(
@@ -24,23 +28,28 @@ const requireComponent = require.context(
   )
 const Modules = requireComponent.keys().map((path: string) => {
   const m = requireComponent(path);
-    if (!m.frontMatter.path) {
+  if (!m.frontMatter) {
+    m.frontMatter = {};
+  }
+  if (!m.frontMatter.path) {
     m.frontMatter.path = path.replace(/^\.|(\/index)?\.(md|mdx)$/g, '');
   }
   return m;
+}).sort((a, b) => {
+  return (a.frontMatter?.order || 0) <= (b.frontMatter?.order || 0) ? 1 : -1;
 });
 
 const components = {
   em: props => <i {...props } />,
-  code: props => (
-    <LiveProvider code={props.children} scope={scope}>
-      <div>
-        <LiveEditor />
-      </div>
-      <LiveError />
-      <LivePreview />
-    </LiveProvider>
-  )
+  code: props => <Code {...props} />
+    // <LiveProvider code={props.text} scope={scope}>
+    //   {props.children}
+    //   <div>
+    //     <LiveEditor />
+    //   </div>
+    //   {/* <LiveError />
+    //   <LivePreview /> */}
+    // </LiveProvider>
 }
 
 const moduleKeyMap = Modules.reduce((res, m) => ({

@@ -23,6 +23,10 @@ const getOpts = async() => {
   return merge(
     await webpackConfigBase(),
     {
+      stats: {
+        errorDetails: true
+      },
+      name: 'server',
       mode: 'development',
       entry: resolveByRootPath('./public/app.tsx'),
       output: {
@@ -66,7 +70,7 @@ const getOpts = async() => {
 export default async function () {
   console.log('start serve');
   const opts = await getOpts() as any;
-  const compiler = webpack(opts as any, (err, stats) => {
+  const compiler = webpack(opts as any, (err, stats: any) => {
     if (err) {
       console.error(err);
       return;

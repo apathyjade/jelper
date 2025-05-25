@@ -2,49 +2,10 @@
 title: 基础样式片段
 order: 1
 ---
-import '@jelper/css'
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import { Table } from 'antd';
 
-基础样式片段
-
-<Tabs>
-
-<TabItem value="npm" label="npm">
-```shell
-npm istall @jelper/css
-```
-</TabItem>
-
-<TabItem value="pnpm" label="pnpm">
-```shell
-pnpm istall @jelper/css
-```
-</TabItem>
-
-<TabItem value="yarn" label="yarn">
-```bash
-yarn istall @jelper/css
-```
-</TabItem>
-
-</Tabs>
-
-
-### 样例
-
-```tsx live noInline
-render(
-  <div className={'flex-between-center'}>
-    <div className={'fs16 fw600 c35'}>
-      标题
-    </div>
-    <div className={'c55'}>
-      操作
-    </div>
-  </div>
-)
-```
+import CodeDemo from '@theme/CodeDemo';
+import ImportTabs from '@theme/ImportTabs';
 
 ## Api
 

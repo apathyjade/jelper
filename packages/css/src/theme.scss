@@ -1,0 +1,93 @@
+
+$aj_cls_prefix: ''; // 例如 'aj-'
+@function aj-to-cls ($suffix) {
+  @return '.' + $aj_cls_prefix + $suffix;
+};
+
+$aj_fs: (
+  2xs: 10px,
+  xs: 10px,
+  s: 12px,
+  m: 14px,
+  l: 16px,
+  xl: 20px,
+  2xl: 24px,
+  3xl: 38px,
+  4xl: 32px,
+  5xl: 36px,
+);
+
+$aj_lh: ();
+@each $key, $value in $aj_fs {
+  $aj_lh: map-merge($aj_lh, ($key: $value + 8px));
+}
+
+$aj_fw: (
+  s: 400,
+  m: 500,
+  l: 600,
+);
+
+$aj_color: (
+  "brand": "89, 126, 247",
+  "blue": "89, 126, 247",
+  "green": "10, 179, 135",
+  "red": "245, 39, 67",
+  "orange": "193, 74, 39",
+  "yellow": "247, 171, 79",
+  "purple": "146, 84, 222",
+);
+
+$aj_row: (
+  xs: 24px,
+  s: 28px,
+  m: 32px,
+  l: 36px,
+  xl: 40px,
+);
+
+$aj_block_space: (
+  xs: 12px,
+  s: 16px,
+  m: 20px,
+  l: 24px,
+  xl: 28px,
+);
+
+$aj_text_space: (
+  xs: 4px,
+  s: 8px,
+  m: 12px,
+  l: 16px,
+  xl: 20px,
+);
+
+
+:root {
+@each $key, $value in $aj_fs {
+  --aj_fs_#{$key}: #{$value};
+}
+@each $key, $value in $aj_fw {
+  --aj_fw_#{$key}: #{$value};
+}
+@each $key, $value in $aj_color {
+  --aj_color_#{$key}: #{$value};
+}
+@each $key, $value in $aj_row {
+  --aj_row_#{$key}: #{$value};
+}
+@each $key, $value in $aj_block_space {
+  --aj_block_space_#{$key}: #{$value};
+}
+@each $key, $value in $aj_text_space {
+  --aj_text_space_#{$key}: #{$value};
+}
+
+  --aj_bgc_opacity: 0.1;
+  --aj_bdc_opacity: 1;
+  --aj_disabled_opacity: 0.8;
+
+  font-size: map-get($aj_fs, m);
+  line-height: map-get($aj_fs, m) + 8px;
+  // color: rgvar(--aj_color_black);
+}

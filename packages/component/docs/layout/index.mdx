@@ -1,0 +1,66 @@
+---
+title: Layout组件
+order: 1
+---
+
+import { Table } from 'antd';
+import CodeDemo from '@theme/CodeDemo';
+import Demo, { title, desc} from './Demo.tsx';
+import MinDemo, { title as minTitle, desc as minDesc} from './MinWidth.tsx';
+
+import ImportTabs from '@theme/ImportTabs';
+
+### 安装
+<ImportTabs name="@jelper/component" />
+
+### 样例
+#### {title}
+<CodeDemo title={title} desc={desc} text={$include('./Demo.tsx')}><Demo /></CodeDemo>
+
+#### {minTitle}
+<CodeDemo title={minTitle} desc={minDesc} text={$include('./MinWidth.tsx')}><MinDemo /></CodeDemo>
+
+### API
+<Table
+  rowKey="param"
+  columns={[
+    { title: '参数', width: 120, dataIndex: 'param' },
+    { title: '说明', width: 240, dataIndex: 'desc' },
+    { title: '类型', width: 120, dataIndex: 'type' },
+    { title: '默认值', width: 120, dataIndex: 'defValue' },
+    { title: '版本', width: 80, dataIndex: 'version' },
+  ]}
+  dataSource={[
+    {
+      param: 'sideSpace',
+      desc: '两侧固定容器最小间距',
+      type: 'string',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'width',
+      desc: '主体固定宽度',
+      type: 'string',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'minWidth',
+      desc: '主体最小宽度',
+      type: 'string',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'maxWidth',
+      desc: '主体最大宽度',
+      type: 'string',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+  bordered
+  size="small"
+  pagination={false}
+/>

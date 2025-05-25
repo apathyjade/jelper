@@ -1,16 +1,16 @@
 ---
 title: font
-order: 3
+order: 9
 ---
 
-<>
-{[ 12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48 ].map(size => (
-  <div className={`fs${size}`}>{`fs${size}`}:字体大小{size}px</div>
-))}
-</>
+import ImportTabs from '@theme/ImportTabs';
+import CodeDemo from '@theme/CodeDemo';
+import Demo from './Demo.tsx';
 
-<>
-{[ 400, 500, 600 ].map(size => (
-  <div className={`fw${size}`}>{`fw${size}`}:字重{size}</div>
-))}
-</>
+### 安装
+
+<ImportTabs name="@jelper/css" />
+
+### 样例
+
+<CodeDemo title="" desc="" text={$include('./Demo.tsx')}><Demo /></CodeDemo>

@@ -2,8 +2,7 @@
 import requireHelper from '../utils/require-helper.js';
 import { babelrc } from './index.js';
 import { resolveByBasePath, resolveByRootPath } from '../common/index.js';
-
-
+import mdxPreprocessor from '../utils/mdxPreprocessor.js';
 
 const aliasList = [
   'tslib',
@@ -11,30 +10,33 @@ const aliasList = [
   'react',
   'react-dom',
   'history',
+  'antd',
   '@mdx-js/react',
+  '@mdx-js/loader',
   '@babel/runtime',
   '@types/lodash',
   '@types/node',
   '@types/react',
   '@types/react-dom',
-]
+];
 
 
 export default async () => {
 
   const [
     babelLoaderPath,
-    mdxBabelLoaderPath,
+    mdxLoaderPath,
     styleLoaderPath,
     cssLoaderPath,
     sassLoaderPath
   ] = await Promise.all([
     requireHelper.resolve('babel-loader'),
-    requireHelper.resolve('@docusaurus/mdx-loader'),
+    requireHelper.resolve('@docusaurus/mdx-loader'), // @docusaurus/mdx-loader | @mdx-js/loader
     requireHelper.resolve('style-loader'),
     requireHelper.resolve('css-loader'),
     requireHelper.resolve('sass-loader'),
   ]);
+
 
   const include = [
     resolveByRootPath('./'),
@@ -42,7 +44,8 @@ export default async () => {
     resolveByBasePath('./src/'),
     await requireHelper.resolve('@babel/plugin-transform-runtime'),
     await requireHelper.resolve('prism-themes'),
-  ]
+    `${await requireHelper.resolve('highlight.js')}/styles`,
+  ];
 
   const alias = (
     await Promise.all(
@@ -53,7 +56,9 @@ export default async () => {
   ).reduce((res: any, item: any) => ({
     ...res,
     [item[0]]: item[1],
-  }), {});
+  }), {
+    '@theme': resolveByRootPath('./public/components'),
+  });
 
   return {
     resolve: {
@@ -68,18 +73,22 @@ export default async () => {
     module: {
       rules: [
         {
-          test: /\.(mdx)$/,
+          test: /\.(mdx?)$/,
           include,
           use: [
             {
-              loader: babelLoaderPath,
-              options: await babelrc(),
-            }, {
-              loader: mdxBabelLoaderPath,
+              loader: mdxLoaderPath,
               options: {
-                markdownConfig: {},
+                markdownConfig: {
+                  preprocessor: mdxPreprocessor,
+                  parseFrontMatter: async (params: any) => {
+                    return await params.defaultParseFrontMatter(params)
+                  },
+                  anchors: {},
+                  mdx1Compat: {},
+                },
               }
-            }
+            },
           ]
         },
         {
@@ -93,14 +102,29 @@ export default async () => {
           ]
         },
         {
-          test: /\.(scss|css)$/,
+          test: /module\.(scss|css)$/,
           include,
           use: [
             {
               loader: styleLoaderPath,
             }, {
               loader: cssLoaderPath,
-              options: { modules: undefined }
+              options: { modules: true }
+            }, {
+              loader: sassLoaderPath,
+            }
+          ]
+        },
+        {
+          test: /\.(scss|css)$/,
+          include,
+          exclude: /\.module\.(scss|css)$/,
+          use: [
+            {
+              loader: styleLoaderPath,
+            }, {
+              loader: cssLoaderPath,
+              options: { modules: false }
             }, {
               loader: sassLoaderPath,
             }

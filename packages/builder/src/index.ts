@@ -43,7 +43,7 @@ program.command('build')
     await build(opts);
   });
 
-program.command('build')
+program.command('copy')
   .option('-i, --input <chart>', '输入')
   .option('-o, --output', '输出')
   .description('复制')

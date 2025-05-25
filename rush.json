@@ -87,6 +87,13 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@jelper/component",
+      "projectFolder": "packages/component",
+      "tags": ["react", "context"],
+      "reviewCategory": "production",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@jelper/hooks",
       "projectFolder": "packages/hooks",
       "tags": [

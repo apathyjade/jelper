@@ -6,13 +6,13 @@
  * @Last Modified Time: 2022-06-21 13:55:34
  */
 
-import inquirer, { Question } from 'inquirer';
+import inquirer, { Question, ListQuestion } from 'inquirer';
 import gulp from 'gulp';
 import template from 'gulp-template';
 import fs from 'fs';
 import { basePath, resolveByRootPath } from '../common/index.js';
 
-interface Answer {
+interface Answer extends inquirer.Answers {
   packageName: string;
   description: string,
   ready: boolean;
@@ -24,7 +24,7 @@ const init = (answer: Omit<Answer, 'ready'> ) => {
     .pipe(gulp.dest(`${basePath}/`));
 }
 
-const questions: Question<Answer>[] = [
+const questions: Array<Question<Answer> | ListQuestion<Answer>> = [
   {
     type: 'input',
     name: 'packageName',
@@ -33,6 +33,14 @@ const questions: Question<Answer>[] = [
     type: 'input',
     name: 'description',
     message: '请输入包描述',
+  }, {
+    type: 'list',
+    name: 'type',
+    message: '勾选构建类型',
+    choices: [
+      'utils',
+      'react',
+    ],
   }, {
     type: 'confirm',
     name: 'ready',

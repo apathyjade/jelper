@@ -1,11 +1,6 @@
-// @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
-
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
-const config = {
+const getConfig = async() => ({
   title: 'jelper官网文档',
   tagline: '基础工具库，提供常用css片段、工具函数、react hooks等',
   favicon: 'img/favicon.ico',
@@ -37,8 +32,13 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
+        pages: {
+        },
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+          // markdownConfig: {
+          //   preprocessor: (await import('@jelper/builder/lib/utils/mdxPreprocessor.js')).default,
+          // },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -57,7 +57,13 @@ const config = {
       }),
     ],
   ],
-  plugins: ['@docusaurus/theme-live-codeblock'],
+  plugins: [
+    // '@docusaurus/theme-live-codeblock',
+    'docusaurus-plugin-sass',
+  ],
+  markdown: {
+
+  },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -121,15 +127,11 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} jelper, Inc. Built with Docusaurus.`,
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
       },
-      // liveCodeBlock: {
-      //   globalImports: [
-      //     'import EnumHelper from "@jelper/enum";',
-      //   ]
-      // }
     }),
-};
+  markdown: {
+    preprocessor: (await import('@jelper/builder/lib/utils/mdxPreprocessor.js')).default,
+  }
+});
 
-module.exports = config;
+module.exports = getConfig();
