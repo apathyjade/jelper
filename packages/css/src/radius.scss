@@ -1,11 +1,12 @@
 @import './variable.scss';
 
-.radius {
+#{aj_to_cls(radius)} {
+  
   border-radius: 50%;
   
-  @each $item in $aj_reduce {
-    &-#{$item} {
-      border-radius: #{$item}px;
+  @each $key, $value in $aj_reduce {
+    &-#{$key} {
+      border-radius: $value;
     }
   }
 }

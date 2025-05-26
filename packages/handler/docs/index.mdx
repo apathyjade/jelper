@@ -2,84 +2,122 @@
 title: handler
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import CodeDemo from '@theme/CodeDemo';
+import ImportTabs from '@theme/ImportTabs';
+import ApiTable from '@theme/ApiTable';
 
-<Tabs>
-<TabItem value="npm" label="npm">
-```shell
-npm istall @jelper/handler
-```
-</TabItem>
+### 安装
 
-<TabItem value="pnpm" label="pnpm">
-```shell
-pnpm istall @jelper/handler
-```
-</TabItem>
+<ImportTabs name="@jelper/handler" />
 
-<TabItem value="yarn" label="yarn">
-```bash
-yarn istall @jelper/handler
-```
-</TabItem>
-</Tabs>
+### 样例
 
-## Example
+import Demo from './Demo.tsx';
 
-```tsx
-import { useSingleHandler, useMultipleHandler } from '@jelper/handler';
-
-const single = useSingleHandler(); // new SingleHandler();
-single.on(() => {
-  console.log('不执行');
-});
-single.on((data) => {
-  console.log(data)
-});
-single.call('single').then(() => ); // single
-single.off();
-
-const multiple = useMultipleHandler();
-multiple.on(() => {
-  console.log('同步');
-});
-multiple.on(async (data) => {
-  console.log('异步', data);
-});
-multiple.call('multiple').then(() => {
-  console.log('end');
-});
-// 同步 异步multiple end
-
-```
-
+<CodeDemo title="基础用法" desc="" text={$include('./Demo.tsx')}><Demo /></CodeDemo>
 
 ## Api
 
-通信调用工具， SingleHandler、MultipleHandler为了方便拓展，推荐使用 useSingleHandler、useMultipleHandler
+通信调用工具， SingleHandler、MultipleHandler为了方便拓展，推荐使用 SingleHandler.build、MultipleHandler.build
 
 ### SingleHandler
 
-| 属性       |    类型     | 说明 |
-|-------|-------|-------|
-| on    | () => void    |  - |
-| off   | () => void    |  - |
-| call  | () => Promise    |  - |
+#### 实例方法
+
+<ApiTable
+  dataSource={[
+    {
+      param: 'on',
+      desc: '绑定方法',
+      type: '() => void',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'off',
+      desc: '解绑方法',
+      type: '() => void',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'call',
+      desc: '调用绑定回调',
+      type: '() => Promise',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+/>
+
+#### 静态方法
+
+<ApiTable
+  dataSource={[
+    {
+      param: 'build',
+      desc: '构建实例',
+      type: '() => SingleHandler',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+/>
 
 ### MultipleHandler
 
-| 属性          |    类型     | 说明 |
-|-------|-------|-------|
-| size          | number                    | 绑定回调的数量 |
-| on            | () => void                |  - |
-| off           | (fn?: undefined) => void  |  - |
-| call          | () => Promise             |  Promise.all 调用  |
-| callWithRace  | () => Promise             |  Promise.race 调用 |
+#### 实例方法
 
-### 方法
+<ApiTable
+  dataSource={[
+    {
+      param: 'size',
+      desc: '绑定方法数量',
+      type: 'number',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'on',
+      desc: '绑定方法',
+      type: '() => void',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'off',
+      desc: '解绑方法',
+      type: '() => void',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'call',
+      desc: 'Promise.race 调用',
+      type: '() => Promise',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'callWithRace',
+      desc: 'Promise.race 调用',
+      type: '() => Promise',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+/>
 
-| 方法          |    参数     | 返回值 |
-|-------|-------|-------|
-| useSingleHandler     | void     | SingleHandler   |
-| useMultipleHandler   | void     | MultipleHandler |
+#### 静态方法
+
+<ApiTable
+  dataSource={[
+    {
+      param: 'build',
+      desc: '构建实例',
+      type: '() => SingleHandler',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+/>

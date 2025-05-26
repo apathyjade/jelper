@@ -54,7 +54,8 @@ const cfg: any = async() => {
         (async () => [name, await requireHelper.resolve(name)])
       )())
     )
-  ).reduce((res: any, item: any) => ({
+  ).reduce((_alias: any, item: any) => ({
+    ..._alias,
     [item[0]]: item[1],
   }), {
     '@theme': resolveByRootPath('./public/components'),
