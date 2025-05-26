@@ -1,13 +1,20 @@
-/* * @Author: apathyjade* @Date: 2025-03-07 15:31:35* @Last Modified by: apathyjade* @Last Modified time: 2025-03-07 15:31:35*/
+/**
+ * @Author: apathyjade
+ * @Date: 2025-03-16 11:35:37
+ * @Last Modified by: apathyjade
+ * @Last Modified time: 2025-03-16 21:31:54
+ */
 
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 
-const useOption = <T extends {}>(defOpt: Partial<T> = {}): {
-  option: Partial<T>;
-  reset: () => void;
-  setOption: React.Dispatch<React.SetStateAction<Partial<T>>>;
-  update: React.Dispatch<React.SetStateAction<Partial<T>>>;
-} => {
+const useOption = <T extends {}>(defOpt: Partial<T> = {}): [
+  Partial<T>,
+  {
+    reset: () => void;
+    setOption: React.Dispatch<React.SetStateAction<Partial<T>>>;
+    update: React.Dispatch<React.SetStateAction<Partial<T>>>;
+  },
+ ] => {
   const [initOpt] = useState<Partial<T>>(defOpt);
   const [option, setOption] = useState<Partial<T>>(initOpt);
 
@@ -22,12 +29,7 @@ const useOption = <T extends {}>(defOpt: Partial<T> = {}): {
     }));
   }, []);
 
-  return useMemo(() => ({
-    option,
-    setOption,
-    reset,
-    update,
-  }), [option, setOption, reset, update]);
+  return [option, { setOption, reset, update }];
 };
 
 export default useOption;

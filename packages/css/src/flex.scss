@@ -14,6 +14,7 @@
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
+    align-items: flex-start;
   }
   &-start {
     align-items: flex-start;
@@ -111,5 +112,10 @@
   }
 }
 
-
+.flex-warp {
+  flex-wrap: wrap;
+}
+.flex-column {
+  flex-direction: column;
+}
 

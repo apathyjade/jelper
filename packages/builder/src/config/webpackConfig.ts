@@ -1,4 +1,6 @@
+
 // @ts-ignore
+import { DEFAULT_PARSE_FRONT_MATTER } from '@docusaurus/utils';
 import requireHelper from '../utils/require-helper.js';
 import { babelrc } from './index.js';
 import { resolveByBasePath, resolveByRootPath } from '../common/index.js';
@@ -20,9 +22,8 @@ const aliasList = [
   '@types/react-dom',
 ];
 
-
-export default async () => {
-
+const cfg: any = async() => {
+// @ts-ignore
   const [
     babelLoaderPath,
     mdxLoaderPath,
@@ -54,7 +55,6 @@ export default async () => {
       )())
     )
   ).reduce((res: any, item: any) => ({
-    ...res,
     [item[0]]: item[1],
   }), {
     '@theme': resolveByRootPath('./public/components'),
@@ -92,7 +92,7 @@ export default async () => {
           ]
         },
         {
-          test: /\.(jsx?|[cm]?ts|tsx)$/,
+          test: /\.(jsx?|[cm]?ts|tsx|js)$/,
           include,
           use: [
             {
@@ -134,3 +134,6 @@ export default async () => {
     },
   }
 }
+
+// @ts-ignore
+export default cfg;

@@ -1,6 +1,6 @@
 
-import path from 'path';
 import { fileURLToPath } from 'url';
+import path from 'path';
 export default {
   async resolve(name: string) {
     try {
