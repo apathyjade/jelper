@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_jelper_website=self.webpackChunk_jelper_website||[]).push([[1903],{9531:e=>{e.exports=JSON.parse('{"blogBasePath":"/jelper/blog","blogTitle":"Blog","authorsListPath":"/jelper/blog/authors"}')}}]);

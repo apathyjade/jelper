@@ -1,12 +1,23 @@
 
-import fs from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
 export default {
   async resolve(name: string) {
-    const modluePath = `../../node_modules/${name}`;
-    const __dirname = path.dirname(fileURLToPath(import.meta.url));
-    const targetPath = path.resolve(__dirname, modluePath);
-    return fs.realpathSync(targetPath);
+    try {
+      // @ts-ignore
+      const fullPath = await import.meta.resolve(`${name}/package.json`);
+      // @ts-ignore
+      return path.dirname(fileURLToPath(fullPath));
+    } catch(e) {
+      // @ts-ignore
+      const resolvedUrl = await import.meta.resolve(name);
+      const fullPath = fileURLToPath(resolvedUrl);
+      let pkgDir = path.dirname(fullPath);
+      while (!pkgDir.endsWith('node_modules')) {
+        pkgDir = path.dirname(pkgDir);
+      }
+      console.log(path.join(pkgDir, name));
+      return path.join(pkgDir, name);
+    }
   }
 }

@@ -1,0 +1,9 @@
+.card {
+  background-color: #fcfdfe;
+  :global(.ant-card-body) {
+    padding-bottom: 8px !important;
+  }
+  .extend {
+    font-size: 12px;
+  }
+}

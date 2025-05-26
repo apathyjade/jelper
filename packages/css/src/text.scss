@@ -1,7 +1,7 @@
-@import './variable.scss';
+@import './theme.scss';
 
 // 文本
-.text {
+#{aj-to-cls('text')} {
   &,
   &-xs,
   &-s,
@@ -10,43 +10,50 @@
   &-xl {
     display: inline-block;
     vertical-align: bottom;
+    &.inline {
+      padding-top: 0;
+      padding-bottom: 0;
+      display: inline-block;
+    }
   }
-
-  @each $key, $value in $aj_size {
-    &-#{$key} { // 24
-      $size: map-get($value, size);
-      $fs: map-get($value, fs);
-      $lh: map-get($value, lh);
-      $pd: calc(($size - $lh)/2);
-      padding: #{$pd}px 0;
-      line-height: #{$lh}px;
-      font-size: #{$fs}px;
+  @each $key, $value in $aj_row {
+    $self_fs: map-get($aj_fs, $key);
+    $self_lh: map-get($aj_lh, $key);
+    $self_pd: calc(($value -  $self_lh) / 2);
+    &-#{$key} {
+      padding-top: $self_pd;
+      padding-bottom: $self_pd;
+      font-size: $self_fs;
+      line-height: $self_lh;
+      &.inline {
+        line-height: inherit;
+      }
     }
   }
 }
 
 // 对齐方式  text-align vertical-align
-.align {
-  &-center {
-    text-align: center;
-  }
+#{aj-to-cls('align')} {
   &-left {
     text-align: left;
+  }
+  &-center {
+    text-align: center;
   }
   &-right {
     text-align: right;
   }
-  &-justify {
-    text-align: justify;
+  &-top {
+    vertical-align: top;
   }
   &-middle {
     vertical-align: middle;
   }
-  &-top {
-    vertical-align: top;
-  }
   &-bottom {
     vertical-align: bottom;
+  }
+  &-justify {
+    text-align: justify;
   }
   &-super {
     vertical-align: super;
@@ -57,18 +64,19 @@
 }
 
 // 换行
-.nowrap {
+#{aj-to-cls('nowrap')} {
   white-space: nowrap;
 }
-.wrap,
-.pre-wrap {
+#{aj-to-cls('wrap')},
+#{aj-to-cls('pre-wrap')} {
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: normal;
 }
-.wrap {
+#{aj-to-cls('wrap')} {
   white-space: normal;
 }
-.pre-wrap {
+#{aj-to-cls('pre-wrap')} {
   white-space: pre-wrap;
 }
+

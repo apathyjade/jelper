@@ -1,0 +1,114 @@
+---
+title: Column组件
+order: 3
+---
+import { Table } from 'antd';
+import CodeDemo from '@theme/CodeDemo';
+import Demo from './Demo.tsx';
+import FlexDemo from './Fixed.tsx';
+import ImportTabs from '@theme/ImportTabs';
+
+### 安装
+<ImportTabs name="@jelper/component" />
+
+### 样例
+
+#### 基础用法
+<CodeDemo title="基础用法" desc="item自适应缩放" text={$include('./Demo.tsx')}><Demo /></CodeDemo>
+
+#### Layout 自适应
+<CodeDemo title="fixed 固定高度" desc="设置高度，fixed后，不在自动缩放" text={$include('./Fixed.tsx')}><FlexDemo /></CodeDemo>
+
+### API
+
+#### Flex API
+
+<Table
+  rowKey="param"
+  columns={[
+    { title: '参数', width: 120, dataIndex: 'param' },
+    { title: '说明', width: 240, dataIndex: 'desc' },
+    { title: '类型', width: 120, dataIndex: 'type' },
+    { title: '默认值', width: 120, dataIndex: 'defValue' },
+    { title: '版本', width: 80, dataIndex: 'version' },
+  ]}
+  dataSource={[
+    {
+      param: 'justify',
+      desc: 'flex主轴排列方式',
+      type: '\'flex-start\' | \'flex-end\' | \'center\' | \'space-between\' | \'space-around\' | \'space-evenly\' | \'stretch\'',
+      defValue: 'flex-start',
+      version: '',
+    },
+    {
+      param: 'align',
+      desc: 'flex交叉轴排列方式',
+      type: '\'flex-start\' | \'flex-end\' | \'center\' | \'stretch\'',
+      defValue: 'stretch',
+      version: '',
+    },
+    {
+      param: 'gap',
+      desc: 'flex元素gap',
+      type: 'number | string',
+      defValue: 'm',
+      version: '',
+    },
+  ]}
+  bordered
+  size="small"
+  pagination={false}
+/>
+
+#### Flex.Item API
+
+<Table
+  rowKey="param"
+  columns={[
+    { title: '参数', width: 120, dataIndex: 'param' },
+    { title: '说明', width: 240, dataIndex: 'desc' },
+    { title: '类型', width: 120, dataIndex: 'type' },
+    { title: '默认值', width: 120, dataIndex: 'defValue' },
+    { title: '版本', width: 80, dataIndex: 'version' },
+  ]}
+  dataSource={[
+    {
+      param: 'fixed',
+      desc: 'item不缩放，即flex: 0 0 auto;',
+      type: 'boolean',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'height',
+      desc: 'item高度',
+      type: 'number | string;',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'minHeight',
+      desc: 'item最小高度',
+      type: 'number | string;',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'maxHeight',
+      desc: 'item最大高度',
+      type: 'number | string;',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'scale',
+      desc: 'item缩放比例，即flex: x x auto;',
+      type: 'number;',
+      defValue: '1',
+      version: '',
+    },
+  ]}
+  bordered
+  size="small"
+  pagination={false}
+/>

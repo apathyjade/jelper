@@ -1,22 +1,15 @@
 
-$fsSize: 12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48;
-$fsWeight: 400, 500, 600;
+@import './theme.scss';
 
-// 字体大小
-@each $item in $fsSize {
-  .fs#{$item} {
-    font-size: $item + px;
-    @if $item % 4 == 0 {
-      line-height: $item * 1.5 + px
-    } @else {
-      line-height: $item * 1.5 - 1 + px
-    }
+@each $key, $value in $aj_fs {
+  #{aj-to-cls('fs-' + $key)} {
+    font-size: $value;
+    line-height: map-get($map: $aj_lh, $key: $key)
   }
 }
 
-// 字重
-@each $item in $fsWeight {
-  .fw#{$item} {
-    font-weight: $item;
+@each $key, $value in $aj_fw {
+  #{aj-to-cls('fw-' + $key)} {
+    font-weight: $value;
   }
 }

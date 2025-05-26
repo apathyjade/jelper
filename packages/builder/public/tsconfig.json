@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "module": "node16",
+		"moduleResolution": "node16",
+		"moduleDetection": "force",
+		"target": "ES2016", // Node.js 14
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ES2020",
+      "ES2019",
+      "ES2018",
+      "ES2017",
+      "ES2016"
+		],
+		"allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+		"jsx": "react",
+		"declaration": true,
+		"declarationDir": "./types",
+		"newLine": "lf",
+		"stripInternal": true,
+		"noImplicitReturns": true,
+		"noImplicitOverride": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noEmitOnError": true,
+		"useDefineForClassFields": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true,
+    "resolveJsonModule": true,
+    "outDir": "./lib",
+		"sourceMap": false,
+		"strict": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
+  "exclude": ["node_modules", "lib", "es", "dist"]
+}

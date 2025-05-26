@@ -1,0 +1,31 @@
+---
+title: theme
+order: 10
+---
+
+import ImportTabs from '@theme/ImportTabs';
+import CodeDemo from '@theme/CodeDemo';
+import ApiTable from '@theme/ApiTable';
+
+### 安装
+
+<ImportTabs name="@jelper/css" />
+
+### 样例
+
+#### 字体
+
+import FsDemo from './FsDemo.tsx';
+
+<CodeDemo title="字体大小" desc="字体大小 --aj_fs_xx" text={$include('./FsDemo.tsx')}><FsDemo /></CodeDemo>
+
+#### 颜色
+
+import ColorDemo from './ColorDemo.tsx';
+export const desc = <>
+  <div>颜色 --aj_color__xx;</div>
+  <div>背景透明度 aj_bgc_opacity;</div>
+  <div>边框透明度 aj_bdc_opacity;</div>
+</>
+
+<CodeDemo title="颜色" desc={desc} text={$include('./ColorDemo.tsx')}><ColorDemo /></CodeDemo>

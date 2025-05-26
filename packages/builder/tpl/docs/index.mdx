@@ -1,19 +1,47 @@
 ---
-name: Hello world
+title: @jelper/context-composer
+order: 1
 ---
 
-*a*
+import { Table } from 'antd';
+import CodeDemo from '@theme/CodeDemo';
+import Demo from './Demo.tsx';
 
-import enumHelper from '<%= packageName %>' // Assumes an integration is used to compile MDX -> JS.
-export const Demo = () => {
-  console.log(enumHelper)
-  return <p>测试下</p>;
-};
+import ImportTabs from '@theme/ImportTabs';
 
-<Demo />
+### 安装
+<ImportTabs name="@jelper/context-composer" />
 
-## 样例
-```jsx title="/src/components/HelloCodeTitle.js"
-<p>asd</p>
-```
+### 样例
+
+#### 全局context使用
+<CodeDemo title="" desc="" text={$include('./Demo.tsx')}><Demo /></CodeDemo>
+
+### API
+
+#### createCtxComposer\<Props, T\>
+
+创建React.createContext, 方便 <em>Provider</em> 引入和 <em>useContext</em> 使用
+
+##### 参数
+
+- useCfgHook: (props: Props) => T
+
+##### 返回值
+
+- result\<Object\>
+
+  - forwardComposer: (Com: FC\<Props\>) => FC\<Props\>
+
+  - useComposerCtx: T
+
+#### mergeComposer
+
+##### 参数
+
+- list: Array\<(Com: FC\<Props\>) => FC\<Props\>\> 
+
+##### 返回值
+
+- result: (Com: FC\<Props\>) => FC\<Props\>
 

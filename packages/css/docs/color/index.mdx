@@ -1,54 +1,16 @@
 ---
 title: color
-order: 3
+order: 2
 ---
 
-import '@jelper/css';
+import ImportTabs from '@theme/ImportTabs';
+import CodeDemo from '@theme/CodeDemo';
+import Demo from './Demo.tsx';
 
-<div>
-  <div className={'blue bg-blue'}>blue bg-blue</div>
-  <div className={'blue pointer'}>blue pointer</div>
-  <div className={'blue-light'}>blue-light</div>
-  <div className={'blue disabled'}>blue disabled</div>
-</div>
-<div>
-  <div className={'orange bg-orange'}>orange bg-orange</div>
-  <div className={'orange pointer'}>orange pointer</div>
-  <div className={'orange-light'}>orange-light</div>
-  <div className={'orange disabled'}>orange disabled</div>
-</div>
+### 安装
 
-<div>
-  <div className={'yellow bg-yellow'}>yellow bg-yellow</div>
-  <div className={'yellow pointer'}>yellow pointer</div>
-  <div className={'yellow-light'}>yellow-light</div>
-  <div className={'yellow disabled'}>yellow disabled</div>
-</div>
+<ImportTabs name="@jelper/css" />
 
-<div>
-  <div className={'green bg-green'}>green bg-green</div>
-  <div className={'green pointer'}>green pointer</div>
-  <div className={'green-light'}>green-light</div>
-  <div className={'green disabled'}>green disabled</div>
-</div>
+### 样例
 
-<div className={'bg-green'}>
-  <div className={'white'}>white</div>
-  <div className={'bg-white'}>bg-white</div>
-</div>
-
-<div className={'c15'}>c15</div>
-<div className={'c25'}>c25</div>
-<div className={'c35'}>c35</div>
-<div className={'c45'}>c45</div> 
-<div className={'c55'}>c55</div> 
-<div className={'c65'}>c65</div> 
-<div className={'c75'}>c75</div> 
-<div className={'c85'}>c85</div> 
-<div className={'c95'}>c95</div>
-<div className={'ca5'}>ca5</div>
-<div className={'cb5'}>cb5</div>
-<div className={'cc5'}>cc5</div>
-<div className={'cd5'}>cd5</div>
-<div className={'cf5'}>cf5</div>
-
+<CodeDemo title="" desc="" text={$include('./Demo.tsx')}><Demo /></CodeDemo>

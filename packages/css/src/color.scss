@@ -1,30 +1,13 @@
 
 @import './variable.scss';
 
-@function rgbaToHex($rgbaColor,$background: rgb(255,255,255)) {
-  $bgR : red($background);
-  $bgG : green($background);
-  $bgB : blue($background);
-
-  $colorRed : red($rgbaColor);
-  $colorGreen : green($rgbaColor);
-  $colorBlue : blue($rgbaColor);
-  $colorAlpha : alpha($rgbaColor);
-
-  $rgbColor : rgb(
-      (1 - $colorAlpha) * $bgR + $colorAlpha * $colorRed,
-      (1 - $colorAlpha) * $bgG + $colorAlpha * $colorGreen,
-      (1 - $colorAlpha) * $bgB + $colorAlpha * $colorBlue);
-  @return $rgbColor;
-}
-
-.disabled {
+#{aj_to_cls(disabled)} {
   cursor: not-allowed;
   $color: map-get($aj_color, black);
-  color: rgbaToHex(rgba($color: $color, $alpha: .2));
+  color: aj-get-disabled-color($color);
 }
 
-.pointer {
+#{aj_to_cls(pointer)} {
   &:hover {
     cursor: pointer;
     $color: map-get($aj_color, brand);
@@ -32,7 +15,7 @@
   }
 }
 
-.link {
+#{aj_to_cls(link)} {
   &:hover {
     cursor: pointer;
     color: map-get($aj_color, blue);
@@ -40,46 +23,48 @@
 }
 
 // 颜色
-@each $key, $value in $aj_color{
-  .#{"" + $key} {
-    color: $value;
+@each $key, $value in $aj_color {
+  #{aj_to_cls($key)} {
+    color: aj-get-color($key);
     &.pointer:hover,
     &.active {
-      color: rgbaToHex(rgba($color: $value, $alpha: .8));
+      color: aj-get-hover-color($key);
     }
   }
-  .bg-#{"" + $key} {
-    $color: rgbaToHex(rgba($color: $value, $alpha: .1));
-    background-color: rgbaToHex($color);
+  #{aj_to_cls("text-" +  $key)} {
+    color: aj-get-text-color($key);
   }
-  .#{"" + $key}-light {
-    color: rgbaToHex(rgba($color: $value, $alpha: .6));
+  #{aj_to_cls("desc-" +  $key)} {
+    color: aj-get-desc-color($key);
   }
-  .#{"" + $key}.disabled {
-    color: rgbaToHex(rgba($color: $value, $alpha: .2));
+  #{aj_to_cls("bg-" +  $key)} {
+    background-color: aj-get-background-color($key);
   }
-}
-@each $item in $aj_gray {
-  .c#{$item} {
-    color: #{'#'}#{$item}#{$item}#{$item};
-  }
-  .bg-c#{$item} {
-    background-color: #{'#'}#{$item}#{$item}#{$item};
-  }
-  .border-c#{$item} {
-    border: 1px solid #{'#'}#{$item}#{$item}#{$item};
+  #{aj_to_cls($key + ".disabled")} {
+    color: aj-get-disabled-color($key);
   }
 }
+// @each $item in $aj_gray {
+//   .c#{$item} {
+//     color: #{'#'}#{$item}#{$item}#{$item};
+//   }
+//   .bg-c#{$item} {
+//     background-color: #{'#'}#{$item}#{$item}#{$item};
+//   }
+//   .border-c#{$item} {
+//     border: 1px solid #{'#'}#{$item}#{$item}#{$item};
+//   }
+// }
 
-.white {
-  color: #fff;
-}
-.black {
-  color: #000;
-}
-.bg-white {
-  background: #fff;
-}
-.bg-black {
-  background: #000;
-}
+// .white {
+//   color: #fff;
+// }
+// .black {
+//   color: #000;
+// }
+// .bg-white {
+//   background: #fff;
+// }
+// .bg-black {
+//   background: #000;
+// }

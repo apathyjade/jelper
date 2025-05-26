@@ -3,36 +3,22 @@ title: promise
 description: promise-api
 ---
 
-import '@jelper/promise'
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import CodeDemo from '@theme/CodeDemo';
+import ImportTabs from '@theme/ImportTabs';
+import ApiTable from '@theme/ApiTable';
 
-<Tabs>
-<TabItem value="npm" label="npm">
-```shell
-npm istall @jelper/promise
-```
-</TabItem>
+### 安装
 
-<TabItem value="pnpm" label="pnpm">
-```shell
-pnpm istall @jelper/promise
-```
-</TabItem>
+<ImportTabs name="@jelper/promise" />
 
-<TabItem value="yarn" label="yarn">
-```bash
-yarn istall @jelper/promise
-```
-</TabItem>
-</Tabs>
 
-## Example
+### 样例
 
-### toPromise
+#### toPromise
 
 ```tsx
 import { toPromise } from '@jelper/promise';
+
 
 // 返回 resolove 情况
 toPromise(1) // Promise.resolove(1);
@@ -40,7 +26,7 @@ toPromise(true) // Promise.resolove(true);
 toPromise('xxxx') // Promise.resolove('xxxx');
 toPromise({}) // Promise.resolove({});
 toPromise(() => () => 'ok') // Promise.resolove('ok');
-toPromise(Promise.resolove('resolove')) //Promise.resolove('resolove');
+toPromise(Promise.resolve('resolove')) //Promise.resolove('resolove');
 
 // 返回 reject 情况
 toPromise(false) // Promise.reject(undefined);
@@ -49,7 +35,7 @@ toPromise(Promise.reject('reject')) // Promise.reject('reject');
 
 ```
 
-### callLikeSerial
+#### callLikeSerial
 
 ```tsx
 import { callLikeSerial } from '@jelper/promise';
@@ -69,7 +55,7 @@ callLikeSerial([
 
 ```
 
-### buildPromiseHandler
+#### buildPromiseHandler
 
 ```tsx
 import { buildPromiseHandler } from '@jelper/promise';
@@ -84,7 +70,7 @@ resolve(); // or reject();
 
 ```
 
-### buildCacheAsyncFn
+#### buildCacheAsyncFn
 
 ```tsx
 import { buildCacheAsyncFn } from '@jelper/promise';
@@ -113,31 +99,62 @@ console.log(getAsyncData());
 
 处理钩子函数返回值，将不同类型数据转成<em>promise</em>实例，方便执行后续操作
 
-| 方法       |    参数     | 返回值 |
-|-------|-------|-------|
-| toPromise  | any    | Promise |
-
+<ApiTable
+  dataSource={[
+    {
+      param: 'toPromise',
+      desc: '构建实例',
+      type: '(prpos: any) => Promise<any>',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+/>
 
 ### callLikeSerial
 
 链式调用方法
 
-| 方法       |    参数     | 返回值 |
-|-------|-------|-------|
-| callLikeSerial  | Array\<() => Promise\>    | Promise |
+<ApiTable
+  dataSource={[
+    {
+      param: 'callLikeSerial',
+      desc: '构建实例',
+      type: '(prpos: Array\<() => Promise\>) => Promise<any>',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+/>
 
 ### buildPromiseHandler
 
 构建 Promise 句柄，将 promise的 resolve reject 暴露出去
 
-| 方法       |    参数     | 返回值 |
-|-------|-------|-------|
-| callLikeSerial  | --    | [promise, resolove, reject] |
+<ApiTable
+  dataSource={[
+    {
+      param: 'callLikeSerial',
+      desc: '构建实例',
+      type: '() => [promise, resolove, reject]',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+/>
 
 ### buildCacheAsyncFn
 
 构建缓存结果的异步函数
 
-| 方法       |    参数     | 返回值 |
-|-------|-------|-------|
-| buildCacheAsyncFn  | () => Promise  | () => Promise |
+<ApiTable
+  dataSource={[
+    {
+      param: 'buildCacheAsyncFn',
+      desc: '构建实例',
+      type: '<T, R>(porps: ((p: T) => Promise<R>)) => (p: T) => Promise<R>',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+/>

@@ -14,7 +14,7 @@ const getOpts = async () => {
   return merge(
     await webpackConfigBase(),
     {
-      name:'client',
+      name: 'client',
       mode: 'none' as 'none',
       entry: resolveByBasePath('./src'),
       plugins: [],
@@ -25,6 +25,7 @@ const getOpts = async () => {
         react: {
           amd: 'react',
           commonjs: 'react',
+          commonjs2: 'react',
           module: 'react',
           umd: 'react',
           root: 'react'
@@ -32,6 +33,7 @@ const getOpts = async () => {
         'react-dom': {
           amd: 'react-dom',
           commonjs: 'react-dom',
+          commonjs2: 'react-dom',
           module: 'react-dom',
           umd: 'react-dom',
           root: 'react-dom'
@@ -39,6 +41,7 @@ const getOpts = async () => {
         classnames: {
           amd: 'classnames',
           commonjs: 'classnames',
+          commonjs2: 'classnames',
           module: 'classnames',
           umd: 'classnames',
           root: 'classnames'
@@ -46,6 +49,7 @@ const getOpts = async () => {
         'styled-components': {
           amd: 'styled-components',
           commonjs: 'styled-components',
+          commonjs2: 'styled-components',
           module: 'styled-components',
           umd: 'styled-components',
           root: 'styled-components'
@@ -95,10 +99,10 @@ export default async function (buildOpts: BuildOpts) {
   if (process.env['LOGER'] === 'none') {
     return buildUmd(buildOpts);
   }
-  const esSpinner = ora('UMD Module Creating...').start();
+  const spinner = ora('UMD Module Creating...').start();
   return buildUmd(buildOpts).then(() => {
-    esSpinner.succeed('UMD Module Create Success');
+    spinner.succeed('UMD Module Create Success');
   }, () => {
-    esSpinner.fail(chalk.red('UMD Module Create Fail'));
+    spinner.fail(chalk.red('UMD Module Create Fail'));
   });
 }

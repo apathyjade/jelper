@@ -4,8 +4,7 @@ import { DEFAULT_PARSE_FRONT_MATTER } from '@docusaurus/utils';
 import requireHelper from '../utils/require-helper.js';
 import { babelrc } from './index.js';
 import { resolveByBasePath, resolveByRootPath } from '../common/index.js';
-
-const parseFrontMatter = DEFAULT_PARSE_FRONT_MATTER;
+import mdxPreprocessor from '../utils/mdxPreprocessor.js';
 
 const aliasList = [
   'tslib',
@@ -13,33 +12,32 @@ const aliasList = [
   'react',
   'react-dom',
   'history',
+  'antd',
   '@mdx-js/react',
+  '@mdx-js/loader',
   '@babel/runtime',
   '@types/lodash',
   '@types/node',
   '@types/react',
   '@types/react-dom',
-  '@docusaurus/theme-classic',
-  '@docusaurus/plugin-content-docs',
-  '@docusaurus/theme-common',
-  '@docusaurus/utils-validation'
-]
+];
 
 const cfg: any = async() => {
 // @ts-ignore
   const [
     babelLoaderPath,
-    mdxBabelLoaderPath,
+    mdxLoaderPath,
     styleLoaderPath,
     cssLoaderPath,
     sassLoaderPath
   ] = await Promise.all([
     requireHelper.resolve('babel-loader'),
-    requireHelper.resolve('@docusaurus/mdx-loader'),
+    requireHelper.resolve('@docusaurus/mdx-loader'), // @docusaurus/mdx-loader | @mdx-js/loader
     requireHelper.resolve('style-loader'),
     requireHelper.resolve('css-loader'),
     requireHelper.resolve('sass-loader'),
   ]);
+
 
   const include = [
     resolveByRootPath('./'),
@@ -47,9 +45,7 @@ const cfg: any = async() => {
     resolveByBasePath('./src/'),
     await requireHelper.resolve('@babel/plugin-transform-runtime'),
     await requireHelper.resolve('prism-themes'),
-    await requireHelper.resolve('@docusaurus/theme-classic'),
-    await requireHelper.resolve('@docusaurus/plugin-content-docs'),
-    await requireHelper.resolve('@docusaurus/theme-common'),
+    `${await requireHelper.resolve('highlight.js')}/styles`,
   ];
 
   const alias = (
@@ -58,12 +54,11 @@ const cfg: any = async() => {
         (async () => [name, await requireHelper.resolve(name)])
       )())
     )
-  ).reduce((res: any, item: any) => ({
+  ).reduce((_alias: any, item: any) => ({
+    ..._alias,
     [item[0]]: item[1],
-    ...res,
   }), {
-    '@theme': await requireHelper.resolve('@docusaurus/theme-classic/lib/theme'),
-    '@docusaurus/': await requireHelper.resolve('@docusaurus/core/lib/client/exports/'),
+    '@theme': resolveByRootPath('./public/components'),
   });
 
   return {
@@ -79,22 +74,23 @@ const cfg: any = async() => {
     module: {
       rules: [
         {
-          test: /\.(mdx)$/,
+          test: /\.(mdx?)$/,
           include,
           use: [
             {
-              loader: babelLoaderPath,
-              options: await babelrc(),
-            },
-            {
-              loader: mdxBabelLoaderPath,
+              loader: mdxLoaderPath,
               options: {
                 markdownConfig: {
-                  parseFrontMatter,
+                  preprocessor: mdxPreprocessor,
+                  parseFrontMatter: async (params: any) => {
+                    return await params.defaultParseFrontMatter(params)
+                  },
+                  anchors: {},
+                  mdx1Compat: {},
                 },
-              },
+              }
             },
-          ],
+          ]
         },
         {
           test: /\.(jsx?|[cm]?ts|tsx|js)$/,
@@ -107,14 +103,29 @@ const cfg: any = async() => {
           ]
         },
         {
-          test: /\.(scss|css)$/,
+          test: /module\.(scss|css)$/,
           include,
           use: [
             {
               loader: styleLoaderPath,
             }, {
               loader: cssLoaderPath,
-              options: { modules: undefined }
+              options: { modules: true }
+            }, {
+              loader: sassLoaderPath,
+            }
+          ]
+        },
+        {
+          test: /\.(scss|css)$/,
+          include,
+          exclude: /\.module\.(scss|css)$/,
+          use: [
+            {
+              loader: styleLoaderPath,
+            }, {
+              loader: cssLoaderPath,
+              options: { modules: false }
             }, {
               loader: sassLoaderPath,
             }
