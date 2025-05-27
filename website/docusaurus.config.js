@@ -2,8 +2,8 @@
 /** @type {import('@docusaurus/types').Config} */
 const getConfig = async() => ({
   title: 'jelper官网文档',
-  tagline: '基础工具库，提供常用css片段、工具函数、react hooks等',
-  favicon: 'img/favicon.ico',
+  tagline: '基础工具库，提供常用css片段、react组件、工具函数、react hooks等',
+  favicon: 'img/logo.png',
 
   // Set the production url of your site here
   url: 'https://apathyjade.github.io/',

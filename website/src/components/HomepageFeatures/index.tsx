@@ -23,7 +23,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        项目针对开发日常基础场景，提供丰富的css片段、工具函数、react hooks等<br/>
+        项目针对开发日常基础场景，提供丰富的css片段、React组件、工具函数、react hooks等<br/>
       </>
     ),
   },
