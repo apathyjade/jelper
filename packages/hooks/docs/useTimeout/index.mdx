@@ -29,7 +29,14 @@ import { useTimeout } from '@jelper/hooks';
   dataSource={[
     {
       param: 'useTimeout',
-      desc: 'Timeout绑定',
+      desc: 'Timeout effect封装',
+      type: ' (callback: Function, timeout?: number, ...arg: any[]) => () => void]',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'useTimeoutHandler',
+      desc: 'Timeout Handler生成',
       type: ' () => [(callback: Function, timeout?: number, ...arg: any[]) => void, () => void]',
       defValue: '--',
       version: '',

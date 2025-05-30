@@ -30,6 +30,6 @@ export { default as useSafeRunner } from './useSafeRunner';
 export { default as useAsync } from './useAsync';
 
 // 浏览器api
-export { default as useTimeout } from './useTimeout';
-export { default as useInterval } from './useInterval';
+export { default as useTimeout, useTimeoutHandler } from './useTimeout';
+export { default as useInterval, useIntervalHandler } from './useInterval';
 export { default as useResizeObserver, useResizeObserverHandler } from './useResizeObserver';

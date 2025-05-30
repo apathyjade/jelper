@@ -29,8 +29,15 @@ import { useInterval } from '@jelper/hooks';
   dataSource={[
     {
       param: 'useInterval',
-      desc: 'window.interval',
+      desc: '使用 useEffect 封装 interval',
       type: 'UseInterval',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'useIntervalHandler',
+      desc: '使用 interval 句柄',
+      type: 'UseIntervalHandler',
       defValue: '--',
       version: '',
     },
@@ -40,7 +47,8 @@ import { useInterval } from '@jelper/hooks';
 #### Interface
 
 ``` tsx
-type UseInterval = () => [
+type UseInterval = (callback: Function, timeout?: number, ...arg: any[]) => (() => void);
+type UseIntervalHandler = () => [
   (callback: Function, timeout?: number, ...arg: any[]) => void, // 绑定事件
   () => void, // 清除事件
 ];
