@@ -1,0 +1,40 @@
+---
+title: useRtCb
+sort: 1
+---
+
+import CodeDemo from '@theme/CodeDemo';
+import ImportTabs from '@theme/ImportTabs';
+import ApiTable from '@theme/ApiTable';
+import Demo from './Demo.tsx';
+
+### 安装
+
+<ImportTabs name="@jelper/hooks" />
+
+### 引入
+
+``` tsx
+import { useRtCb } from '@jelper/hooks';
+```
+
+### 样例
+
+#### 基础用法
+<CodeDemo title="基础用法" desc="" text={$include('./Demo.tsx')}><Demo /></CodeDemo>
+
+### API
+
+#### useRtCb
+避免state变更导致callback函数变更，保证callback不需要DependencyList也能再执行时拿到最新state
+<ApiTable
+  dataSource={[
+    {
+      param: 'useRtCb',
+      desc: '实时更新 callback 调用函数',
+      type: '<T extends Function>(cb: T, deps: DependencyList = []) => T',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+/>

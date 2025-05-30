@@ -2,7 +2,7 @@
  * @Author: apathyjade
  * @Date: 2025-03-19 22:55:14
  * @Last Modified by: apathyjade
- * @Last Modified time: 2025-03-19 22:55:14
+ * @Last Modified time: 2025-05-29 18:56:32
  */
 
 import { debounce, DebounceSettings, DebouncedFunc } from 'lodash-es';
@@ -24,7 +24,7 @@ const useDebounce = <T extends (...args: any) => any>(
       wait,
       opts
     );
-  }, []);
+  }, [wait, opts]);
 };
 
 export default useDebounce;

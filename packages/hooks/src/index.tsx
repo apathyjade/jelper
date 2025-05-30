@@ -9,11 +9,11 @@ export { default as useRtRef } from './useRtRef';
 export { default as useRtCb } from './useRtCb';
 
 // 特殊 Effect
-export { default as useUpdateEffect } from './useUpdateEff';
+export { default as useUpdateEff } from './useUpdateEff';
 
 //  模拟生命周期
 export { default as useIsMounted } from './useIsMounted';
-export { default as useIsUnmount } from './useIsUnmounted';
+export { default as useIsUnmount } from './useIsUnmount';
 export { default as useCreate } from './useCreate';
 export { default as useMount } from './useMount';
 export { default as useUnmount } from './useUnmount';
@@ -26,9 +26,10 @@ export { default as useDebounce } from './useDebounce';
 export { default as useThrottle } from './useThrottle';
 
 // 使用异步
+export { default as useSafeRunner } from './useSafeRunner';
 export { default as useAsync } from './useAsync';
 
 // 浏览器api
 export { default as useTimeout } from './useTimeout';
 export { default as useInterval } from './useInterval';
-export { default as useResizeObserver } from './useResizeObserver';
+export { default as useResizeObserver, useResizeObserverHandler } from './useResizeObserver';

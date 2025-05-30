@@ -42,14 +42,14 @@ const getConfig = async() => ({
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/apathyjade/jelper/tree/master/packages',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/apathyjade/jelper/tree/master/websitew',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

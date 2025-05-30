@@ -6,7 +6,7 @@
  */
 
 import { useCallback } from 'react';
-import useIsUnmount from "./useIsUnmounted";
+import useIsUnmount from "./useIsUnmount";
 
 const useSafeRunner = () => {
   const isUnmount = useIsUnmount();

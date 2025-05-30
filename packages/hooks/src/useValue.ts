@@ -6,8 +6,9 @@
  * @Last Modified Time: 2023-04-05 14:39:52
  */
 
-import { useState, useEffect } from 'react';
-import useRtCb from './useRtCb';
+import { useState } from 'react';
+import useUpdateEff from './useUpdateEff';
+
 interface Options<T> {
   isEqual?: (a:T, b: T) => boolean
 }
@@ -24,19 +25,18 @@ const useValue = <T = any>(
 ] => {
   const { isEqual = defEqual } = opts || {};
   const [val, setVal] = useState<T>(value);
-  const updateValue = useRtCb((value: T) => {
-    setVal(value);
-    onChange?.(value);
-  }, [])
-  const [oldValue, setOldValue] = useState<T>(value);
-  useEffect(() => {
-    if (!isEqual(value, oldValue)) {
-      setOldValue(value);
-      if (!isEqual(value, val)) {
-        updateValue(value);
-      }
+
+  useUpdateEff(() => {
+    if (!isEqual(value, val)) {
+      onChange?.(val);
     }
-  }, [value, oldValue, val]);
+  }, [val]);
+
+  useUpdateEff(() => {
+    if (!isEqual(value, val)) {
+      setVal(value);
+    }
+  }, [value]);
   return [val, setVal];
 };
 

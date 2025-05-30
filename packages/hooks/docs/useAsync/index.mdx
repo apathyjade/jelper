@@ -1,0 +1,63 @@
+---
+title: useAsync
+sort: 1
+---
+
+import CodeDemo from '@theme/CodeDemo';
+import ImportTabs from '@theme/ImportTabs';
+import ApiTable from '@theme/ApiTable';
+import Demo from './Demo.tsx';
+
+### 安装
+
+<ImportTabs name="@jelper/hooks" />
+
+### 引入
+
+``` tsx
+import { useAsync } from '@jelper/hooks';
+```
+
+### 样例
+
+#### 基础用法
+<CodeDemo title="基础用法" desc="" text={$include('./Demo.tsx')}><Demo /></CodeDemo>
+
+### API
+<ApiTable
+  dataSource={[
+    {
+      param: 'useAsync',
+      desc: '异步执行帮助hooks',
+      type: 'UseAsync',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+/>
+
+#### Interface
+
+``` tsx
+interface Opt<T extends (p: any) => any, R> {
+  defParam?: Parameter<T>; // 默认参数
+  immediate?: boolean;     // 是否立即执行 默认：false
+  format?: (p: ReturnType<T>) => R; // 格式化返回数据
+  catchParam?: boolean;   // 是否合并返回值
+  onAbort?: (this: AbortSignal, ev: Event) => any; // 执行取消回调
+}
+type UseAsync<T extends (p: any, opt?: { signal: AbortController['signal'] }) => Promise<any>, R = any> = (
+  asyncFn: T,
+  opt: Opt<T, R> = defOpt
+): [
+  R | undefined,  // 返回数据
+  {
+    run: (runParam?: Partial<Parameter<T>>) => Promise<void>; // 执行方法
+    refresh: () => Promise<void>; // 使用上一次 参数 执行方法
+    loading: boolean; // 加载状态
+    error?: Error; // 异常数据
+    param: Partial<Parameter<T>>; // 当前结果参数
+    controller: AbortController|undefined; // AbortController实例可手动取消执行回调
+  }
+]
+```
