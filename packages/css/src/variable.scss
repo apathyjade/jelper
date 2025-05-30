@@ -97,11 +97,17 @@ $aj_disabled_opacity: 0.2 !default;
   @return $self_rgba;
 };
 
-// @function aj-get-color ($color, $opacity) {
-//   $self_rgb: map-get($aj_color, $color);
-//   $self_rgba: #{"rgba(" + $self_rgb + ", " + $opacity + ")"};
-//   @return $self_rgba;
-// };
+$aj_space: (
+  xs: 4px,
+  s: 8px,
+  m: 12px,
+  l: 16px,
+  xl: 20px,
+  2xl: 24px,
+  3xl: 28px,
+  4xl: 32px,
+  5xl: 36px,
+) !default;
 
 $aj_row: (
   xs: 24px,
@@ -109,22 +115,6 @@ $aj_row: (
   m: 32px,
   l: 36px,
   xl: 40px,
-) !default;
-
-$aj_block_space: (
-  xs: 12px,
-  s: 16px,
-  m: 20px,
-  l: 24px,
-  xl: 28px,
-) !default;
-
-$aj_text_space: (
-  xs: 4px,
-  s: 8px,
-  m: 12px,
-  l: 16px,
-  xl: 20px,
 ) !default;
 
 $aj_reduce: (

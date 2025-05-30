@@ -1,5 +1,6 @@
 
-$size: 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 48, 56, 64;
+@import "./variable.scss";
+
 $direction: (
   l: left,
   r: right,
@@ -8,56 +9,38 @@ $direction: (
 );
 
 // n内外间距
-@each $item in $size {
-  .mg-#{$item} {
-    margin: $item + px;
+@each $key, $item in $aj_space {
+  #{aj_to_cls("mg-" + $key)} {
+    margin: $item;
   }
-  .pd-#{$item} {
-    padding: $item + px;
-  }
-}
-@each $item in $size {
-  .mg-lr#{$item} {
-    margin-left: $item + px;
-    margin-right: $item + px;
-  }
-  .mg-tb#{$item} {
-    margin-top: $item + px;
-    margin-bottom: $item + px;
-  }
-  .pd-lr#{$item} {
-    padding-left: $item + px;
-    padding-right: $item + px;
-  }
-  .pd-tb#{$item} {
-    padding-top: $item + px;
-    padding-bottom: $item + px;
+  #{aj_to_cls("pd-" +  $key)} {
+    padding: $item;
   }
 }
-@each $item in $size {
-  @each $key, $value in $direction{
-    .mg-#{$key + $item} {
-      margin-#{$value}: $item + px;
+@each $key, $item in $aj_space {
+  @each $dir, $value in $direction{
+    #{aj_to_cls("mg-" + $dir + "-" + $key)} {
+      margin-#{$value}: $item;
     }
-    .pd-#{$key + $item} {
-      padding-#{$value}: $item + px;
+    #{aj_to_cls("pd-" + $dir + "-" + $key)} {
+      padding-#{$value}: $item;
     }
   }
 }
-.mg-auto {
+
+#{aj_to_cls("mg-auto")} {
   margin-left: auto;
   margin-right: auto;
 }
-
-.block {
+#{aj_to_cls("block")} {
   display: block;
 }
-.inline-block {
+#{aj_to_cls("inline-block")} {
   display: inline-block;
 }
-.inline {
+#{aj_to_cls("inline")} {
   display: inline;
 }
-.hide {
+#{aj_to_cls("hide")} {
   display: none;
 }

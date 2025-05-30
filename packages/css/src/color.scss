@@ -44,27 +44,3 @@
     color: aj-get-disabled-color($key);
   }
 }
-// @each $item in $aj_gray {
-//   .c#{$item} {
-//     color: #{'#'}#{$item}#{$item}#{$item};
-//   }
-//   .bg-c#{$item} {
-//     background-color: #{'#'}#{$item}#{$item}#{$item};
-//   }
-//   .border-c#{$item} {
-//     border: 1px solid #{'#'}#{$item}#{$item}#{$item};
-//   }
-// }
-
-// .white {
-//   color: #fff;
-// }
-// .black {
-//   color: #000;
-// }
-// .bg-white {
-//   background: #fff;
-// }
-// .bg-black {
-//   background: #000;
-// }
