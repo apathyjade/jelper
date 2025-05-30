@@ -2,12 +2,13 @@
  * @Author: apathyjade
  * @Date: 2023-12-14 16:51:29
  * @Last Modified by: apathyjade
- * @Last Modified time: 2025-03-19 23:11:26
+ * @Last Modified time: 2025-05-30 18:24:00
  */
 
 import { useCallback, useEffect, useRef } from 'react';
+import useRtCb from './useRtCb';
 
-const useInterval = (): [
+export const useIntervalHandler = (): [
   (callback: Function, timeout?: number, ...arg: any[]) => void,
   () => void,
 ] => {
@@ -22,7 +23,6 @@ const useInterval = (): [
   const bindTimer = useCallback((callback: Function, timeout?: number, ...arg: any[]) => {
     clearTimer();
     timerRef.current = window.setInterval(() => {
-      timerRef.current = undefined;
       callback(...arg);
     }, timeout);
   }, []);
@@ -31,6 +31,19 @@ const useInterval = (): [
     bindTimer,
     clearTimer,
   ];
+}
+
+export const useInterval = (callback: Function, timeout?: number, ...arg: any[]): (() => void) => {
+
+  const [bindTimer, clearTimer] = useIntervalHandler();
+
+  const cb = useRtCb(callback);
+
+  useEffect(() => {
+    bindTimer(cb, timeout, ...arg)
+    return clearTimer
+  }, [cb, timeout, ...arg]);
+  return clearTimer;
 };
 
 export default useInterval;

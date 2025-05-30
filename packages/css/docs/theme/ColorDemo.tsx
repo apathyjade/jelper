@@ -7,16 +7,16 @@ interface ColorStyledProps {
 }
 const ColorStyled = styled.span<ColorStyledProps>`
   margin: 0 12px;
-  color: ${(props: ColorStyledProps) => `rgb(var(--aj_color_${props.$color}))`};
+  color: ${(props: ColorStyledProps) => `var(--aj_color_${props.$color})`};
 `;
 
 const BgcStyled = styled.span<ColorStyledProps>`
   margin-right: 16px;
   padding: 6px 12px;
   display: inline-block;
-  color: ${(props: ColorStyledProps) => `rgb(var(--aj_color_${props.$color}))`};
-  background: ${(props: ColorStyledProps) => `rgba(var(--aj_color_${props.$color}), var(--aj_bgc_opacity))`};
-  border: 1px solid ${(props: ColorStyledProps) => `rgba(var(--aj_color_${props.$color}), var(--aj_bdc_opacity))`};
+  color: ${(props: ColorStyledProps) => `var(--aj_color_${props.$color})`};
+  background: ${(props: ColorStyledProps) => `var(--aj_color_${props.$color}), var(--aj_bgc_opacity)`};
+  border: 1px solid ${(props: ColorStyledProps) => `var(--aj_color_${props.$color}), var(--aj_bdc_opacity)`};
 `;
 
 export default () => {

@@ -2,13 +2,13 @@
  * @Author: apathyjade
  * @Date: 2025-03-18 23:44:38
  * @Last Modified by: apathyjade
- * @Last Modified time: 2025-03-19 22:53:22
+ * @Last Modified time: 2025-05-29 17:58:54
  */
 
 import { useEffect, useState } from 'react';
 import useRtCb from './useRtCb';
 import useCreate from './useCreate';
-import useIsUnmounted from './useIsUnmounted';
+import useIsUnmounted from './useIsUnmount';
 import useUnmount from './useUnmount';
 
 type Parameter<T extends (p: any) => any> = Parameters<T>[0]
@@ -37,6 +37,7 @@ const useAsync = <T extends (p: any, opt?: { signal: AbortController['signal'] }
     loading: boolean;
     error?: Error;
     param: Partial<Parameter<T>>;
+    controller: AbortController|undefined;
   }
 ] => {
   const [data, setData] = useState<R>();
@@ -99,7 +100,7 @@ const useAsync = <T extends (p: any, opt?: { signal: AbortController['signal'] }
       controller.abort();
     }
   });
-  return [data, { run, refresh, loading, error, param }];
+  return [data, { run, refresh, loading, error, param, controller }];
 };
 
 export default useAsync;

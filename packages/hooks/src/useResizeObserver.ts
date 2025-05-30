@@ -2,7 +2,7 @@
  * @Author: apathyjade
  * @Date: 2023-11-24 10:52:51
  * @Last Modified by: apathyjade
- * @Last Modified time: 2025-03-19 23:17:45
+ * @Last Modified time: 2025-05-30 14:35:56
  */
 
 import { useCallback, useEffect } from 'react';
@@ -29,6 +29,9 @@ const observe = (target: HTMLElement, cb: (dom: ResizeObserverEntry) => void) =>
   if (!resizeObserver) {
     init();
   }
+  if (!target) {
+    return;
+  }
   observeCatch?.set(target, cb);
   resizeObserver?.observe(target);
 };
@@ -36,20 +39,30 @@ const unobserve = (target: HTMLElement) => {
   if (!resizeObserver) {
     init();
   }
+  if (!target) {
+    return;
+  }
   resizeObserver?.unobserve(target);
   observeCatch?.delete(target);
 };
 
-export default function useResizeObserver (dom: HTMLElement, cb: (dom: ResizeObserverEntry) => void) {
-  const selfObserve = useCallback(() => {
-    observe(dom, cb);
-  }, [dom, cb]);
+export const useResizeObserverHandler = () => {
+  return [observe, unobserve];
+};
+
+export const useResizeObserver = <T extends HTMLElement >(domRef: React.RefObject<T>, cb: (entry: ResizeObserverEntry) => void) => {
   const selfUnobserve = useCallback(() => {
-    unobserve(dom);
-  }, [dom]);
+    if (domRef.current) {
+      unobserve(domRef.current);
+    }
+  }, [domRef.current]);
   useEffect(() => {
+    if (!domRef.current) return;
+    const dom = domRef.current
     observe(dom, cb);
     return () => unobserve(dom);
-  }, [dom, cb]);
-  return [selfObserve, selfUnobserve];
+  }, [domRef.current, cb]);
+  return selfUnobserve;
 };
+
+export default useResizeObserver;

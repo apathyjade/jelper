@@ -1,9 +1,9 @@
 ---
 title: Layout组件
-order: 1
+order: 10
 ---
 
-import { Table } from 'antd';
+import ApiTable from '@theme/ApiTable';
 import CodeDemo from '@theme/CodeDemo';
 import Demo, { title, desc} from './Demo.tsx';
 import MinDemo, { title as minTitle, desc as minDesc} from './MinWidth.tsx';
@@ -21,15 +21,7 @@ import ImportTabs from '@theme/ImportTabs';
 <CodeDemo title={minTitle} desc={minDesc} text={$include('./MinWidth.tsx')}><MinDemo /></CodeDemo>
 
 ### API
-<Table
-  rowKey="param"
-  columns={[
-    { title: '参数', width: 120, dataIndex: 'param' },
-    { title: '说明', width: 240, dataIndex: 'desc' },
-    { title: '类型', width: 120, dataIndex: 'type' },
-    { title: '默认值', width: 120, dataIndex: 'defValue' },
-    { title: '版本', width: 80, dataIndex: 'version' },
-  ]}
+<ApiTable
   dataSource={[
     {
       param: 'sideSpace',
@@ -60,7 +52,4 @@ import ImportTabs from '@theme/ImportTabs';
       version: '',
     },
   ]}
-  bordered
-  size="small"
-  pagination={false}
 />

@@ -1,0 +1,40 @@
+---
+title: useValue
+sort: 1
+---
+
+import CodeDemo from '@theme/CodeDemo';
+import ImportTabs from '@theme/ImportTabs';
+import ApiTable from '@theme/ApiTable';
+import Demo from './Demo.tsx';
+
+### 安装
+
+<ImportTabs name="@jelper/hooks" />
+
+### 引入
+
+``` tsx
+import { useValue } from '@jelper/hooks';
+```
+
+### 样例
+
+#### 基础用法
+<CodeDemo title="基础用法" desc="" text={$include('./Demo.tsx')}><Demo /></CodeDemo>
+
+### API
+
+#### useValue
+
+<ApiTable
+  dataSource={[
+    {
+      param: 'useValue',
+      desc: '方便表单value，onChange透传',
+      type: '<T = any>(value: T, onChange?: (value: T) => void, opts?: Options<T>) => [T, React.Dispatch<React.SetStateAction<T>>]',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+/>

@@ -1,11 +1,10 @@
 ---
 title: Row组件
-order: 2
+order: 8
 ---
-import { Table } from 'antd';
 
+import ApiTable from '@theme/ApiTable';
 import CodeDemo from '@theme/CodeDemo';
-
 import Demo from './Demo.tsx';
 import FlexDemo from './Fixed.tsx';
 import ImportTabs from '@theme/ImportTabs';
@@ -23,15 +22,7 @@ import ImportTabs from '@theme/ImportTabs';
 
 ### API
 Flex API
-<Table
-  rowKey="param"
-  columns={[
-    { title: '参数', width: 120, dataIndex: 'param' },
-    { title: '说明', width: 240, dataIndex: 'desc' },
-    { title: '类型', width: 120, dataIndex: 'type' },
-    { title: '默认值', width: 120, dataIndex: 'defValue' },
-    { title: '版本', width: 80, dataIndex: 'version' },
-  ]}
+<ApiTable
   dataSource={[
     {
       param: 'justify',
@@ -55,22 +46,11 @@ Flex API
       version: '',
     },
   ]}
-  bordered
-  size="small"
-  pagination={false}
 />
 
 Flex.Item API
 
-<Table
-  rowKey="param"
-  columns={[
-    { title: '参数', width: 120, dataIndex: 'param' },
-    { title: '说明', width: 240, dataIndex: 'desc' },
-    { title: '类型', width: 120, dataIndex: 'type' },
-    { title: '默认值', width: 120, dataIndex: 'defValue' },
-    { title: '版本', width: 80, dataIndex: 'version' },
-  ]}
+<ApiTable
   dataSource={[
     {
       param: 'fixed',
@@ -108,7 +88,4 @@ Flex.Item API
       version: '',
     },
   ]}
-  bordered
-  size="small"
-  pagination={false}
 />

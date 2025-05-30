@@ -1,0 +1,45 @@
+---
+title: useTimeout
+sort: 1
+---
+
+import CodeDemo from '@theme/CodeDemo';
+import ImportTabs from '@theme/ImportTabs';
+import ApiTable from '@theme/ApiTable';
+import Demo from './Demo.tsx';
+
+### 安装
+
+<ImportTabs name="@jelper/hooks" />
+
+### 引入
+
+``` tsx
+import { useTimeout } from '@jelper/hooks';
+```
+
+### 样例
+
+#### 基础用法
+<CodeDemo title="基础用法" desc="" text={$include('./Demo.tsx')}><Demo /></CodeDemo>
+
+### API
+
+<ApiTable
+  dataSource={[
+    {
+      param: 'useTimeout',
+      desc: 'Timeout effect封装',
+      type: ' (callback: Function, timeout?: number, ...arg: any[]) => () => void]',
+      defValue: '--',
+      version: '',
+    },
+    {
+      param: 'useTimeoutHandler',
+      desc: 'Timeout Handler生成',
+      type: ' () => [(callback: Function, timeout?: number, ...arg: any[]) => void, () => void]',
+      defValue: '--',
+      version: '',
+    },
+  ]}
+/>

@@ -10,15 +10,15 @@
 }
 @each $key, $value in $aj_color {
   #{aj-to-theme(color_#{$key})}: aj-get-color($key);
+  #{aj-to-theme(bg_#{$key})}: aj-get-background-color($key);
+  #{aj-to-theme(disabled_#{$key})}: aj-get-disabled-color($key);
 }
 @each $key, $value in $aj_row {
   #{aj-to-theme(row_#{$key})}: #{$value};
 }
-@each $key, $value in $aj_block_space {
-  #{aj-to-theme(block_space_#{$key})}: #{$value};
-}
-@each $key, $value in $aj_text_space {
-  #{aj-to-theme(text_space_#{$key})}: #{$value};
+
+@each $key, $value in $aj_space {
+  #{aj-to-theme(space_#{$key})}: #{$value};
 }
 
   #{aj-to-theme(bgc_opacity)}: $aj_bgc_opacity;
