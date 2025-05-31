@@ -23,7 +23,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        项目针对开发日常基础场景，提供丰富的css片段、React组件、工具函数、react hooks等<br/>
+        项目针对开发日常基础场景，提供实用性非常高的css片段、React组件、工具函数、react hooks等<br/>
       </>
     ),
   },
@@ -32,7 +32,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        项目使用 TypeScript 构建，提供完整的类型定义，确保项目质量；
+        项目使用 TypeScript 构建，提供完整的类型定义，集成jest单元测试确保项目质量；
       </>
     ),
   },

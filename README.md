@@ -1,5 +1,5 @@
 # jelper
-helper 聚合库
+helper 单体库，内部包括完整构建工具、发布流程，文档自动构建发布流程; 
 
 ## publish
 
