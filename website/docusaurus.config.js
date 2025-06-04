@@ -15,7 +15,6 @@ const getConfig = async() => ({
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'apathyjade', // Usually your GitHub org/user name.
   projectName: 'jelper', // Usually your repo name.
-
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
