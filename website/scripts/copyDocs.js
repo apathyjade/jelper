@@ -6,14 +6,29 @@ const packagesPath = path.resolve(__dirname, '../../packages');
 const outputPath = path.resolve(__dirname, '../docs');
 const files = fs.readdirSync(packagesPath);
 
+function syncFolders(source, target) {
+  const files = fs.readdirSync(source);
+  files.forEach(file => {
+    const srcPath = path.join(source, file);
+    const tarPath = path.join(target, file);
+    const stats = fs.statSync(srcPath);
+    if (stats.isFile()) {
+      fs.writeFileSync(tarPath, fs.readFileSync(srcPath));
+    } else if (stats.isDirectory()) {
+      if (!fs.existsSync(tarPath)) {
+        fs.mkdirSync(tarPath);
+      }
+      syncFolders(srcPath, tarPath);
+    }
+  });
+}
+
+
 const copyModelDocs = (file) => {
   try {
     const currPath = `${packagesPath}/${file}/docs`;
     if (fs.pathExistsSync(currPath) && file !== 'website') {
-      fs.copySync(currPath, `${outputPath}/${file}/`, {
-        overwrite: true,
-        recursive: true,
-      });
+      syncFolders(currPath, `${outputPath}/${file}/`);
     }
   } catch (error) {
     console.error(`${file} 文档文件拷贝失败`, error);
@@ -21,7 +36,7 @@ const copyModelDocs = (file) => {
 }
 
 const main = () => {
-  fs.pathExistsSync(outputPath) && fs.emptyDirSync(outputPath);
+  // fs.pathExistsSync(outputPath) && fs.emptyDirSync(outputPath);
   files.forEach(copyModelDocs);
 }
 main();
