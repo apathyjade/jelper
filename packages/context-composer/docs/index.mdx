@@ -9,6 +9,7 @@ import { Table } from 'antd';
 import CodeDemo from '@theme/CodeDemo';
 import Demo from './Demo.tsx';
 import MergeDemo from './MergeDemo.tsx';
+import BuildDemo from './BuildDemo.tsx';
 
 import ImportTabs from '@theme/ImportTabs';
 
@@ -22,6 +23,9 @@ import ImportTabs from '@theme/ImportTabs';
 
 #### 多context合并使用
 <CodeDemo title="" desc="" text={$include('./MergeDemo.tsx')}><MergeDemo /></CodeDemo>
+
+#### buildHooks使用
+<CodeDemo title="" desc="" text={$include('./BuildDemo.tsx')}><BuildDemo /></CodeDemo>
 
 ### API
 
@@ -40,6 +44,7 @@ import ImportTabs from '@theme/ImportTabs';
   - forwardComposer: (Com: FC\<Props\>) => FC\<Props\>
 
   - useComposerCtx: T
+  - buildHooks: \<F extends (...arg: any) => any\>(cb: (value: T) => F) => (...p: Parameters\<F\>) => ReturnType\<F\>;
 
 #### mergeComposer
 

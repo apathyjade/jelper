@@ -28,8 +28,6 @@ const TestCom = () => {
   );
 };
 
-export default forwardComposer(() => {
-  return (<TestCom />)
-});
+export default forwardComposer(TestCom);
 
 
