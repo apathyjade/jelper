@@ -37,13 +37,6 @@
       "reviewCategory": "production",
       "shouldPublish": true
     },
-    // {
-    //   "packageName": "@jelper/website",
-    //   "projectFolder": "packages/website",
-    //   "tags": ["website"],
-    //   "reviewCategory": "production",
-    //   "shouldPublish": false
-    // },
     {
       "packageName": "@jelper/css",
       "projectFolder": "packages/css",
