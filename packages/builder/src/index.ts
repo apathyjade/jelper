@@ -6,12 +6,9 @@
  * @Last Modified Time: 2022-06-21 12:20:40
  */
 
-
 import { Command } from 'commander';
 import fs from 'fs-extra';
-
 import { serve, init, build, test, copy, tsBuild } from './commands/index.js';
-
 import type { BuildOpts, CopyOpts } from './types.js';
 
 const pkgJson = fs.readJSONSync('./package.json');
@@ -47,7 +44,7 @@ program.command('test')
 .description('运行测试脚本')
 .action(async (opts: BuildOpts) => {
   process.env['NODE_ENV'] = 'test';
-  await test(opts);
+  test(opts);
 });
 
 program.command('copy')

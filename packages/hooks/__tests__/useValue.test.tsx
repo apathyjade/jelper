@@ -27,7 +27,7 @@ test("验证useValue with onChange", async () => {
     onChangeValue = value;
   };
 
-  const { result } = renderHook(() => useValue(false, onChange));
+  const { result } = renderHook(() => useValue<boolean>(false, onChange));
 
   // 初始值为 false
   expect(result.current[0]).toBe(false);

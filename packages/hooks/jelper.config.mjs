@@ -5,6 +5,5 @@ export default {
     }
   },
   jestCfg: {
-    transformIgnorePatterns: ['node_modules/(?!lodash-es)'],
   }
 };

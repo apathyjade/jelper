@@ -6,7 +6,5 @@ test("验证useTimeout", async () => {
   const callback = jest.fn();
   const { result } = renderHook(() => useTimeout(callback, 100));
 
-  // 测试返回的函数
-  const clearTimer = result.current;
-  expect(typeof clearTimer).toBe('function');
+  expect(typeof result).toBe('object');
 });

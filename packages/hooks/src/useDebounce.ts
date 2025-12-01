@@ -5,7 +5,7 @@
  * @Last Modified time: 2025-05-29 18:56:32
  */
 
-import { debounce, DebounceSettings, DebouncedFunc } from 'lodash-es';
+import { debounce, DebounceSettings, DebouncedFunc } from 'lodash';
 import { useMemo } from 'react';
 import useRtCb from './useRtCb';
 

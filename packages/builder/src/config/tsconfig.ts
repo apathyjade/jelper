@@ -2,6 +2,7 @@ export default {
   // $schema: 'http://json.schemastore.org/tsconfig',
   compilerOptions: {
     lib: ['es5', 'es6', 'dom'],
+    allowJs: true,
     allowSyntheticDefaultImports: true,
     esModuleInterop: true,
     noUnusedLocals: true,

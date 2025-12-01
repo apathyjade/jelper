@@ -3,7 +3,7 @@ import { renderHook, act } from '@testing-library/react';
 import useOption from '../src/useOption';
 
 test("验证useOption", async () => {
-  const defOpt = { a: 1, b: 2 };
+  const defOpt: { [p: string]: number } = { a: 1, b: 2 };
   const { result } = renderHook(() => useOption(defOpt));
 
   // 初始值

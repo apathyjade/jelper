@@ -24,6 +24,15 @@ interface RowStyledProps {
   $align: Props['align'];
   $gap: Props['gap'];
 }
+
+interface RowItemStyledProps {
+  $fixed?: boolean;
+  $scale?: number;
+  $width?: number | string;
+  $minWidth?: number | string;
+  $maxWidth?: number | string;
+}
+
 const RowStyled = styled.div<RowStyledProps>`
   display: flex;
   justify-content: ${(props: RowStyledProps) => props.$justify};
@@ -32,18 +41,12 @@ const RowStyled = styled.div<RowStyledProps>`
   gap: ${(props: RowStyledProps) => toCssLengthValue(props.$gap)};
   word-break: break-all;
 `;
-interface RowItemStyledProps {
-  $fixed?: boolean;
-  $scale?: number;
-  $width?: number | string;
-  $minWidth?: number | string;
-  $maxWidth?: number | string;
-}
 const RowItemStyled = styled.div<RowItemStyledProps>`
   flex: ${(props: RowItemStyledProps) => props.$fixed ? '0 0 auto' : `${props.$scale} ${props.$scale} auto`};
   width: ${(props: RowItemStyledProps) => toCssLengthValue(props.$width)};
   min-width: ${(props: RowItemStyledProps) => toCssLengthValue(props.$minWidth)};
   max-width: ${(props: RowItemStyledProps) => toCssLengthValue(props.$maxWidth)};
+  overflow: auto;
 `;
 
 const Row = (props: Props) => {
