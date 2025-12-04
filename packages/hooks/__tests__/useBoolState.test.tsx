@@ -31,4 +31,16 @@ test("验证useBoolState", async () => {
     result.current[1](false);
   });
   expect(result.current[0]).toBe(false);
+
+  // 测试传入参数的切换为 function
+  act(() => {
+    result.current[1]((_) => true);
+  });
+  expect(result.current[0]).toBe(true);
+
+  // 测试传入参数的切换为 function
+  act(() => {
+    result.current[1](12 as any);
+  });
+  expect(result.current[0]).toBe(true);
 });

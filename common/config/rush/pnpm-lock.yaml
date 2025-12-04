@@ -66,7 +66,7 @@ importers:
       sass-loader: ~13.2.0
       style-loader: ~3.3.1
       styled-components: ~6.1.18
-      ts-jest: ~29.4.5
+      ts-jest: ~29.4.6
       ts-loader: ~9.4.2
       tslib: ~2.5.0
       typescript: ~5.4.5
@@ -125,7 +125,7 @@ importers:
       sass-loader: 13.2.2_sass@1.64.2+webpack@5.75.0
       style-loader: 3.3.4_webpack@5.75.0
       styled-components: 6.1.18_react-dom@18.2.0+react@18.2.0
-      ts-jest: 29.4.5_5876a91852d3432492816486a2ae6bac
+      ts-jest: 29.4.6_5876a91852d3432492816486a2ae6bac
       ts-loader: 9.4.4_typescript@5.4.5+webpack@5.75.0
       tslib: 2.5.3
       typescript: 5.4.5
@@ -253,7 +253,6 @@ importers:
       lodash: ~4.17.21
       react: ~18.2.0
     dependencies:
-      '@types/lodash': 4.17.21
       lodash: 4.17.21
       react: 18.2.0
     devDependencies:
@@ -262,6 +261,7 @@ importers:
       '@jest/globals': 29.7.0
       '@testing-library/dom': 10.4.0
       '@testing-library/react': 16.2.0_dbdffc976f271bb6fd903e7461b145ab
+      '@types/lodash': 4.17.21
       '@types/node': 18.0.6
       '@types/react': 18.2.79
       jest-environment-jsdom: 29.7.0
@@ -3190,7 +3190,7 @@ packages:
 
   /@types/lodash/4.17.21:
     resolution: {integrity: sha512-FOvQ0YPD5NOfPgMzJihoT+Za5pdkDJWcbpuj1DjaKZIr/gxodQjY/uWEFlTNqW2ugXHUiL8lRQgw63dzKHZdeQ==}
-    dev: false
+    dev: true
 
   /@types/mdast/3.0.15:
     resolution: {integrity: sha512-LnwD+mUEfxWMa1QpDraczIn6k0Ee3SMicuYSSzS6ZYl2gKS09EClnJYGd8Du6rfc5r/GZEk5o1mRb8TaTj03sQ==}
@@ -12656,8 +12656,8 @@ packages:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: false
 
-  /ts-jest/29.4.5_5876a91852d3432492816486a2ae6bac:
-    resolution: {integrity: sha512-HO3GyiWn2qvTQA4kTgjDcXiMwYQt68a1Y8+JuLRVpdIzm+UOLSHgl/XqR4c6nzJkq5rOkjc02O2I7P7l/Yof0Q==}
+  /ts-jest/29.4.6_5876a91852d3432492816486a2ae6bac:
+    resolution: {integrity: sha512-fSpWtOO/1AjSNQguk43hb/JCo16oJDnMJf3CdEGNkqsEX3t0KX96xvyX1D7PfLCpVoKu4MfVrqUkFyblYoY4lA==}
     engines: {node: ^14.15.0 || ^16.10.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:

@@ -14,7 +14,7 @@ import useUnmount from './useUnmount';
 type Parameter<T extends (p: any) => any> = Parameters<T>[0]
 
 interface Opt<T extends (p: any) => any, R> {
-  defParam?: Parameter<T>;
+  defParam?: Partial<Parameter<T>>;
   immediate?: boolean;
   format?: (p: ReturnType<T>) => R;
   catchParam?: boolean;
@@ -28,7 +28,7 @@ const defOpt = {
 
 const useAsync = <T extends (p: any, opt?: { signal: AbortController['signal'] }) => Promise<any>, R = any>(
   asyncFn: T,
-  opt: Opt<T, R> = defOpt
+  opt: Opt<T, R> = { ...defOpt }
 ): [
   R | undefined,
   {
@@ -40,11 +40,10 @@ const useAsync = <T extends (p: any, opt?: { signal: AbortController['signal'] }
     controller: AbortController|undefined;
   }
 ] => {
-  const [data, setData] = useState<R>();
+  const [data, setData] = useState<R | undefined>(undefined);
   const [param, setParam] = useState<Partial<Parameter<T>>>(opt.defParam || {});
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error>();
-
+  const [error, setError] = useState<Error | undefined>(undefined);
   const [controller, setController] = useState<AbortController>();
   const isUnmounted = useIsUnmounted();
 
@@ -59,10 +58,10 @@ const useAsync = <T extends (p: any, opt?: { signal: AbortController['signal'] }
     }
   }, [controller]);
 
-  const run = useRtCb((runParam?: Partial<Parameter<T>>) => {
+  const run = useRtCb((runParam: Partial<Parameter<T>> = {}) => {
     const currParam = opt.catchParam ? {
       ...param,
-      ...(runParam || {}),
+      ...runParam,
     } : runParam;
     setLoading(true);
     setError(undefined);
@@ -79,13 +78,12 @@ const useAsync = <T extends (p: any, opt?: { signal: AbortController['signal'] }
         if (isUnmounted() || abortController.signal.aborted) return;
         setData(opt.format ? opt.format(resData) : resData);
         setParam(currParam as any);
-        setLoading(false);
       }, (err) => {
-        if (isUnmounted() || abortController.signal.aborted) return Promise.reject(err);
+        if (isUnmounted() || abortController.signal.aborted) return;
         setError(err);
-        setLoading(false);
       }).finally(() => {
         if (isUnmounted()) return;
+        setLoading(false);
         setController(undefined);
       });
   });

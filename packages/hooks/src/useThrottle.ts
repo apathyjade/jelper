@@ -11,7 +11,7 @@ import useRtCb from './useRtCb';
 
 const useThrottle = <T extends (...args: any) => any >(
   cb: T,
-  wait?: number,
+  wait: number = 200,
   opts?: ThrottleSettings,
 ): DebouncedFuncLeading<T> => {
   const rtCb = useRtCb(cb);

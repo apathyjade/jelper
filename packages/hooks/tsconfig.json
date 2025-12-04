@@ -13,7 +13,10 @@
     "outDir": "./lib",
     "jsx": "react",
     "declaration": true,
-    "declarationDir": "./types"
+    "declarationDir": "./types",
+    "sourceMap": true, // 必须启用
+    "inlineSources": true, // 将源代码嵌入 source map
+    "sourceRoot": "/", // 标准化源根
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "src/__tests__/index.test.tsx"],
 }

@@ -1,3 +1,4 @@
+import { afterEach, beforeEach, jest } from "@jest/globals";
 
 export const buildPromise = <T>(): [
   Promise<T>,
@@ -13,3 +14,14 @@ export const buildPromise = <T>(): [
   //
   return [inc, resolve, reject];
 };
+
+export const openFakeTimers = () => {
+  beforeEach(() => {
+    // 启用假定时器
+    jest.useFakeTimers();
+  });
+  afterEach(() => {
+    // 每个测试后恢复真实定时器
+    jest.useRealTimers();
+  });
+}

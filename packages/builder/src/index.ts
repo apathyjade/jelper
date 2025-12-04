@@ -16,8 +16,9 @@ const program = new Command();
 
 program
   .name('@jelper/builder')
-  .description('CLI to build JavaScript helper package')
-  .version(pkgJson.version);
+  .description('CLI to build JavaScript helper package');
+
+program.version(pkgJson.version, '-v, --version', '输出版本号');
 
 
 program.command('init')
@@ -41,11 +42,12 @@ program.command('build')
   });
 
 program.command('test')
-.description('运行测试脚本')
-.action(async (opts: BuildOpts) => {
-  process.env['NODE_ENV'] = 'test';
-  test(opts);
-});
+  .description('运行测试脚本')
+  .allowUnknownOption()
+  .action(async (opts: BuildOpts) => {
+    process.env['NODE_ENV'] = 'test';
+    test(opts);
+  });
 
 program.command('copy')
   .option('-i, --input <chart>', '输入')

@@ -2,34 +2,68 @@
 import { runCLI } from 'jest';
 import requireHelper from '../utils/require-helper.js';
 import { getJelperCfg } from '../common/index.js';
-import { babelrc } from '../config/index.js';
+// import { babelrc } from '../config/index.js';
 
 const getJestConfig = async () => {
 
   const jelperCfg: any = await getJelperCfg();
 
   const jestConfig = {
-    preset: await requireHelper.resolve("ts-jest"),
-    transform: {
-      '^.+\\.[jt]sx?$': [await requireHelper.resolve("babel-jest"), await babelrc()],
-      '^.+js$': await requireHelper.resolve("ts-jest"),
+    preset: `${await requireHelper.resolve("ts-jest")}/presets/default-esm`,
+    testEnvironment: 'jsdom',
+    extensionsToTreatAsEsm: ['.ts'],
+    globals: {
+      'ts-jest': {
+        useESM: true,
+        compilerOptions: {
+          sourceMap: true,
+          inlineSourceMap: false,
+          inlineSources: true,
+          module: 'esnext',
+          moduleResolution: 'node'
+        }
+      }
     },
+    transform: {
+      '^.+\\.[jt]sx?$': [
+        await requireHelper.resolve("ts-jest"),
+        {
+          tsconfig: 'tsconfig.json',
+          diagnostics: false, // 减少诊断信息，加速测试
+          // 关键：启用 source map 并确保映射正确
+          sourceMap: true,
+          inlineSourceMap: false,
+          compilerOptions: {
+            sourceMap: true,
+            inlineSourceMap: false,
+            inlineSources: true,
+            sourceRoot: '/', // 防止路径混淆
+          },
+        },
+      ],
+    },
+    coverage: true,
+    coverageProvider: 'v8',
+    coverageReporters: ['html', 'text', 'lcov', 'json'],
     clearMocks: true,
     collectCoverage: true,
     injectGlobals: true,
-    testEnvironment: "jsdom",
     moduleFileExtensions: ['ts', 'js', 'json', 'tsx', 'jsx', 'node'],
-    testMatch: ['**/__tests__/**/*.test.(js|ts|tsx)'], // 匹配测试文件
+    testMatch: ['**/__tests__/**/*.test.(js|ts|tsx)'],
     transformIgnorePatterns: ['/node_modules/(?!.pnpm|lodash-es)'],
-    verbose: true, // 显示每个测试用例的详细通过/失败信息（默认只显示摘要）
-    // colors: true, // 强制启用/禁用彩色输出
-    // env: 'node', // 指定测试环境
-    // silent: false, // 不输入日志
-    // noStackTrace: true, // 失败时不显示堆栈跟踪（简化输出）
-    // debug: true, // 输出 Jest 内部配置和环境信息（用于排查配置问题)
-    // showConfig: true, // 打印最终生效的 Jest 配置（含合并后的默认值）
-    // cache: false,
-    // clearCache: true,
+    moduleNameMapper: {
+      '^(\\.{1,2}/.*)\\.js$': '$1', // 移除 import 语句中的 .js 扩展名
+      '^@/(.*)$': '<rootDir>/src/$1',
+    },
+    collectCoverageFrom: [
+      'src/**/*.{ts,tsx}',
+      '!src/**/*.d.ts',
+      '!src/**/index.{ts,tsx}',
+      '!**/node_modules/**',
+    ],
+    // 忽略测试文件
+    testPathIgnorePatterns: ['/node_modules/', '/dist/', '/.next/', '/cypress/'],
+    verbose: true,
     ...(jelperCfg.jestCfg || {})
   };
   return jestConfig;

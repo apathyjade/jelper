@@ -4,6 +4,10 @@ import useUnmount from '../src/useUnmount';
 
 test("验证useUnmount", async () => {
   const callback = jest.fn();
-  renderHook(() => useUnmount(callback));
-  expect(1).toEqual(1);
+  const { unmount, rerender } = renderHook(() => useUnmount(callback));
+  expect(callback).toHaveBeenCalledTimes(0);
+  rerender()
+  expect(callback).toHaveBeenCalledTimes(0);
+  unmount();
+  expect(callback).toHaveBeenCalledTimes(1);
 });

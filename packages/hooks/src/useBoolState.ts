@@ -9,7 +9,7 @@ import { useState, useCallback } from 'react';
 
 const useBoolState = (value: boolean): [
   boolean,
-  (val?: boolean) => void
+  (switchValue?: React.SetStateAction<boolean>) => void
 ] => {
   const [val, setVal] = useState<boolean>(value);
   const switchFn = useCallback((switchValue?: React.SetStateAction<boolean>) => {

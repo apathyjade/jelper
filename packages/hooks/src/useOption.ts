@@ -24,8 +24,8 @@ const useOption = <T extends {}>(defOpt: Partial<T> = {}): [
 
   const update: React.Dispatch<React.SetStateAction<Partial<T>>> = useCallback((newOpts: React.SetStateAction<Partial<T>>) => {
     setOption((oldOpts) => ({
-      ...(oldOpts || {}),
-      ...(typeof newOpts === 'function' ? newOpts(oldOpts) : newOpts || {}),
+      ...oldOpts,
+      ...(typeof newOpts === 'function' ? newOpts(oldOpts) : newOpts),
     }));
   }, []);
 
