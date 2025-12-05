@@ -16,7 +16,6 @@ export default {
       while (!pkgDir.endsWith('node_modules')) {
         pkgDir = path.dirname(pkgDir);
       }
-      console.log(path.join(pkgDir, name));
       return path.join(pkgDir, name);
     }
   }

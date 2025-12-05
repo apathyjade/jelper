@@ -34,7 +34,7 @@ export const useTimeoutHandler = (): [
   ];
 };
 
-export const useTimeout = (callback: Function, timeout?: number, ...arg: any[]): () => void => {
+export const useTimeout = (callback: (...any: any[]) => any, timeout?: number, ...arg: any[]): () => void => {
   const [bindTimer, clearTimer] = useTimeoutHandler();
 
   const cb = useRtCb(callback);

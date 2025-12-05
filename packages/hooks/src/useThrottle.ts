@@ -5,19 +5,19 @@
  * @Last Modified time: 2025-05-30 15:31:34
  */
 
-import { throttle, ThrottleSettings, DebouncedFunc } from 'lodash-es';
+import { throttle, ThrottleSettings, DebouncedFuncLeading } from 'lodash';
 import { useMemo } from 'react';
 import useRtCb from './useRtCb';
 
 const useThrottle = <T extends (...args: any) => any >(
   cb: T,
-  wait?: number,
+  wait: number = 200,
   opts?: ThrottleSettings,
-): DebouncedFunc<T> => {
+): DebouncedFuncLeading<T> => {
   const rtCb = useRtCb(cb);
   return useMemo(() => {
-    return throttle((...arg: Parameters<T>) => {
-      rtCb(...arg)
+    return throttle((...args: Parameters<T>) => {
+      rtCb(...args)
     }, wait, opts);
   }, [wait, opts]);
 }

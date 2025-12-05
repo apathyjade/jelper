@@ -11,7 +11,7 @@ import requireHelper from '../utils/require-helper.js';
 import tsconfig from './tsconfig.js';
 // import babelPluginIncludeText from './babel-plugins/include-text.js'
 
-const getOpts = async() => {
+const getOpts = async () => {
   const [
     presetEnvPath,
     presetReactPath,

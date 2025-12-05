@@ -17,13 +17,20 @@ export interface ItemProps extends React.ComponentProps<any> {
   maxWidth?: string;
   scale?: number;
 }
-
-
 interface ColumnStyledProps {
   $justify: Props['justify'];
   $align: Props['align'];
   $gap: Props['gap'];
 }
+
+interface ColumnItemStyledProps {
+  $fixed?: boolean;
+  $scale?: number;
+  $height?: number | string;
+  $minHeight?: number | string;
+  $maxHeight?: number | string;
+}
+
 const ColumnStyled = styled.div<ColumnStyledProps>`
   display: flex;
   flex-direction: column;
@@ -33,13 +40,6 @@ const ColumnStyled = styled.div<ColumnStyledProps>`
   gap: ${(props: ColumnStyledProps) => toCssLengthValue(props.$gap)};
   word-break: break-all;
 `;
-interface ColumnItemStyledProps {
-  $fixed?: boolean;
-  $scale?: number;
-  $height?: number | string;
-  $minHeight?: number | string;
-  $maxHeight?: number | string;
-}
 const ColumnItemStyled = styled.div<ColumnItemStyledProps>`
   flex: ${(props: ColumnItemStyledProps) => props.$fixed ? '0 0 auto' : `${props.$scale} ${props.$scale} auto`};
   height: ${(props: ColumnItemStyledProps) => toCssLengthValue(props.$height)};

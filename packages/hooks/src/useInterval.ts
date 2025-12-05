@@ -19,7 +19,6 @@ export const useIntervalHandler = (): [
       timerRef.current = undefined;
     }
   }, []);
-
   const bindTimer = useCallback((callback: Function, timeout?: number, ...arg: any[]) => {
     clearTimer();
     timerRef.current = window.setInterval(() => {
@@ -33,12 +32,9 @@ export const useIntervalHandler = (): [
   ];
 }
 
-export const useInterval = (callback: Function, timeout?: number, ...arg: any[]): (() => void) => {
-
+export const useInterval = (callback: (args: any[]) => any, timeout?: number, ...arg: any[]): (() => void) => {
   const [bindTimer, clearTimer] = useIntervalHandler();
-
   const cb = useRtCb(callback);
-
   useEffect(() => {
     bindTimer(cb, timeout, ...arg)
     return clearTimer

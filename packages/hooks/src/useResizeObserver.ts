@@ -7,46 +7,47 @@
 
 import { useCallback, useEffect } from 'react';
 
-let resizeObserver: ResizeObserver|null = null;
-let observeCatch: Map<HTMLElement, Function>|null = null;
+let resizeObserver: ResizeObserver;
+let observeCatch: Map<HTMLElement, Function>;
 
 
-function init() {
-  if (resizeObserver) {
-    return;
-  }
+let init: Function | null = () => {
   observeCatch = new Map();
   resizeObserver = new window.ResizeObserver(
-    (targets) => {
-      targets?.forEach((item: any) => {
-        observeCatch?.get(item?.target)?.(item);
+    (targets = []) => {
+      targets.forEach((item: any = {}) => {
+        observeCatch.get(item.target)?.(item);
       });
     },
   );
+  init = null
 };
 
 const observe = (target: HTMLElement, cb: (dom: ResizeObserverEntry) => void) => {
-  if (!resizeObserver) {
+  if (init) {
     init();
   }
   if (!target) {
     return;
   }
-  observeCatch?.set(target, cb);
-  resizeObserver?.observe(target);
+  observeCatch.set(target, cb);
+  resizeObserver.observe(target);
 };
 const unobserve = (target: HTMLElement) => {
-  if (!resizeObserver) {
+  if (init) {
     init();
   }
   if (!target) {
     return;
   }
-  resizeObserver?.unobserve(target);
-  observeCatch?.delete(target);
+  resizeObserver.unobserve(target);
+  observeCatch.delete(target);
 };
 
-export const useResizeObserverHandler = () => {
+export const useResizeObserverHandler = (): [
+  typeof observe,
+  typeof unobserve
+] => {
   return [observe, unobserve];
 };
 

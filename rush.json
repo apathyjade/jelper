@@ -6,7 +6,7 @@
   "pnpmOptions": {
     "useWorkspaces": true
   },
-  "nodeSupportedVersionRange": ">=14.15.0",
+  "nodeSupportedVersionRange": ">=v24.11.1",
   "gitPolicy": {
   },
 
@@ -37,13 +37,6 @@
       "reviewCategory": "production",
       "shouldPublish": true
     },
-    // {
-    //   "packageName": "@jelper/website",
-    //   "projectFolder": "packages/website",
-    //   "tags": ["website"],
-    //   "reviewCategory": "production",
-    //   "shouldPublish": false
-    // },
     {
       "packageName": "@jelper/css",
       "projectFolder": "packages/css",
