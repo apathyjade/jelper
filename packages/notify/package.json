@@ -28,6 +28,9 @@
     "@jelper/builder": "workspace:*",
     "@types/node": "~24.10.1"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "apathyjade@outlook.com",
   "license": "ISC"
 }
