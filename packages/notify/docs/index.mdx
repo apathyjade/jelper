@@ -1,0 +1,29 @@
+---
+title: notify
+order: 1
+---
+
+import { Table } from 'antd';
+import CodeDemo from '@theme/CodeDemo';
+import Demo from './Demo.tsx';
+
+import ImportTabs from '@theme/ImportTabs';
+
+### 安装
+<ImportTabs name="@jelper/notify" />
+
+### 样例
+
+#### 使用
+<CodeDemo title="" desc="" text={$include('./Demo.tsx')}><Demo /></CodeDemo>
+
+### type
+
+``` typescript
+type MoudleType = <T = void>() => {
+    notify: (data: T) => void;
+    on: (callback: (data: T) => void) => Unsubscribe;
+    once: (callback: (data: T) => void) => Unsubscribe;
+    clear: () => void;
+};
+```

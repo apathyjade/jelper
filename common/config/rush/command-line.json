@@ -18,6 +18,13 @@
       "autoinstallerName": "rush-lint",
       "shellCommand": "node common/autoinstallers/rush-lint/scripts.mjs"
     },
+    {
+      "name": "jelper-init",
+      "commandKind": "global",
+      "summary": "Runs my custom tool from @jelper/builder",
+      "description": "This command invokes the CLI provided by @jelper/builder.",
+      "shellCommand": "node packages/builder/bin/index init"
+    }
     // {
     //   /**
     //    * (Required) Determines the type of custom command.

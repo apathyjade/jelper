@@ -1,5 +1,5 @@
 ---
-title: @jelper/context-composer
+title: <%= packageName %>
 order: 1
 ---
 
@@ -10,7 +10,7 @@ import Demo from './Demo.tsx';
 import ImportTabs from '@theme/ImportTabs';
 
 ### 安装
-<ImportTabs name="@jelper/context-composer" />
+<ImportTabs name="<%= packageName %>" />
 
 ### 样例
 
@@ -19,29 +19,21 @@ import ImportTabs from '@theme/ImportTabs';
 
 ### API
 
-#### createCtxComposer\<Props, T\>
+#### 
 
-创建React.createContext, 方便 <em>Provider</em> 引入和 <em>useContext</em> 使用
-
-##### 参数
-
-- useCfgHook: (props: Props) => T
-
-##### 返回值
-
-- result\<Object\>
-
-  - forwardComposer: (Com: FC\<Props\>) => FC\<Props\>
-
-  - useComposerCtx: T
-
-#### mergeComposer
 
 ##### 参数
 
-- list: Array\<(Com: FC\<Props\>) => FC\<Props\>\> 
+##### 返回值
+
+
+####
+
+##### 参数
+
+- 
 
 ##### 返回值
 
-- result: (Com: FC\<Props\>) => FC\<Props\>
+- 
 
