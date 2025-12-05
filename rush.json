@@ -97,6 +97,17 @@
       ],
       "reviewCategory": "production",
       "shouldPublish": true
+    },
+    {
+      "packageName": "@jelper/notify",
+      "projectFolder": "packages/notify",
+      "tags": [
+        "tools",
+        "helper",
+        "notify"
+      ],
+      "reviewCategory": "production",
+      "shouldPublish": true
     }
   ]
 }

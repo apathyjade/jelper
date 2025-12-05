@@ -56,7 +56,7 @@ const getJestConfig = async () => {
     collectCoverageFrom: [
       'src/**/*.{ts,tsx}',
       '!src/**/*.d.ts',
-      '!src/**/index.{ts,tsx}',
+      // '!src/**/index.{ts,tsx}',
       '!**/node_modules/**',
     ],
     // 忽略测试文件

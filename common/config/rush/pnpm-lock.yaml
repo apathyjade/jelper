@@ -267,6 +267,17 @@ importers:
       jest-environment-jsdom: 29.7.0
       jsdom: 26.0.0
 
+  ../../packages/notify:
+    specifiers:
+      '@jelper/builder': workspace:*
+      '@jest/globals': ~30.2.0
+      '@types/node': ~24.10.1
+    dependencies:
+      '@jest/globals': 30.2.0
+    devDependencies:
+      '@jelper/builder': link:../builder
+      '@types/node': 24.10.1
+
   ../../packages/promise:
     specifiers:
       '@jelper/builder': workspace:*
@@ -3232,6 +3243,12 @@ packages:
 
   /@types/node/20.0.0:
     resolution: {integrity: sha512-cD2uPTDnQQCVpmRefonO98/PPijuOnnEy5oytWJFPY1N9aJCz2wJ5kSGWO+zJoed2cY2JxQh6yBuUq4vIn61hw==}
+
+  /@types/node/24.10.1:
+    resolution: {integrity: sha512-GNWcUTRBgIRJD5zj+Tq0fKOJ5XZajIiBroOF0yvj2bSU1WvNdYS/dn9UxwsujGW4JX06dnHyjV2y9rRaybH0iQ==}
+    dependencies:
+      undici-types: 7.16.0
+    dev: true
 
   /@types/parse5/5.0.3:
     resolution: {integrity: sha512-kUNnecmtkunAoQ3CnjmMkzNU/gtxG8guhi+Fk2U/kOpIKjIMKnXGp4IJCgQJrXSgMsWYimYG4TGjz/UzbGEBTw==}
@@ -12811,6 +12828,10 @@ packages:
       object.reduce: 1.0.1
       undertaker-registry: 1.0.1
     dev: false
+
+  /undici-types/7.16.0:
+    resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
+    dev: true
 
   /unherit/1.1.3:
     resolution: {integrity: sha512-Ft16BJcnapDKp0+J/rqFC3Rrk6Y/Ng4nzsC028k2jdDII/rdZ7Wd3pPT/6+vIIxRagwRc9K0IUX0Ra4fKvw+WQ==}
