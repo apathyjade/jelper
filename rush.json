@@ -6,7 +6,6 @@
   "pnpmOptions": {
     "useWorkspaces": true
   },
-  "includeAllPackagesForPublish": true,
   "nodeSupportedVersionRange": ">=v24.11.1",
   "gitPolicy": {
   },
