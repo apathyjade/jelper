@@ -28,7 +28,11 @@ const copyModelDocs = (file) => {
   try {
     const currPath = `${packagesPath}/${file}/docs`;
     if (fs.pathExistsSync(currPath) && file !== 'website') {
-      syncFolders(currPath, `${outputPath}/${file}/`);
+      const targetDir = `${outputPath}/${file}/`;
+      if (!fs.existsSync(targetDir)) {
+        fs.mkdirSync(targetDir);
+      }
+      syncFolders(currPath, targetDir);
     }
   } catch (error) {
     console.error(`${file} 文档文件拷贝失败`, error);
@@ -36,7 +40,7 @@ const copyModelDocs = (file) => {
 }
 
 const main = () => {
-  // fs.pathExistsSync(outputPath) && fs.emptyDirSync(outputPath);
+  fs.existsSync(outputPath) ? fs.emptyDirSync(outputPath) : fs.mkdirSync(outputPath);
   files.forEach(copyModelDocs);
 }
 main();
