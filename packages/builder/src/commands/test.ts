@@ -2,8 +2,6 @@
 import { runCLI } from 'jest';
 import requireHelper from '../utils/require-helper.js';
 import { getJelperCfg } from '../common/index.js';
-// import { babelrc } from '../config/index.js';
-
 const getJestConfig = async () => {
 
   const jelperCfg: any = await getJelperCfg();
@@ -49,12 +47,12 @@ const getJestConfig = async () => {
     collectCoverage: true,
     injectGlobals: true,
     moduleFileExtensions: ['ts', 'js', 'json', 'tsx', 'jsx', 'node'],
-    testMatch: ['**/__tests__/**/*.test.(js|ts|tsx)'],
     transformIgnorePatterns: ['/node_modules/(?!.pnpm|lodash-es)'],
     moduleNameMapper: {
       '^(\\.{1,2}/.*)\\.js$': '$1', // 移除 import 语句中的 .js 扩展名
       '^@/(.*)$': '<rootDir>/src/$1',
     },
+    testMatch: ['**/{__tests__, test}/**/*.test.(js|ts|tsx)'],
     collectCoverageFrom: [
       'src/**/*.{ts,tsx}',
       '!src/**/*.d.ts',
@@ -62,7 +60,7 @@ const getJestConfig = async () => {
       '!**/node_modules/**',
     ],
     // 忽略测试文件
-    testPathIgnorePatterns: ['/node_modules/', '/dist/', '/.next/', '/cypress/'],
+    // testPathIgnorePatterns: ['/node_modules/', '/dist/', '/.next/', '/cypress/'],
     verbose: true,
     ...(jelperCfg.jestCfg || {})
   };
