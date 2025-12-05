@@ -1,4 +1,15 @@
+
 # jelper
+
+helper 单体库，内部包括完整构建工具、发布流程，文档自动构建发布流程;
+
+## install
+
+``` shell
+npm install -g @microsoft/rush
+
+rush install
+```
 
 一个功能齐全的 JavaScript/TypeScript 工具库集合，采用 Monorepo 架构管理，提供完整的构建工具链、发布流程和文档自动化系统。
 
@@ -196,3 +207,8 @@ apathyjade@outlook.com
 
 - GitHub 仓库：https://github.com/apathyjade/jelper.git
 - Rush 官方文档：https://rushjs.io/
+
+## common/autoinstallers/rush-lint
+
+自动化脚本项目
+
