@@ -12,12 +12,11 @@ export interface Props extends React.ComponentProps<any> {
 
 export interface ItemProps extends React.ComponentProps<any> {
   fixed?: boolean;
-  width?: string;
-  minWidth?: string;
-  maxWidth?: string;
   scale?: number;
+  width?: string | string;
+  minWidth?: string | string;
+  maxWidth?: string | string;
 }
-
 
 interface RowStyledProps {
   $justify: Props['justify'];

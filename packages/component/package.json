@@ -1,6 +1,6 @@
 {
   "name": "@jelper/component",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "react context helper",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -27,15 +27,19 @@
   "publishConfig": {
     "access": "public"
   },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
   "devDependencies": {
+    "react": "~18.2.0",
+    "react-dom": "~18.2.0",
     "@jelper/builder": "workspace:*",
     "@types/node": "~18.0.0",
     "@types/react": "~18.2.0",
     "@types/react-dom": "~18.2.0"
   },
   "dependencies": {
-    "react": "~18.2.0",
-    "react-dom": "~18.2.0",
     "classnames": "~2.5.1",
     "styled-components": "~6.1.18"
   },
