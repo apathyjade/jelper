@@ -6,7 +6,7 @@
   "pnpmOptions": {
     "useWorkspaces": true
   },
-  "nodeSupportedVersionRange": ">=v24.11.1",
+  "nodeSupportedVersionRange": ">=v22",
   "gitPolicy": {
   },
 
