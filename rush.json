@@ -108,6 +108,17 @@
       ],
       "reviewCategory": "production",
       "shouldPublish": true
+    },
+    {
+      "packageName": "@jelper/di",
+      "projectFolder": "packages/di",
+      "tags": [
+        "tools",
+        "helper",
+        "di"
+      ],
+      "reviewCategory": "production",
+      "shouldPublish": true
     }
   ]
 }

@@ -1,0 +1,91 @@
+---
+title: di
+order: 1
+---
+
+import { Table } from 'antd';
+import CodeDemo from '@theme/CodeDemo';
+import Demo from './Demo.tsx';
+
+import ImportTabs from '@theme/ImportTabs';
+
+### 安装
+<ImportTabs name="@jelper/di" />
+
+### 样例
+
+#### di使用
+<CodeDemo title="" desc="" text={$include('./Demo.tsx')}><Demo /></CodeDemo>
+
+### API
+
+#### setProvide
+
+##### 参数
+- provider: Provider  提供者对象
+
+##### 返回值
+- void
+
+#### reletion
+
+##### 参数
+
+- require: Require  依赖对象
+- provider: Provider  提供者对象
+
+##### 返回值
+
+- void
+
+#### getProvide\<T\>
+
+##### 参数
+
+- require: Require  依赖对象
+- ...args?: any[]  Provide使用useFactory方式时, 调用传入
+
+##### 返回值
+
+- T: require依赖, useValue值类型 或者 useFactory返回值类型
+
+#### removeProvide
+
+##### 参数
+
+- type: string  提供者类型
+
+##### 返回值
+
+- void
+
+#### removeRelation
+
+##### 参数
+
+- require: Require  依赖对象
+
+##### 返回值
+
+- void
+
+
+### 类型 Type
+
+``` typescript
+
+type Token = string | symbol;
+
+type Provider<T = any> = {
+  token: Token;
+  type: string;
+  useValue?: T;
+  useFactory?: (...arg: any[]) => T;
+}
+
+type Require = {
+  token: Token;
+  type: string;
+}
+
+```

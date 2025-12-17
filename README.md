@@ -8,7 +8,7 @@ helper 单体库，内部包括完整构建工具、发布流程，文档自动�
 ``` shell
 npm install -g @microsoft/rush
 
-rush install
+rush update
 ```
 
 一个功能齐全的 JavaScript/TypeScript 工具库集合，采用 Monorepo 架构管理，提供完整的构建工具链、发布流程和文档自动化系统。

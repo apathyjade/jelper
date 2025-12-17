@@ -1,14 +1,14 @@
 {
-  "name": "<%= packageName %>",
-  "version": "0.0.1",
-  "description": "<%= description %>",
+  "name": "@jelper/di",
+  "version": "0.1.0",
+  "description": "依赖注入，建立 provides requires 关联",
   "main": "lib/index.js",
   "module": "es/index.js",
 	"types": "types/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "jelper build",
-    "serve": "jelper serve"
+    "serve": "jelper serve",
+    "test": "jelper test"
   },
   "keywords": [
     "store",
@@ -22,11 +22,9 @@
     "types/**"
   ],
   "dependencies": {
-    "lodash": "~4.17.21"
   },
   "devDependencies": {
     "@jelper/builder": "workspace:*",
-    "@types/lodash": "~4.17.21",
     "@types/node": "~24.10.1"
   },
   "publishConfig": {
