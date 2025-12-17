@@ -47,14 +47,14 @@ describe('notify', () => {
     testNotify.notify();
     expect(fn).toHaveReturnedTimes(0);
   });
-  test("验证 clear", async() => {
+  test("验证 destroy", async() => {
     const testNotify = notify();
     const fn = jest.fn();
     testNotify.on(fn);
 
     testNotify.notify();
     expect(fn).toHaveReturnedTimes(1);
-    testNotify.clear();
+    testNotify.destroy();
     testNotify.notify();
     testNotify.notify();
     testNotify.notify();

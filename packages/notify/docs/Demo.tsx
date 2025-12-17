@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
-import notify from '@jelper/notify';
+import { buildNotify } from '@jelper/notify';
 
-const clickNotify = notify<number>();
+const clickNotify = buildNotify<number>();
 
 const TestCom = () => {
 

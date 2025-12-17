@@ -6,7 +6,7 @@
   "pnpmOptions": {
     "useWorkspaces": true
   },
-  "nodeSupportedVersionRange": ">=v24.11.1",
+  "nodeSupportedVersionRange": ">=v22",
   "gitPolicy": {
   },
 
@@ -105,6 +105,17 @@
         "tools",
         "helper",
         "notify"
+      ],
+      "reviewCategory": "production",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@jelper/di",
+      "projectFolder": "packages/di",
+      "tags": [
+        "tools",
+        "helper",
+        "di"
       ],
       "reviewCategory": "production",
       "shouldPublish": true

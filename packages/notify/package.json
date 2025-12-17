@@ -1,6 +1,6 @@
 {
   "name": "@jelper/notify",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "通知器",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -24,8 +24,8 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@jest/globals":"~30.2.0",
     "@jelper/builder": "workspace:*",
+    "@jest/globals":"~30.2.0",
     "@types/node": "~24.10.1"
   },
   "publishConfig": {
