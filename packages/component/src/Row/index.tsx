@@ -13,9 +13,9 @@ export interface Props extends React.ComponentProps<any> {
 export interface ItemProps extends React.ComponentProps<any> {
   fixed?: boolean;
   scale?: number;
-  width?: string | string;
-  minWidth?: string | string;
-  maxWidth?: string | string;
+  width?: number | string;
+  minWidth?: number | string;
+  maxWidth?: number | string;
 }
 
 interface RowStyledProps {

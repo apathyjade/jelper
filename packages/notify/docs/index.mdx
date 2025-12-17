@@ -6,6 +6,7 @@ order: 1
 import { Table } from 'antd';
 import CodeDemo from '@theme/CodeDemo';
 import Demo from './Demo.tsx';
+import ThemeNotifyDemo from './ThemeNotifyDemo.tsx';
 
 通知器, 解决跨模块依赖问题
 
@@ -16,8 +17,11 @@ import ImportTabs from '@theme/ImportTabs';
 
 ### 样例
 
-#### 使用
-<CodeDemo title="" desc="" text={$include('./Demo.tsx')}><Demo /></CodeDemo>
+#### notify 使用
+<CodeDemo title="通用notify" desc="" text={$include('./Demo.tsx')}><Demo /></CodeDemo>
+
+#### themeNotify 使用
+<CodeDemo title="系统主题notify" desc="" text={$include('./ThemeNotifyDemo.tsx')}><ThemeNotifyDemo /></CodeDemo>
 
 ### type
 
@@ -26,6 +30,6 @@ type MoudleType = <T = void>() => {
     notify: (data: T) => void;
     on: (callback: (data: T) => void) => Unsubscribe;
     once: (callback: (data: T) => void) => Unsubscribe;
-    clear: () => void;
+    destroy: () => void;
 };
 ```
