@@ -18,8 +18,8 @@ jobs:
           node-version: 22
       - name: build
         run: |
-          npm install -g pnpm
-          npm install -g @microsoft/rush
+          npm install -g pnpm@9.15.9
+          npm install -g @microsoft/rush@5.71.0
           rush update
           rush build
       - name: publish beta

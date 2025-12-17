@@ -276,6 +276,7 @@ importers:
 
   ../../packages/notify:
     specifiers:
+      '@jelper/builder': workspace:*
       '@jest/globals': ~30.2.0
       '@types/node': ~24.10.1
     devDependencies:
