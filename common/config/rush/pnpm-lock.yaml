@@ -279,6 +279,7 @@ importers:
       '@jest/globals': ~30.2.0
       '@types/node': ~24.10.1
     devDependencies:
+      '@jelper/builder': link:../builder
       '@jest/globals': 30.2.0
       '@types/node': 24.10.1
 
