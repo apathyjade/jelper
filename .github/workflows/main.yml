@@ -4,11 +4,10 @@ on:
    branches:
       - master
       - beta
-
 env:
   NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
   LOGER: none
-
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs: 
   publish-npm:
     runs-on: ubuntu-latest
@@ -30,12 +29,8 @@ jobs:
         if: ${{ github.ref_name == 'master'}}
         run: |
           rush publish -p --include-all --set-access-level public --tag=latest
-
       - name: publish docs
         if: ${{ github.ref_name == 'master'}}
-        env:
-          # GITHUB_TOKEN GitHub Actions 自动提供的 secret
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd website/
           pnpm install
