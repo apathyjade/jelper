@@ -9,7 +9,7 @@ env:
   NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
   LOGER: none
 
-jobs:
+jobs: 
   publish-npm:
     runs-on: ubuntu-latest
     steps:
@@ -23,8 +23,16 @@ jobs:
           npm install -g @microsoft/rush
           rush update
           rush build
+      - name: publish beta
+        if: ${{ github.ref_name == 'beta'}}
+        run: rush publish --apply
+      - name: publish
+        if: ${{ github.ref_name == 'master'}}
+        run: |
+          rush publish -p --include-all --set-access-level public --tag=latest
+
       - name: publish docs
-        if: ${{ github.ref_name == 'website'}}
+        if: ${{ github.ref_name == 'master'}}
         env:
           # GITHUB_TOKEN 是 GitHub Actions 自动提供的 secret
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -36,12 +44,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add .
           git commit -m "docs: Update README with timestamp [skip ci]"
-          git push origin HEAD:${{ github.ref_name }}
-
-      - name: publish beta
-        if: ${{ github.ref_name == 'beta'}}
-        run: rush publish --apply
-      - name: publish
-        if: ${{ github.ref_name == 'master'}}
-        run: |
-          rush publish -p --include-all --set-access-level public --tag=latest
+          git push origin HEAD:website
