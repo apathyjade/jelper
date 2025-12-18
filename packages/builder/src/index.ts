@@ -39,7 +39,6 @@ program.command('build')
     process.env['NODE_ENV'] = 'production';
     await tsBuild(opts);
     await build(opts);
-    process.exit(0);
   });
 
 program.command('test')

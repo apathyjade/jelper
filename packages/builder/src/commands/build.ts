@@ -96,7 +96,7 @@ const buildUmd = async (buildOpts: BuildOpts) => {
 }
 
 export default async function (buildOpts: BuildOpts) {
-  if (process.env['LOGER'] === 'none') {
+  if (buildOpts.debug !== true) {
     return buildUmd(buildOpts);
   }
   const spinner = ora('UMD Module Creating...').start();
