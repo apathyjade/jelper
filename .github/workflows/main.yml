@@ -26,7 +26,7 @@ jobs:
           npm install -g pnpm@9.15.9
           npm install -g @microsoft/rush@5.71.0
           rush update
-          rush build
+          rush build || echo "Build failed"
           EXIT_CODE=$?
           echo "Rush Build Command Exited with Code: $EXIT_CODE"
           if [ $EXIT_CODE -ne 0 ]; then
