@@ -43,6 +43,7 @@ jobs:
           cd ../
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git fetch origin
           git add .
-          git commit -m "docs: Update README with timestamp [skip ci]"
-          git push origin HEAD:website
+          git commit -m "docs: Update README with timestamp [skip ci]" || echo "No changes to commit/amend"
+          git push --force-with-lease origin HEAD:website
