@@ -28,7 +28,7 @@ jobs:
           npm install -g pnpm@9.15.9
           npm install -g @microsoft/rush@5.71.0
           rush update
-          rush build
+          rush build --verbose
       - name: publish beta
         if: ${{ github.ref_name == 'beta'}}
         run: rush publish --apply
