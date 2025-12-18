@@ -6,7 +6,8 @@ helper 单体库，内部包括完整构建工具、发布流程，文档自动�
 ## install
 
 ``` shell
-npm install -g @microsoft/rush
+npm install -g @microsoft/rush@5.164.0
+npm install -g pnpm@10.26.0
 
 rush update
 ```
