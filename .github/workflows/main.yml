@@ -16,9 +16,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v5
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -28,7 +26,18 @@ jobs:
           npm install -g pnpm@9.15.9
           npm install -g @microsoft/rush@5.71.0
           rush update
-          rush build --verbose
+          rush build
+          EXIT_CODE=$?
+          echo "Rush Build Command Exited with Code: $EXIT_CODE"
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo "ERROR: Rush build failed with exit code $EXIT_CODE"
+            # 尝试打印一些可能导致延迟失败的信息
+            echo "Listing recent system messages (if any):"
+            dmesg | tail -n 20 || true # 尝试获取内核消息，可能有 OOM 等信息 (Linux)
+            exit $EXIT_CODE # 确保 workflow step 以相同的非零码失败
+          else
+            echo "Rush build completed successfully."
+          fi
       - name: publish beta
         if: ${{ github.ref_name == 'beta'}}
         run: rush publish --apply
