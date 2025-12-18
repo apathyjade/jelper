@@ -40,6 +40,7 @@ jobs:
           cd website/
           pnpm install
           pnpm run build
+          cd ../
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
