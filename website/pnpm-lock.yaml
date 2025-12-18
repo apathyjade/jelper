@@ -97,6 +97,9 @@ importers:
       '@jelper/css':
         specifier: workspace:*
         version: link:../packages/css
+      '@jelper/di':
+        specifier: workspace:*
+        version: link:../packages/di
       '@jelper/enum':
         specifier: workspace:*
         version: link:../packages/enum
@@ -507,6 +510,9 @@ importers:
 
   ../packages/notify:
     devDependencies:
+      '@jelper/builder':
+        specifier: workspace:*
+        version: link:../builder
       '@jest/globals':
         specifier: ~30.2.0
         version: 30.2.0

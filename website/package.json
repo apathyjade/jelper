@@ -57,6 +57,7 @@
     "@jelper/promise": "workspace:*",
     "@jelper/store": "workspace:*",
     "@jelper/notify": "workspace:*",
+    "@jelper/di": "workspace:*",
     "@tsconfig/docusaurus": "^2.0.3",
     "chokidar": "3.6.0",
     "fs-extra": "^11.2.0",
