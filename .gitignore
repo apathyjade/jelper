@@ -64,6 +64,8 @@ common/temp/
 common/autoinstallers/*/.npmrc
 **/.rush/temp/
 
+docs/
+
 # Heft
 .heft
 es
