@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npm run watch | docusaurus start",
-    "build": "npm run clear && npm run copy && docusaurus build && npm run copyToScope",
+    "build": "npm run clear && npm run copy && docusaurus build && npm run copyToScope > build_output.log 2>&1",
     "serve": "docusaurus serve",
     "swizzle": "docusaurus swizzle",
     "clear": "docusaurus clear",
@@ -31,7 +31,7 @@
     "clsx": "^2.0.0",
     "docusaurus-plugin-sass": "^0.2.6",
     "highlight.js": "~11.11.1",
-    "preset": "link:@docusaurus/babel/preset",
+    "preset": "@docusaurus/babel/preset",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
     "react-copy-to-clipboard": "~5.1.0",
@@ -47,6 +47,10 @@
     "@docusaurus/module-type-aliases": "3.7.0",
     "@docusaurus/tsconfig": "3.7.0",
     "@docusaurus/types": "3.7.0",
+    "@tsconfig/docusaurus": "^2.0.3",
+    "chokidar": "3.6.0",
+    "fs-extra": "^11.2.0",
+    "typescript": "~5.6.2",
     "@jelper/builder": "workspace:*",
     "@jelper/component": "workspace:*",
     "@jelper/context-composer": "workspace:*",
@@ -57,11 +61,7 @@
     "@jelper/promise": "workspace:*",
     "@jelper/store": "workspace:*",
     "@jelper/notify": "workspace:*",
-    "@jelper/di": "workspace:*",
-    "@tsconfig/docusaurus": "^2.0.3",
-    "chokidar": "3.6.0",
-    "fs-extra": "^11.2.0",
-    "typescript": "~5.6.2"
+    "@jelper/di": "workspace:*"
   },
   "browserslist": {
     "production": [

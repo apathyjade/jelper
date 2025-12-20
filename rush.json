@@ -31,6 +31,12 @@
 
   "projects": [
     {
+      "packageName": "@jelper/website",
+      "projectFolder": "website",
+      "reviewCategory": "documentation",
+      "shouldPublish": false
+    },
+    {
       "packageName": "@jelper/builder",
       "projectFolder": "packages/builder",
       "tags": ["tools", "helper", "builder"],

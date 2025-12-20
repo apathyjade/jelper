@@ -37,10 +37,6 @@ jobs:
       - name: publish docs
         if: ${{ github.ref_name == 'master'}}
         run: |
-          cd website/
-          pnpm install
-          pnpm run build
-          cd ../
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git fetch origin
