@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "start": "npm run watch | docusaurus start",
-    "build": "npm run clear && npm run copy && docusaurus build && npm run copyToScope > build_output.log 2>&1",
+    "build": "npm run clear && npm run copy && npm run docs-build && npm run copyToScope",
     "serve": "docusaurus serve",
     "swizzle": "docusaurus swizzle",
     "clear": "docusaurus clear",
-    "docs-build": "docusaurus build",
+    "docs-build": "docusaurus build > build_output.log 2>&1",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
