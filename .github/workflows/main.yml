@@ -5,9 +5,6 @@ on:
       - master
       - beta
 # env:
-#   NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-#   LOGER: none
-#   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs: 
   publish-npm:
     runs-on: ubuntu-latest
@@ -34,7 +31,6 @@ jobs:
       - name: publish
         if: ${{ github.ref_name == 'master'}}
         run: |
-          npm ci
           rush publish -p --include-all --set-access-level public --tag=latest
       - name: publish docs
         if: ${{ github.ref_name == 'master'}}
