@@ -34,6 +34,7 @@ jobs:
       - name: publish
         if: ${{ github.ref_name == 'master'}}
         run: |
+          npm ci
           rush publish -p --include-all --set-access-level public --tag=latest
       - name: publish docs
         if: ${{ github.ref_name == 'master'}}
