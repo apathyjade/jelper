@@ -30,7 +30,7 @@ jobs:
       - name: publish
         if: ${{ github.ref_name == 'master'}}
         run: |
-          rush publish -p --include-all --set-access-level public --tag=latest
+          rush publish-oidc
       - name: publish docs
         if: ${{ github.ref_name == 'master'}}
         run: |

@@ -19,11 +19,12 @@
       "shellCommand": "node common/autoinstallers/rush-lint/scripts.mjs"
     },
     {
-      "name": "jelper-init",
-      "commandKind": "global",
-      "summary": "Runs my custom tool from @jelper/builder",
-      "description": "This command invokes the CLI provided by @jelper/builder.",
-      "shellCommand": "node packages/builder/bin/index init"
+      "name": "publish-oidc",
+      "commandKind": "bulk",
+      "summary": "Publish package using npm + OIDC (run in each project)",
+      "enableParallelism": false,
+      "ignoreMissingScript": false,
+      "shellCommand": "npm publish --provenance --access public"
     }
     // {
     //   /**

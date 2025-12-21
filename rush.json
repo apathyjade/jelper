@@ -6,11 +6,6 @@
   "pnpmOptions": {
     "useWorkspaces": true
   },
-  "publish": {
-    "publishFolder": "common/temp/publish-home",
-    "packageManager": "npm",
-    "npmVersion": "latest"  
-  },
   "nodeSupportedVersionRange": ">=v22",
   "gitPolicy": {
   },
