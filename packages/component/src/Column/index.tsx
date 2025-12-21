@@ -37,6 +37,7 @@ const ColumnStyled = styled.div<ColumnStyledProps>`
   justify-content: ${(props: ColumnStyledProps) => props.$justify};
   align-items: ${(props: ColumnStyledProps) => props.$align};
   flex-wrap: nowrap;
+  height: 100%;
   gap: ${(props: ColumnStyledProps) => toCssLengthValue(props.$gap)};
   word-break: break-all;
 `;

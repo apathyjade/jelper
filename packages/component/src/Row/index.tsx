@@ -38,6 +38,7 @@ const RowStyled = styled.div<RowStyledProps>`
   align-items: ${(props: RowStyledProps) => props.$align};
   flex-wrap: nowrap;
   gap: ${(props: RowStyledProps) => toCssLengthValue(props.$gap)};
+  width: 100%;
   word-break: break-all;
 `;
 const RowItemStyled = styled.div<RowItemStyledProps>`
