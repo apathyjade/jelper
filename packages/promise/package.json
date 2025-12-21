@@ -1,6 +1,6 @@
 {
   "name": "@jelper/promise",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "promise 帮助类",
   "main": "lib/index.js",
   "module": "es/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@jelper/css",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "通用css",
   "main": "dist/index.css",
   "scripts": {

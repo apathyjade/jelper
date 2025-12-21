@@ -1,6 +1,6 @@
 {
   "name": "@jelper/di",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "依赖注入，建立 provides requires 关联",
   "main": "lib/index.js",
   "module": "es/index.js",
