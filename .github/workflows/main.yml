@@ -21,7 +21,7 @@ jobs:
       - name: build
         run: |
           npm install -g @microsoft/rush@5.164.0
-          npm install -g pnpm@10.26.0
+          npm install -g npm@latest
           rush update
           rush build
       - name: publish beta
@@ -30,7 +30,7 @@ jobs:
       - name: publish
         if: ${{ github.ref_name == 'master'}}
         run: |
-          rush publish-oidc
+          rush publish-oidc --include-only
       - name: publish docs
         if: ${{ github.ref_name == 'master'}}
         run: |
