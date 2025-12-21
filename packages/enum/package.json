@@ -36,5 +36,9 @@
     "tslib": "~2.4.1",
     "@mdx-js/react": "1.x",
     "@mdx-js/mdx": "1.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apathyjade/jelper.git"
   }
 }
