@@ -20,12 +20,11 @@
     },
     {
       "name": "publish-oidc",
-      "commandKind": "bulk",
+      "commandKind": "global",
       "summary": "Publish package using npm + OIDC (run in each project)",
-      "enableParallelism": false,
-      "ignoreMissingScript": false,
-      "shellCommand": "npm publish --provenance --access public"
-    }
+      "autoinstallerName": "rush-publish",
+      "shellCommand": "node common/autoinstallers/rush-publish/scripts.mjs"
+    },
     // {
     //   /**
     //    * (Required) Determines the type of custom command.
