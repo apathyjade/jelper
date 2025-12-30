@@ -2,6 +2,7 @@
   "compilerOptions": {
     "lib": ["es5", "es6", "dom"],
     "allowSyntheticDefaultImports": true,
+    "exactOptionalPropertyTypes": false,
     "esModuleInterop": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -9,11 +10,15 @@
     "sourceMap": false,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es5",
+    "target": "es2015",
     "outDir": "./lib",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "declaration": true,
-    "declarationDir": "./types"
+    "declarationDir": "./types",
+    "paths": {
+      "@jelper/component": ["./src"],
+      "@jelper/component/*": ["./src/*"]
+    }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "docs/"],
 }

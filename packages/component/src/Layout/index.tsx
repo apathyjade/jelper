@@ -1,27 +1,22 @@
 
-import React, { } from 'react';
+import React from 'react';
 // @ts-ignore
 import styled from 'styled-components';
 import { toCssLengthValue } from '../utils';
 
-export interface Props extends React.ComponentProps<any> {
-  sideSpace?: number | string;
-  width?: number | string;
-  minWidth?: number | string;
-  maxWidth?: number | string;
-}
-interface WrapStyledProps {
+export interface Props extends React.ComponentProps<'div'> {
   $sideSpace?: number | string;
-}
-const WrapStyled = styled.div<WrapStyledProps>`
-  padding: ${(props: WrapStyledProps) => `0 ${toCssLengthValue(props.$sideSpace)}`};
-  overflow: auto;
-`;
-interface InnerStyledProps {
   $width?: number | string;
   $minWidth?: number | string;
   $maxWidth?: number | string;
 }
+type WrapStyledProps = Omit<Props, '$width' | '$minWidth' | '$maxWidth'>;
+const WrapStyled = styled.div<WrapStyledProps>`
+  padding: ${(props: WrapStyledProps) => `0px ${toCssLengthValue(props.$sideSpace || 0)}`};
+  overflow: auto;
+`;
+
+type InnerStyledProps = Omit<Props, '$sideSpace'>;
 const InnerStyled = styled.div<InnerStyledProps>`
   margin: 0 auto;
   width: ${(props: InnerStyledProps) => toCssLengthValue(props.$width)};
@@ -30,11 +25,10 @@ const InnerStyled = styled.div<InnerStyledProps>`
 `;
 
 const Layout = (props: Props) => {
-  const { sideSpace = 0, width, minWidth, maxWidth, children, ...others } = props;
-
+  const { $sideSpace, $width, $minWidth, $maxWidth, children, ...others } = props;
   return (
-    <WrapStyled {...others} $sideSpace={sideSpace}>
-      <InnerStyled $width={width} $minWidth={minWidth} $maxWidth={maxWidth}>
+    <WrapStyled {...others} $sideSpace={$sideSpace}>
+      <InnerStyled $width={$width} $minWidth={$minWidth} $maxWidth={$maxWidth}>
         { children }
       </InnerStyled>
     </WrapStyled>
