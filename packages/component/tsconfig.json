@@ -14,11 +14,7 @@
     "outDir": "./lib",
     "jsx": "react-jsx",
     "declaration": true,
-    "declarationDir": "./types",
-    "paths": {
-      "@jelper/component": ["./src"],
-      "@jelper/component/*": ["./src/*"]
-    }
+    "declarationDir": "./types"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "docs/"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
 }
