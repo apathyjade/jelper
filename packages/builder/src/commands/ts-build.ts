@@ -30,10 +30,10 @@ const runGenerator = async (type: string, fn: Function, opts: BuildOpts) => {
 
 export default async (opts: BuildOpts) => {
   await runGenerator('ES Module', async () => {
-    await $`${tsc} -p ./ --target es6 --module es6 --outDir ./es`;
+    await $`${tsc} -p ./ --target es6 --module es6 --moduleResolution bundler --outDir ./es`;
   }, opts);
 
   await runGenerator('CommonJS Module', async () => {
-    await $`${tsc} -p ./ --target es5 --module commonjs --outDir ./lib`;
+    await $`${tsc} -p ./ --target es5 --module commonjs --moduleResolution node --outDir ./lib`;
   }, opts);
 }

@@ -1,53 +1,57 @@
 {
-  "name": "@jelper/component",
-  "version": "2.0.0",
-  "description": "react context helper",
-  "main": "lib/index.js",
-  "module": "es/index.js",
+	"name": "@jelper/component",
+	"version": "2.0.0",
+	"description": "react context helper",
+	"main": "lib/index.js",
+	"module": "es/index.js",
 	"types": "types/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "jelper build",
-    "build:debug": "jelper build --debug",
-    "build:help": "jelper build --help",
-    "serve": "jelper serve"
-  },
-  "keywords": [
-    "store",
-    "helper"
-  ],
-  "files": [
-    "package.json",
-    "README.md",
-    "dist/**",
-    "es/**",
-    "lib/**",
-    "types/**"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "peerDependencies": {
-    "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
-  },
-  "devDependencies": {
-    "react": "~18.2.0",
-    "react-dom": "~18.2.0",
-    "typescript": "~5.9.3",
-    "@jelper/builder": "workspace:*",
-    "@types/node": "~18.0.0",
-    "@types/react": "~18.2.0",
-    "@types/react-dom": "~18.2.0"
-  },
-  "dependencies": {
-    "classnames": "~2.5.1",
-    "styled-components": "~6.1.18"
-  },
-  "author": "apathyjade@outlook.com",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/apathyjade/jelper.git"
-  }
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "jelper build",
+		"build:debug": "jelper build --debug",
+		"build:help": "jelper build --help",
+		"serve": "jelper serve",
+		"check": "biome check --write"
+	},
+	"keywords": [
+		"store",
+		"helper"
+	],
+	"files": [
+		"package.json",
+		"README.md",
+		"dist/**",
+		"es/**",
+		"lib/**",
+		"types/**"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"peerDependencies": {
+		"react": ">=18.0.0",
+		"react-dom": ">=18.0.0",
+		"classnames": ">=2.0.0",
+		"styled-components": ">=6.0.0"
+	},
+	"devDependencies": {
+		"react": "~18.2.0",
+		"react-dom": "~18.2.0",
+		"typescript": "~5.9.3",
+		"@jelper/builder": "workspace:*",
+		"@types/node": "~18.0.0",
+		"@types/react": "~18.2.0",
+		"@types/react-dom": "~18.2.0",
+		"@biomejs/biome": "~2.3.10"
+	},
+	"dependencies": {
+		"classnames": "~2.5.1",
+		"styled-components": "~6.1.18"
+	},
+	"author": "apathyjade@outlook.com",
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/apathyjade/jelper.git"
+	}
 }

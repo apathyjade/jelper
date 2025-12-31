@@ -1,6 +1,4 @@
-
-import React from 'react';
-// @ts-ignore
+import type React from 'react';
 import styled from 'styled-components';
 import { toCssLengthValue } from '../utils';
 
@@ -25,14 +23,15 @@ const InnerStyled = styled.div<InnerStyledProps>`
 `;
 
 const Layout = (props: Props) => {
-  const { $sideSpace, $width, $minWidth, $maxWidth, children, ...others } = props;
+  const { $sideSpace, $width, $minWidth, $maxWidth, children, ...others } =
+    props;
   return (
     <WrapStyled {...others} $sideSpace={$sideSpace}>
       <InnerStyled $width={$width} $minWidth={$minWidth} $maxWidth={$maxWidth}>
-        { children }
+        {children}
       </InnerStyled>
     </WrapStyled>
- );
-}
+  );
+};
 
 export default Layout;

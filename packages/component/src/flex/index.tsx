@@ -1,17 +1,30 @@
 
-// @ts-ignore
-import styled, { css, DefaultTheme, StyledComponent } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { toCssLengthValue } from '../utils';
 
 export interface RowProps extends React.ComponentProps<'div'> {
   $type?: 'row';
-  $justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly' | 'stretch';
+  $justify?:
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly'
+    | 'stretch';
   $align?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
   $gap?: number | string;
 }
 export interface ColumnProps extends React.ComponentProps<'div'> {
   $type: 'column';
-  $justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly' | 'stretch';
+  $justify?:
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly'
+    | 'stretch';
   $align?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
   $gap?: number | string;
 }
@@ -42,7 +55,7 @@ const rowStyle = css<RowProps>`
   word-break: break-all;
 `;
 const rowItemStyle = css<RowItemProps>`
-  flex: ${(props: RowItemProps) => props.$fixed ? '0 0 auto' : `${props.$scale ?? 1} ${props.$scale ?? 1} auto`};
+  flex: ${(props: RowItemProps) => (props.$fixed ? '0 0 auto' : `${props.$scale ?? 1} ${props.$scale ?? 1} auto`)};
   width: ${(props: RowItemProps) => toCssLengthValue(props.$width)};
   min-width: ${(props: RowItemProps) => toCssLengthValue(props.$minWidth)};
   max-width: ${(props: RowItemProps) => toCssLengthValue(props.$maxWidth)};
@@ -60,30 +73,30 @@ const columnStyle = css<ColumnProps>`
   word-break: break-all;
 `;
 const columnItemStyle = css<ColumnItemProps>`
-  flex: ${(props: ColumnItemProps) => props.$fixed ? '0 0 auto' : `${props.$scale ?? 1} ${props.$scale ?? 1} auto`};
+  flex: ${(props: ColumnItemProps) => (props.$fixed ? '0 0 auto' : `${props.$scale ?? 1} ${props.$scale ?? 1} auto`)};
   height: ${(props: ColumnItemProps) => toCssLengthValue(props.$height)};
   min-height: ${(props: ColumnItemProps) => toCssLengthValue(props.$minHeight)};
   max-height: ${(props: ColumnItemProps) => toCssLengthValue(props.$maxHeight)};
   overflow: auto;
 `;
 
-type RowComponent= StyledComponent<'web', RowProps> & {
-  Item: StyledComponent<'web', RowItemProps>;
-  RowItem: StyledComponent<'web', RowProps & RowItemProps>;
-  ColItem: StyledComponent<'web', ColumnProps & RowItemProps>;
+type RowComponent = React.FC<RowProps> & {
+  Item: React.FC<RowItemProps>;
+  RowItem: React.FC<RowProps & RowItemProps>;
+  ColItem: React.FC<ColumnProps & RowItemProps>;
 };
-type ColumnComponent= StyledComponent<'web', ColumnProps> & {
-  Item: StyledComponent<'web', ColumnItemProps>;
-  RowItem: StyledComponent<'web', RowProps & ColumnItemProps>;
-  ColItem: StyledComponent<'web', ColumnProps & ColumnItemProps>;
+type ColumnComponent = React.FC<ColumnProps> & {
+  Item: React.FC<ColumnItemProps>;
+  RowItem: React.FC<RowProps & ColumnItemProps>;
+  ColItem: React.FC<ColumnProps & ColumnItemProps>;
 };
 
 const Row: RowComponent = styled.div<RowProps>`
   ${rowStyle}
-`;
+` as unknown as RowComponent;
 const Column: ColumnComponent = styled.div<ColumnProps>`
   ${columnStyle}
-`;
+` as unknown as ColumnComponent;
 
 Row.Item = styled.div<RowItemProps>`
   ${rowItemStyle}
@@ -92,7 +105,7 @@ Row.RowItem = styled.div<RowProps & RowItemProps>`
   ${rowStyle}
   ${rowItemStyle}
 `;
-Row.ColumnItem = styled.div<ColumnProps & RowItemProps>`
+Row.ColItem = styled.div<ColumnProps & RowItemProps>`
   ${columnStyle}
   ${rowItemStyle}
 `;
@@ -103,7 +116,7 @@ Column.RowItem = styled.div<RowProps & ColumnItemProps>`
   ${rowStyle}
   ${columnItemStyle}
 `;
-Column.ColumnItem = styled.div<ColumnProps & ColumnItemProps>`
+Column.ColItem = styled.div<ColumnProps & ColumnItemProps>`
   ${columnStyle}
   ${columnItemStyle}
 `;
