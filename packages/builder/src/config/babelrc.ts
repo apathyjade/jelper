@@ -9,7 +9,6 @@
 // @ts-ignore
 import requireHelper from '../utils/require-helper.js';
 import tsconfig from './tsconfig.js';
-// import babelPluginIncludeText from './babel-plugins/include-text.js'
 
 const getOpts = async () => {
   const [
@@ -31,11 +30,10 @@ const getOpts = async () => {
           'ie': '11',
         }
       }],
-      [presetReactPath],
+      [presetReactPath, { runtime: 'automatic' }],
       [presetTypescriptPath, tsconfig],
     ],
     plugins: [
-      // [babelPluginIncludeText],
       [pluginTransformRuntimePath]
     ]
   };

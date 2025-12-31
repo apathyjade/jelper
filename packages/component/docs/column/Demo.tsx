@@ -1,4 +1,4 @@
-import { Column } from '@jelper/component';
+import { Col } from '@jelper/component';
 
 const itStyle = {
   background: '#a1a1fb',
@@ -6,10 +6,10 @@ const itStyle = {
 
 export default () => (
   <>
-    <Column $gap="16px" style={{ height: '160px' }}>
-      <Column.Item style={itStyle} $height="12px"></Column.Item>
-      <Column.Item style={itStyle} $height="24px"></Column.Item>
-      <Column.Item style={itStyle} $height="48px"></Column.Item>
-    </Column>
+    <Col $gap="16px" style={{ height: '160px' }}>
+      <Col.Item style={itStyle} $height="12px"></Col.Item>
+      <Col.Item style={itStyle} $height="24px"></Col.Item>
+      <Col.Item style={itStyle} $height="48px"></Col.Item>
+    </Col>
   </>
 );

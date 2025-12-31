@@ -1,11 +1,11 @@
-import { Column, Row } from './Flex/index';
+import { Col, Row } from './Flex/index';
 import Layout from './Layout/index';
 
-export { Layout, Row, Column };
+export { Layout, Row, Col };
 
 export type {
-  ColumnItemProps,
-  ColumnProps,
+  ColItemProps,
+  ColProps,
   RowItemProps,
   RowProps,
 } from './Flex/index';

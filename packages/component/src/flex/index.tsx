@@ -1,9 +1,7 @@
-
 import styled, { css } from 'styled-components';
 import { toCssLengthValue } from '../utils';
 
 export interface RowProps extends React.ComponentProps<'div'> {
-  $type?: 'row';
   $justify?:
     | 'flex-start'
     | 'flex-end'
@@ -15,8 +13,7 @@ export interface RowProps extends React.ComponentProps<'div'> {
   $align?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
   $gap?: number | string;
 }
-export interface ColumnProps extends React.ComponentProps<'div'> {
-  $type: 'column';
+export interface ColProps extends React.ComponentProps<'div'> {
   $justify?:
     | 'flex-start'
     | 'flex-end'
@@ -37,7 +34,7 @@ export interface RowItemProps extends React.ComponentProps<'div'> {
   $maxWidth?: number | string;
 }
 
-export interface ColumnItemProps extends React.ComponentProps<'div'> {
+export interface ColItemProps extends React.ComponentProps<'div'> {
   $fixed?: boolean;
   $scale?: number;
   $height?: number | string;
@@ -62,41 +59,41 @@ const rowItemStyle = css<RowItemProps>`
   overflow: auto;
 `;
 
-const columnStyle = css<ColumnProps>`
+const colStyle = css<ColProps>`
   display: flex;
   flex-direction: column;
-  justify-content: ${(props: ColumnProps) => props.$justify || 'flex-start'};
-  align-items: ${(props: ColumnProps) => props.$align || 'stretch'};
+  justify-content: ${(props: ColProps) => props.$justify || 'flex-start'};
+  align-items: ${(props: ColProps) => props.$align || 'stretch'};
   flex-wrap: nowrap;
   height: 100%;
-  gap: ${(props: ColumnProps) => toCssLengthValue(props.$gap)};
+  gap: ${(props: ColProps) => toCssLengthValue(props.$gap)};
   word-break: break-all;
 `;
-const columnItemStyle = css<ColumnItemProps>`
-  flex: ${(props: ColumnItemProps) => (props.$fixed ? '0 0 auto' : `${props.$scale ?? 1} ${props.$scale ?? 1} auto`)};
-  height: ${(props: ColumnItemProps) => toCssLengthValue(props.$height)};
-  min-height: ${(props: ColumnItemProps) => toCssLengthValue(props.$minHeight)};
-  max-height: ${(props: ColumnItemProps) => toCssLengthValue(props.$maxHeight)};
+const colItemStyle = css<ColItemProps>`
+  flex: ${(props: ColItemProps) => (props.$fixed ? '0 0 auto' : `${props.$scale ?? 1} ${props.$scale ?? 1} auto`)};
+  height: ${(props: ColItemProps) => toCssLengthValue(props.$height)};
+  min-height: ${(props: ColItemProps) => toCssLengthValue(props.$minHeight)};
+  max-height: ${(props: ColItemProps) => toCssLengthValue(props.$maxHeight)};
   overflow: auto;
 `;
 
 type RowComponent = React.FC<RowProps> & {
   Item: React.FC<RowItemProps>;
   RowItem: React.FC<RowProps & RowItemProps>;
-  ColItem: React.FC<ColumnProps & RowItemProps>;
+  ColItem: React.FC<ColProps & RowItemProps>;
 };
-type ColumnComponent = React.FC<ColumnProps> & {
-  Item: React.FC<ColumnItemProps>;
-  RowItem: React.FC<RowProps & ColumnItemProps>;
-  ColItem: React.FC<ColumnProps & ColumnItemProps>;
+type ColComponent = React.FC<ColProps> & {
+  Item: React.FC<ColItemProps>;
+  RowItem: React.FC<RowProps & ColItemProps>;
+  ColItem: React.FC<ColProps & ColItemProps>;
 };
 
 const Row: RowComponent = styled.div<RowProps>`
   ${rowStyle}
 ` as unknown as RowComponent;
-const Column: ColumnComponent = styled.div<ColumnProps>`
-  ${columnStyle}
-` as unknown as ColumnComponent;
+const Col: ColComponent = styled.div<ColProps>`
+  ${colStyle}
+` as unknown as ColComponent;
 
 Row.Item = styled.div<RowItemProps>`
   ${rowItemStyle}
@@ -105,20 +102,20 @@ Row.RowItem = styled.div<RowProps & RowItemProps>`
   ${rowStyle}
   ${rowItemStyle}
 `;
-Row.ColItem = styled.div<ColumnProps & RowItemProps>`
-  ${columnStyle}
+Row.ColItem = styled.div<ColProps & RowItemProps>`
+  ${colStyle}
   ${rowItemStyle}
 `;
-Column.Item = styled.div<ColumnItemProps>`
-  ${columnItemStyle}
+Col.Item = styled.div<ColItemProps>`
+  ${colItemStyle}
 `;
-Column.RowItem = styled.div<RowProps & ColumnItemProps>`
+Col.RowItem = styled.div<RowProps & ColItemProps>`
   ${rowStyle}
-  ${columnItemStyle}
+  ${colItemStyle}
 `;
-Column.ColItem = styled.div<ColumnProps & ColumnItemProps>`
-  ${columnStyle}
-  ${columnItemStyle}
+Col.ColItem = styled.div<ColProps & ColItemProps>`
+  ${colStyle}
+  ${colItemStyle}
 `;
 
-export { Row, Column };
+export { Row, Col };
