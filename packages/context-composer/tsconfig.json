@@ -1,19 +1,25 @@
 {  
-  "compilerOptions": {
-    "lib": ["es5", "es6", "dom"],
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "pretty": true,
-    "sourceMap": false,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "es5",
-    "outDir": "./lib",
-    "jsx": "react",
-    "declaration": true,
-    "declarationDir": "./types"
-  },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
+	"compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"exactOptionalPropertyTypes": false,
+		"esModuleInterop": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"pretty": true,
+		"sourceMap": false,
+		"target": "es2015",
+		"jsx": "react-jsx",
+		"jsxImportSource": "react",
+		"skipLibCheck": true,
+		"strict": true,
+		"declaration": true,
+		"declarationDir": "./types",
+		"paths": {
+			"@jelper/context-composer": ["./src"]
+		}
+	},
+	"include": ["src/**/*"]
 }

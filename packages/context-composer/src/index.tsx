@@ -1,42 +1,47 @@
-import React, { FC, memo } from 'react';
+import React, { type FC, type JSX, memo } from 'react';
 
-type Composer<P> = (Com: FC<P>) => FC<P>;
+type Composer<P extends {}> = (Com: FC<P>) => FC<P>;
 
-export const createCtxComposer = <P extends React.JSX.IntrinsicAttributes, T>(
-  useCfgHook: (props: P) => T
-): {
-  forwardComposer: (Com: FC<P>) => FC<P>;
-  useComposerCtx: () => T;
-  buildHooks: <F extends (...arg: any) => any>(cb: (value: T) => F) => (...p: Parameters<F>) => ReturnType<F>;
-  ComposerCtx: React.Context<T>;
-} => {
+interface Opts<P extends {}> {
+  builder?: <T extends {} = P>(props: P, Com: FC<T>) => JSX.Element;
+}
+
+export const createCtxComposer = <P extends {}, T>(
+  useCfgHook: (props: P) => T,
+  opts: Opts<P> = {}
+) => {
+  const { builder } = opts;
   const ComposerCtx = React.createContext<T>({} as any);
+
+  const useComposerCtx = () => {
+    return React.useContext<T>(ComposerCtx);
+  };
+  const buildHooks = <F extends (...arg: any) => any>(cb: (value: T) => F): (...p: Parameters<F>) => ReturnType<F> => {
+    return (...p: Parameters<F>): ReturnType<F> => {
+      const value = React.useContext<T>(ComposerCtx);
+      return cb(value)(...p);
+    };
+  }; 
   return {
-    forwardComposer: (Com: FC<P>, propsAreEqual?: (prevProps: Readonly<P>, nextProps: Readonly<P>) => boolean): FC<P> => {
-      const MemoCom = memo(Com, propsAreEqual)
+    forwardComposer<U extends {} = P>(Com: FC<U>, propsAreEqual?: (prevProps: Readonly<U>, nextProps: Readonly<U>) => boolean) {
+      const MemoCom= memo(Com, propsAreEqual);
       return (props: P) => {
         const value = useCfgHook(props);
         return (
           <ComposerCtx.Provider value={value}>
-            <MemoCom {...props} />
+            {
+              builder ? builder(props, MemoCom) : <MemoCom {...props as unknown as U} />
+            }
           </ComposerCtx.Provider>
         );
       }
     },
-    useComposerCtx() {
-      return React.useContext<T>(ComposerCtx);
-    },
-    buildHooks<F extends (...arg: any) => any>(cb: (value: T) => F): (...p: Parameters<F>) => ReturnType<F> {
-      return (...p: Parameters<F>): ReturnType<F> => {
-        const value = React.useContext<T>(ComposerCtx);
-        return cb(value)(...p);
-      };
-    },
-    ComposerCtx,
-  };
+    useComposerCtx,
+    buildHooks,
+  } as const;
 };
 
-export const mergeComposer = <P extends React.JSX.IntrinsicAttributes>(
+export const mergeComposer = <P extends {}>(
   list: Array<Composer<P>>,
 ): Composer<P> => {
   return (Com: FC<P>): FC<P> => {
