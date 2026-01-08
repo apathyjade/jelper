@@ -1,6 +1,6 @@
 {
   "name": "@jelper/hooks",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "react hooks helper",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -26,8 +26,17 @@
   "publishConfig": {
     "access": "public"
   },
+	"peerDependencies": {
+		"react": ">=19.2.3",
+		"react-dom": ">=19.2.3",
+    "lodash": ">=4.17.21"
+	},
   "devDependencies": {
     "@jelper/builder": "workspace:*",
+		"react": "~19.x.x",
+		"react-dom": "~19.x.x",
+    "lodash": "~4.17.21",
+		"typescript": "~5.9.3",
     "@types/node": "~18.0.0",
     "@types/lodash": "~4.17.21",
     "@types/react": "~18.2.17",
@@ -37,10 +46,6 @@
     "@jest/environment": "~29.7.0",
     "jest-environment-jsdom": "~29.7.0",
     "jsdom": "~26.0.0"
-  },
-  "dependencies": {
-    "react": "~18.2.0",
-    "lodash": "~4.17.21"
   },
   "author": "apathyjade@outlook.com",
   "license": "ISC",
