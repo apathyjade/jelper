@@ -52,10 +52,13 @@ const rowStyle = css<RowProps>`
   word-break: break-all;
 `;
 const rowItemStyle = css<RowItemProps>`
-  flex: ${(props: RowItemProps) => (props.$fixed ? '0 0 auto' : `${props.$scale ?? 1} ${props.$scale ?? 1} auto`)};
-  width: ${(props: RowItemProps) => toCssLengthValue(props.$width)};
-  min-width: ${(props: RowItemProps) => toCssLengthValue(props.$minWidth)};
-  max-width: ${(props: RowItemProps) => toCssLengthValue(props.$maxWidth)};
+  flex: ${(props: RowItemProps) => (
+    props.$fixed 
+      ? `0 0 ${toCssLengthValue(props.$width, 'auto')}`
+      : `${props.$scale ?? 1} ${props.$scale ?? 1} ${toCssLengthValue(props.$width, '0px')}`
+  )};
+  min-width: ${(props: RowItemProps) => toCssLengthValue(props.$minWidth, '0px')};
+  max-width: ${(props: RowItemProps) => toCssLengthValue(props.$maxWidth, '100%')};
   overflow: auto;
 `;
 
@@ -70,10 +73,13 @@ const colStyle = css<ColProps>`
   word-break: break-all;
 `;
 const colItemStyle = css<ColItemProps>`
-  flex: ${(props: ColItemProps) => (props.$fixed ? '0 0 auto' : `${props.$scale ?? 1} ${props.$scale ?? 1} auto`)};
-  height: ${(props: ColItemProps) => toCssLengthValue(props.$height)};
-  min-height: ${(props: ColItemProps) => toCssLengthValue(props.$minHeight)};
-  max-height: ${(props: ColItemProps) => toCssLengthValue(props.$maxHeight)};
+  flex: ${(props: ColItemProps) => (
+    props.$fixed 
+      ? `0 0 ${toCssLengthValue(props.$height, 'auto')}`
+      : `${props.$scale ?? 1} ${props.$scale ?? 1} ${toCssLengthValue(props.$height, '0px')}`
+  )};
+  min-height: ${(props: ColItemProps) => toCssLengthValue(props.$minHeight, '0px')};
+  max-height: ${(props: ColItemProps) => toCssLengthValue(props.$maxHeight, '100%')};
   overflow: auto;
 `;
 
