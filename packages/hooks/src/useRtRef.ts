@@ -5,11 +5,13 @@
  * @Last Modified time: 2025-05-30 15:05:26
  */
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const useRtRef = <T>(val: T) => {
-  const ref = useRef<T>(val)
-  ref.current = val;
+  const ref = useRef<T>(val);
+  useEffect(() => {
+    ref.current = val;
+  });
   return ref;
 };
 
