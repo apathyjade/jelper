@@ -17,7 +17,7 @@ const defOpt = {
   catchParam: false,
 }
 
-const useAsync = <T extends (p: any, opt?: { signal: AbortController['signal'] }) => Promise<any>, R = any>(
+const useAsync = <T extends (p: any, opt?: { signal: AbortController['signal'] }) => Promise<any>, R = ReturnType<T>>(
   asyncFn: T,
   opt: Opt<T, R> = { ...defOpt }
 ): [
