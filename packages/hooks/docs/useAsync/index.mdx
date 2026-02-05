@@ -39,15 +39,14 @@ import { useAsync } from '@jelper/hooks';
 />
 
 #### Interface
-
 ``` tsx
 interface Opt<T extends (p: any) => any, R> {
   defParam?: Parameter<T>; // 默认参数
-  immediate?: boolean;     // 是否立即执行 默认：false
   format?: (p: ReturnType<T>) => R; // 格式化返回数据
   catchParam?: boolean;   // 是否合并返回值
   onAbort?: (this: AbortSignal, ev: Event) => any; // 执行取消回调
 }
+// 默认不会执行，需要手动调用 run 方法
 type UseAsync<T extends (p: any, opt?: { signal: AbortController['signal'] }) => Promise<any>, R = any> = (
   asyncFn: T,
   opt: Opt<T, R> = defOpt
