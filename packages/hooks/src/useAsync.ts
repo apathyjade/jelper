@@ -4,9 +4,10 @@ import useRtCb from './useRtCb';
 import useUnmount from './useUnmount';
 import useSafeRunner from './useSafeRunner';
 
-type Parameter<T extends (p: any) => any> = Parameters<T>[0]
+type AsyncFn<T = any, R = any> = (p: T, opt: { signal: AbortSignal }) => Promise<R>;
+type Parameter<T extends AsyncFn> = Parameters<T>[0]
 
-interface Opt<T extends (p: any) => any, R> {
+interface Opt<T extends AsyncFn, R> {
   defParam?: Partial<Parameter<T>>;
   format?: (p: ReturnType<T>) => R;
   catchParam?: boolean;
@@ -17,7 +18,7 @@ const defOpt = {
   catchParam: false,
 }
 
-const useAsync = <T extends (p: any, opt?: { signal: AbortController['signal'] }) => Promise<any>, R = Awaited<ReturnType<T>>>(
+const useAsync = <T extends AsyncFn, R = Awaited<ReturnType<T>>>(
   asyncFn: T,
   opt: Opt<T, R> = { ...defOpt }
 ): [
