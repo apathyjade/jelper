@@ -1,11 +1,3 @@
-/*
- * @Author: jade <apathyjade@outlook.com>
- * @Version: 0.0.1
- * @Date: 2023-04-05 14:39:52
- * @Last Modified by:   jade
- * @Last Modified Time: 2023-04-05 14:39:52
- */
-
 import { useState } from 'react';
 import useUpdateEff from './useUpdateEff';
 

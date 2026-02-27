@@ -1,18 +1,12 @@
-/**
- * @Author: apathyjade
- * @Date: 2025-03-19 23:10:13
- * @Last Modified by: apathyjade
- * @Last Modified time: 2025-05-30 18:24:42
- */
-
 import { useCallback, useEffect, useRef } from 'react';
 import useRtCb from './useRtCb';
+import useRtRef from './useRtRef';
 
 export const useTimeoutHandler = (): [
   (callback: Function, timeout?: number, ...arg: any[]) => void,
   () => void,
 ] => {
-  const timerRef = useRef<number>();
+  const timerRef = useRef<number | undefined>(undefined);
   const clearTimer = useCallback(() => {
     if (timerRef.current) {
       window.clearTimeout(timerRef.current);
@@ -34,15 +28,14 @@ export const useTimeoutHandler = (): [
   ];
 };
 
-export const useTimeout = (callback: (...any: any[]) => any, timeout?: number, ...arg: any[]): () => void => {
+export const useTimeout = <T extends (...any: any[]) => any>(callback: T, timeout?: number, ...args: any[]|[]): () => void => {
   const [bindTimer, clearTimer] = useTimeoutHandler();
-
   const cb = useRtCb(callback);
-
+  const argsRef = useRtRef(args);
   useEffect(() => {
-    bindTimer(cb, timeout, ...arg);
+    bindTimer(cb, timeout, ...argsRef.current);
     return clearTimer;
-  }, [cb, timeout, ...arg]);
+  }, [cb, timeout]);
   return clearTimer;
 };
 

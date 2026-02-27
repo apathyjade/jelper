@@ -1,215 +1,87 @@
-
 # jelper
-
-helper 单体库，内部包括完整构建工具、发布流程，文档自动构建发布流程;
-
-## install
-
-``` shell
-npm install -g @microsoft/rush@5.164.0
-npm install -g pnpm@10.26.0
-
-rush update
-```
 
 一个功能齐全的 JavaScript/TypeScript 工具库集合，采用 Monorepo 架构管理，提供完整的构建工具链、发布流程和文档自动化系统。
 
-## 📦 项目简介
+## 特性
 
-jelper 是一个现代化的前端工具库生态系统，专为提升开发效率而设计。项目使用 Rush 进行包管理，确保多包之间的依赖关系清晰可控。所有子包都可以独立发布和使用，同时共享统一的构建和发布流程。
+- 🚀 Monorepo 架构 - 使用 Rush + pnpm 管理多包
+- 📦 独立发布 - 所有子包可单独发布和使用
+- 🛠️ 完整构建链 - 支持 TypeScript、多种模块格式
+- 📚 自动文档 - Docusaurus 文档站点
 
-## 🏗️ 项目架构
+## 核心工具
 
-本项目采用 Monorepo 架构，包含以下核心包：
+| 包 | 描述 |
+|---|---|
+| [@jelper/builder](./packages/builder) | CLI 构建工具，支持 build/serve/test 命令 |
+| [@jelper/css](./packages/css) | CSS 工具集 |
+| [@jelper/enum](./packages/enum) | 枚举工具库，类型安全 |
+| [@jelper/di](./packages/di) | 依赖注入工具 |
+| [@jelper/notify](./packages/notify) | 通知组件库 |
 
-### 核心工具
+## React 相关
 
-#### [@jelper/builder](./packages/builder)
+| 包 | 描述 |
+|---|---|
+| [@jelper/component](./packages/component) | React 组件库，基于 styled-components |
+| [@jelper/hooks](./packages/hooks) | React Hooks 工具集 |
+| [@jelper/context-composer](./packages/context-composer) | React Context 组合工具 |
 
-- **描述**：CLI 构建工具，用于构建 JavaScript/TypeScript 包
-- **功能**：
-  - 提供统一的构建命令和配置
-  - 支持 TypeScript、React、Babel 等现代工具链
-  - 集成测试、开发服务器等功能
-  - 可生成 CommonJS、ES Module 多种格式输出
-- **命令**：`jelper build`、`jelper serve`、`jelper test`
+## 业务工具
 
-#### [@jelper/css](./packages/css)
+| 包 | 描述 |
+|---|---|
+| [@jelper/store](./packages/store) | 轻量级状态管理 |
+| [@jelper/handler](./packages/handler) | 事件处理器工具集 |
+| [@jelper/promise](./packages/promise) | Promise 辅助工具 |
 
-- **描述**：CSS 工具集
-- **功能**：提供常用的 CSS 工具函数和样式处理能力
-
-#### [@jelper/enum](./packages/enum)
-
-- **描述**：枚举工具库
-- **功能**：提供类型安全的枚举定义和操作工具
-
-### React 相关
-
-#### [@jelper/component](./packages/component)
-
-- **描述**：React 组件库
-- **功能**：
-  - 提供常用的 React 组件
-  - 基于 styled-components 的样式方案
-  - 支持 TypeScript 类型定义
-
-#### [@jelper/hooks](./packages/hooks)
-
-- **描述**：React Hooks 工具集
-- **功能**：
-  - 提供常用的自定义 Hooks
-  - 包含完整的单元测试
-  - 使用 lodash-es 提供辅助功能
-
-#### [@jelper/context-composer](./packages/context-composer)
-
-- **描述**：React Context 组合工具
-- **功能**：简化多个 Context Provider 的组合和管理
-
-### 业务工具
-
-#### [@jelper/store](./packages/store)
-
-- **描述**：状态管理工具
-- **功能**：提供轻量级的状态管理解决方案
-
-#### [@jelper/handler](./packages/handler)
-
-- **描述**：事件处理器工具集
-- **功能**：提供常用的事件处理和函数工具
-
-#### [@jelper/promise](./packages/promise)
-
-- **描述**：Promise 工具库
-- **功能**：提供 Promise 相关的辅助函数和工具
-
-## 🚀 快速开始
-
-### 环境要求
-
-- Node.js >= 14.15.0
-- pnpm 6.7.1（通过 Rush 管理）
-
-### 安装依赖
+## 快速开始
 
 ```bash
 # 安装 Rush（如果尚未安装）
-npm install -g @microsoft/rush
+npm install -g @microsoft/rush@5.164.0 pnpm@10.26.0
 
-# 安装项目依赖
-rush install
-```
+# 安装依赖
+rush update
 
-### 构建项目
-
-```bash
 # 构建所有包
 rush build
-
-# 构建特定包
-cd packages/builder
-rushx build
 ```
 
-### 开发模式
-
-```bash
-# 在特定包目录下启动开发服务器
-cd packages/component
-rushx serve
-```
-
-## 📝 发布流程
-
-### 发布到 npm
+## 发布
 
 ```bash
 rush publish -p --include-all -n ${token}
 ```
 
-参数说明：
+## 项目结构
 
-- `-p`：发布包
-- `--include-all`：包含所有包
-- `-n ${token}`：使用 npm token 进行身份验证
-
-### 版本管理
-
-项目使用统一的版本管理策略，所有包保持版本同步（当前版本：1.1.0）。
-
-## 🔧 项目结构
-
-``` md
+```
 jelper/
-├── common/                      # 公共配置和脚本
-│   ├── autoinstallers/         # 自动化安装器
-│   │   └── rush-lint/          # 代码检查自动化脚本
-│   ├── config/rush/            # Rush 配置文件
-│   ├── git-hooks/              # Git 钩子
-│   └── scripts/                # 公共脚本
-├── packages/                    # 所有子包
-│   ├── builder/                # 构建工具
-│   ├── component/              # React 组件
-│   ├── context-composer/       # Context 组合器
-│   ├── css/                    # CSS 工具
-│   ├── enum/                   # 枚举工具
-│   ├── handler/                # 处理器工具
-│   ├── hooks/                  # React Hooks
-│   ├── promise/                # Promise 工具
-│   └── store/                  # 状态管理
-├── docs/                       # 文档站点（已构建）
-├── website/                    # 文档源码（Docusaurus）
-├── rush.json                   # Rush 配置
-└── README.md                   # 项目说明
+├── common/                 # 公共配置和脚本
+├── packages/               # 所有子包
+│   ├── builder/           # 构建工具
+│   ├── component/         # React 组件
+│   ├── context-composer/  # Context 组合器
+│   ├── css/               # CSS 工具
+│   ├── di/                # 依赖注入
+│   ├── enum/              # 枚举工具
+│   ├── handler/           # 处理器工具
+│   ├── hooks/             # React Hooks
+│   ├── notify/            # 通知组件
+│   ├── promise/           # Promise 工具
+│   └── store/             # 状态管理
+├── website/               # Docusaurus 文档
+└── rush.json              # Rush 配置
 ```
 
-## 📚 文档
+## 技术栈
 
-项目文档使用 Docusaurus 构建，包含所有包的详细 API 文档和使用示例。
+- **包管理**: Rush + pnpm
+- **构建**: Webpack + Babel + TypeScript
+- **测试**: Jest + Cypress
+- **文档**: Docusaurus
 
-- **在线文档**：部署在 `docs/` 目录，可直接访问
-- **本地预览**：在 `website/` 目录下运行文档开发服务器
+## License
 
-```bash
-cd website
-pnpm install
-pnpm start
-```
-
-## 🤝 自动化工具
-
-### common/autoinstallers/rush-lint
-
-位于 `common/autoinstallers/rush-lint` 的自动化脚本项目，提供：
-
-- Git commit 消息检查（commitlint）
-- 代码格式化检查
-- 自动化构建脚本
-
-## 🛠️ 技术栈
-
-- **包管理**：Rush + pnpm
-- **构建工具**：Webpack + Babel + TypeScript
-- **测试框架**：Jest + Cypress
-- **文档工具**：Docusaurus
-- **代码规范**：Prettier + CommitLint
-- **UI 框架**：React 18 + Ant Design 5
-
-## 📄 许可证
-
-ISC License
-
-## 👤 作者
-
-apathyjade@outlook.com
-
-## 🔗 相关链接
-
-- GitHub 仓库：https://github.com/apathyjade/jelper.git
-- Rush 官方文档：https://rushjs.io/
-
-## common/autoinstallers/rush-lint
-
-自动化脚本项目
-
+ISC - apathyjade@outlook.com

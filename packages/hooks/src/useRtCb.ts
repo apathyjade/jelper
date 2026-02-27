@@ -1,10 +1,3 @@
-/**
- * @Author: apathyjade
- * @Date: 2025-03-17 00:22:11
- * @Last Modified by: apathyjade
- * @Last Modified time: 2025-03-17 00:22:56
- */
-
 import { useCallback } from 'react';
 import useRtRef from './useRtRef';
 

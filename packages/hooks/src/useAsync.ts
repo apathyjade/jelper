@@ -14,13 +14,12 @@ interface Opt<T extends AsyncFn, R> {
   onAbort?: (this: AbortSignal, ev: Event) => any;
 }
 
-const defOpt = {
+const defOpt: Opt<any, any> = {
   catchParam: false,
 }
-
 const useAsync = <T extends AsyncFn, R = Awaited<ReturnType<T>>>(
   asyncFn: T,
-  opt: Opt<T, R> = { ...defOpt }
+  inputOpt?: Opt<T, R>
 ): [
   R | undefined,
   {
@@ -33,6 +32,7 @@ const useAsync = <T extends AsyncFn, R = Awaited<ReturnType<T>>>(
     controller: AbortController|undefined;
   }
 ] => {
+  const opt = inputOpt ? { ...defOpt, ...inputOpt } : defOpt;
   const [data, setData] = useState<R | undefined>(undefined);
   const [param, setParam] = useState<Partial<Parameter<T>>>(opt.defParam || {});
   const [loading, setLoading] = useState(false);

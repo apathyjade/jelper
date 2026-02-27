@@ -1,10 +1,3 @@
-/*
- * @Author: apathyjade
- * @Date: 2023-11-24 10:52:51
- * @Last Modified by: apathyjade
- * @Last Modified time: 2025-05-30 14:35:56
- */
-
 import { useCallback, useEffect } from 'react';
 
 let resizeObserver: ResizeObserver;

@@ -1,10 +1,3 @@
-/**
- * @Author: apathyjade
- * @Date: 2025-03-16 11:35:37
- * @Last Modified by: apathyjade
- * @Last Modified time: 2025-03-16 21:31:54
- */
-
 import { useCallback, useState } from 'react';
 
 const useOption = <T extends {}>(defOpt: Partial<T> = {}): [

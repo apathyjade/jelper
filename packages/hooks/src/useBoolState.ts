@@ -1,11 +1,4 @@
-/**
- * @Author: apathyjade
- * @Date: 2025-03-16 11:16:34
- * @Last Modified by: apathyjade
- * @Last Modified time: 2025-05-29 18:08:43
- */
-
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 const useBoolState = (value: boolean): [
   boolean,

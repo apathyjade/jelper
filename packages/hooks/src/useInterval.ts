@@ -1,18 +1,12 @@
-/*
- * @Author: apathyjade
- * @Date: 2023-12-14 16:51:29
- * @Last Modified by: apathyjade
- * @Last Modified time: 2025-05-30 18:24:00
- */
-
 import { useCallback, useEffect, useRef } from 'react';
 import useRtCb from './useRtCb';
+import useRtRef from './useRtRef';
 
 export const useIntervalHandler = (): [
   (callback: Function, timeout?: number, ...arg: any[]) => void,
   () => void,
 ] => {
-  const timerRef = useRef<number>();
+  const timerRef = useRef<number | undefined>(undefined);
   const clearTimer = useCallback(() => {
     if (timerRef.current) {
       window.clearInterval(timerRef.current);
@@ -32,13 +26,14 @@ export const useIntervalHandler = (): [
   ];
 }
 
-export const useInterval = (callback: (args: any[]) => any, timeout?: number, ...arg: any[]): (() => void) => {
+export const useInterval = <T extends (...args: any[]) => any>(callback: T, timeout?: number, ...args: Parameters<T>|[]): (() => void) => {
   const [bindTimer, clearTimer] = useIntervalHandler();
   const cb = useRtCb(callback);
+  const argsRef = useRtRef(args);
   useEffect(() => {
-    bindTimer(cb, timeout, ...arg)
+    bindTimer(cb, timeout, ...argsRef.current)
     return clearTimer
-  }, [cb, timeout, ...arg]);
+  }, [cb, timeout]);
   return clearTimer;
 };
 
