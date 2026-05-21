@@ -54,9 +54,9 @@ export default function remarkIncludePlugin(): Transformer<Root> {
             plugins: ['jsx']
           });
 
-          console.log('----------------------')
-          console.log(attr.value.data, newEstree)
-          console.log('------------end----------')
+          // console.log('----------------------')
+          // console.log(attr.value.data, newEstree)
+          // console.log('------------end----------')
           const value = {
             ...attr.value,
             value: newExpression,

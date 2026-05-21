@@ -9,12 +9,13 @@ import { webpackConfigBase } from '../config/index.js';
 import { resolveByRootPath, resolveByBasePath, basePath, getJelperCfg } from '../common/index.js';
 
 const getPackageJson = (() => {
-  const packageJson = null
+  let packageJson: any;
   return () => {
     if (packageJson) {
       return packageJson;
     }
-    return fs.readJSONSync(resolveByBasePath('./package.json'));
+    packageJson = fs.readJSONSync(resolveByBasePath('./package.json'));
+    return packageJson;
   };
 })();
 

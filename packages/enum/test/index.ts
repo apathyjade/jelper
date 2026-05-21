@@ -1,14 +1,10 @@
+import { EnumHelper } from '../src/index.ts';
 
-import { useEnumHelper, EnumHelper} from '../src/index.ts';
-
-const testEnumHelper = useEnumHelper([
-  {
-    label: '测试1',
-    key: 'test1',
-    value: false
-  }
-], {
-  getItemByPropsValue() {
-    (this as EnumHelper)
-  }
-})
+describe('enum', () => {
+  test("test", () => {
+    const result = new EnumHelper([
+      { label: '测试1', key: 'test1', value: false }
+    ]);
+    expect(result.get('test1')).toBeDefined();
+  });
+});

@@ -146,6 +146,6 @@ async function publishPackage (pkg) {
       env: { ...process.env }
     });
   } catch (error) {
-    throw new Error(`❌ Failed to publish package ${pkg.name}@${pkg.version}: ${err.message}`);
+    throw new Error(`❌ Failed to publish package ${pkg.name}@${pkg.version}: ${error.message}`);
   }
 };

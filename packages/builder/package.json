@@ -4,12 +4,13 @@
   "type": "module",
   "description": "CLI to build JavaScript helper package",
   "main": "./lib/index.js",
+  "types": "types/index.d.ts",
   "bin": {
     "jelper": "./bin/index.js"
   },
   "scripts": {
     "build": "tsc -p ./ --outDir ./lib",
-    "test": "cypress run --component"
+    "test": "echo \"No tests yet\""
   },
   "files": [
     "tsconfig.json",

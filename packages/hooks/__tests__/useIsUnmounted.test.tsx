@@ -1,6 +1,6 @@
 import {describe, expect, test} from '@jest/globals';
 import { renderHook } from '@testing-library/react';
-import useIsUnmounted from '../src/useIsUnmount';
+import useIsUnmount from '../src/useIsUnmount';
 
 describe('useIsUnmounted', () => {
   test("验证状态", async () => {
