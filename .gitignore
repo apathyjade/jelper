@@ -66,6 +66,9 @@ common/autoinstallers/*/.npmrc
 
 /docs
 
+# OpenCode runtime data
+.omo/run-continuation/
+
 # Heft
 .heft
 es
