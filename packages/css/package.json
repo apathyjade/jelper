@@ -28,11 +28,11 @@
     "@types/react": "~19.x.x",
     "@types/react-dom": "~19.x.x"
   },
-  "dependencies": {
-    "react": "~18.2.0",
-    "react-dom": "~18.2.0",
-    "classnames": "~2.5.1",
-    "styled-components": "~6.1.18"
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "classnames": ">=2.0.0",
+    "styled-components": ">=6.0.0"
   },
   "author": "apathyjade@outlook.com",
   "license": "ISC",

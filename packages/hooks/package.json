@@ -27,8 +27,8 @@
     "access": "public"
   },
 	"peerDependencies": {
-		"react": ">=19.2.3",
-		"react-dom": ">=19.2.3",
+		"react": ">=18.0.0",
+		"react-dom": ">=18.0.0",
     "lodash": ">=4.17.21"
 	},
   "devDependencies": {
