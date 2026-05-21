@@ -131,6 +131,13 @@ const cfg: any = async() => {
             }
           ]
         },
+        {
+          test: /\.css$/,
+          use: [
+            { loader: styleLoaderPath },
+            { loader: cssLoaderPath },
+          ]
+        },
       ]
     },
   }
