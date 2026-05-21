@@ -31,17 +31,12 @@
     "clsx": "^2.0.0",
     "docusaurus-plugin-sass": "^0.2.6",
     "highlight.js": "~11.11.1",
-    "preset": "@docusaurus/babel/preset",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "~5.1.0",
     "react-dom": "^18.2.0",
     "sass": "^1.89.0",
     "styled-components": "~6.1.18"
-  },
-  "resolutions": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.7.0",
