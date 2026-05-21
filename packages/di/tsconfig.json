@@ -17,5 +17,5 @@
     "inlineSources": true, // 将源代码嵌入 source map
     "sourceRoot": "/" // 标准化源根
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "src/__tests__/index.test.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
 }
