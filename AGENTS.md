@@ -157,7 +157,7 @@ rush publish --apply
 
 | 工具 | 版本 |
 |------|------|
-| Node.js | 22.21.1 |
+| Node.js | 24.x |
 | Rush | 5.164.0 |
 | pnpm | 10.26.0 |
 | TypeScript | ~5.x |
