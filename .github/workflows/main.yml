@@ -20,8 +20,8 @@ jobs:
           node-version: 22
       - name: build & test
         run: |
-          npm install -g @microsoft/rush@5.164.0
           npm install -g npm@latest
+          npm install -g @microsoft/rush@5.164.0
           rush update
           rush build
           rush build  # 确保构建缓存生效
